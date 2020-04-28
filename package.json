@@ -5,11 +5,26 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,scss}'",
+    "format-check": "prettier --check './**/*.{js,jsx,ts,tsx,scss}'",
+    "lint-check": "eslint './**/*.{js,jsx,ts,tsx}'",
+    "lint": "eslint './**/*.{js,jsx,ts,tsx}' --fix"
   },
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "next": "9.3.6",
     "react": "16.13.1",
     "react-dom": "16.13.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3"
   }
 }
