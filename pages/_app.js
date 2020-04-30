@@ -15,7 +15,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <meta charset="utf-8" />
+        <meta charSet="utf-8" />
         <title>Gradestats</title>
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -36,9 +36,9 @@ const App = ({ Component, pageProps }) => {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="/index">
-              grades.no
-            </a>
+            <Link href="/index" as="/">
+              <a className="navbar-brand">grades.no</a>
+            </Link>
           </div>
           <div className="collapse navbar-collapse" id="navigationlist">
             <ul id="navbar" className="nav navbar-nav navbar-left">

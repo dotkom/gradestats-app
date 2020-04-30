@@ -65,7 +65,7 @@ const DATA_INFO = [
 
 const AUTHOR_INFO = [
   {
-    name: 'Tor Håkon Bonsaksen (torrib)',
+    name: 'Tor Håkon Bonsaksen',
     link: 'https://github.com/Torrib',
     description: `
       Originalt utviklingsteam.
@@ -79,7 +79,7 @@ const AUTHOR_INFO = [
     `,
   },
   {
-    name: 'Ole Anders (torrib)',
+    name: 'Ole Anders Stokker',
     link: 'https://github.com/oleast',
     description: `
       Videreutvikler, omskriving til NextJS/Django Rest Framework.
@@ -93,7 +93,7 @@ const AUTHOR_INFO = [
     `,
   },
   {
-    name: 'Drift- og utviklingskomiteen i Linjeforeningen Online',
+    name: 'Drifts- og Utviklingskomiteen i Linjeforeningen Online',
     link: 'https://github.com/dotkom',
     description: `
       Vedlikehold.
