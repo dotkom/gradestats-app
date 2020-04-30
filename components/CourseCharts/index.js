@@ -46,7 +46,7 @@ export const CourseCharts = ({ grades }) => {
           </button>
         </div>
       </div>
-      <div style={{ padding: '10px' }}>
+      <div className="victory-container" style={{ padding: '10px' }}>
         {tab === 'BAR' &&
           (currentGrade.passed === 0 ? <GradedGraph grade={currentGrade} /> : <UngradedGraph grade={currentGrade} />)}
         {tab === 'AVERAGE' && <AverageChart grades={grades} showKont={showKont} />}
