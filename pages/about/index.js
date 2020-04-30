@@ -5,14 +5,17 @@ const TECHNICAL_INFO = [
     name: 'React',
     link: 'https://reactjs.org/',
     description: `
-      React brukes for å beskrive visningen av nettsiden.
+      React er et bibliotek for å utvikle dynamiske brukergensesnitt med JavaScript.
+      For denne nettsiden brukes det for å generere all HTML og interaktivitet.
     `,
   },
   {
     name: 'NextJS',
     link: 'https://nextjs.org',
     description: `
-      NextJS brukes som rammeverk rundt React.
+      NextJS er et rammeverk for React som kan gjøre det mye lettere å lage større prosjekter.
+      Rammeverket tilbyr Server Side Rendering (SSR), Static Site Generation (SSG),
+      filbasert routing, data fetching, head manipulation og mye mye mer som gjør brukeropplevelsen enda bedre.
     `,
   },
   {
@@ -31,17 +34,18 @@ const TECHNICAL_INFO = [
   },
   {
     name: 'Bootstrap',
-    link: 'http://getbootstrap.com/',
+    link: 'https://getbootstrap.com/',
     description: `
-      Bootstrap benyttes for at siden skal være responsive og tilpasse seg ulike skjermstørelser.
+      Bootstrap benyttes for at siden skal være responsive og tilpasse seg ulike skjermstørrelser.
       Dette gjør at siden også kan brukes på smarttelefoner uten noe ekstra styr.
     `,
   },
   {
-    name: 'JqPlot',
-    link: 'http://www.jqplot.com/',
+    name: 'Victory',
+    link: 'https://formidable.com/open-source/victory/',
     description: `
-      JqPlot lager grafene som viser karakter statistikken.
+      Victory er et datavisualiseringsbibliotek fra Formidable.
+      Biblioteket består av React komponenter som er svært enkle å tegne grafer med.
     `,
   },
 ];
