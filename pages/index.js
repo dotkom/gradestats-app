@@ -1,12 +1,14 @@
-import fetch from 'isomorphic-fetch';
 // import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
 
+import { getCourseListApiUrl } from '../common/urls';
+import { fetcher } from '../common/fetcher';
+
 export const getStaticProps = async () => {
-  const response = await fetch(`https://grades.no/api/v2/courses/?limit=20`);
-  const data = await response.json();
-  const courses = data.results;
+  const limit = 20;
+  const response = await fetcher(getCourseListApiUrl({ limit }));
+  const courses = response.results;
   return {
     props: {
       courses,
