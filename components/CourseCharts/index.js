@@ -61,7 +61,9 @@ export const CourseCharts = ({ grades }) => {
                 <button
                   key={grade.semester_code}
                   type="button"
-                  className={cx('"btn-grade', 'btn', 'btn-default', { active: currentGrade === grade })}
+                  className={cx('"btn-grade', 'btn', 'btn-default', {
+                    active: currentGrade.semester_code === grade.semester_code,
+                  })}
                   onClick={() => setCurrentGrade(grade)}
                 >
                   {grade.semester_code}
