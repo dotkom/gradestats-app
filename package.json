@@ -12,6 +12,7 @@
     "lint": "eslint './**/*.{js,jsx,ts,tsx}' --fix"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "isomorphic-fetch": "^2.2.1",
     "next": "9.3.6",
     "react": "^0.0.0-experimental-e5d06e34b",
