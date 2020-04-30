@@ -19,6 +19,3 @@ jobs:
 
       - name: Compile
         run: yarn build
-
-      - name: Test
-        run: yarn test
