@@ -68,7 +68,7 @@ const App = ({ Component, pageProps, err }) => {
               action="/search/"
               method="get"
               role="search"
-              style={{ marginTop: '-5px' }}
+              style={{ marginBottom: '-5px' }}
             >
               <div className="input-group">
                 <input type="text" className="form-control tt-query" placeholder="Søk" name="query" />
