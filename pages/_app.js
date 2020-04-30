@@ -1,8 +1,10 @@
+import * as Sentry from '@sentry/node';
 import Head from 'next/head';
+import Link from 'next/link';
 import React from 'react';
 
 import '../assets/css/gradestats.css';
-import Link from 'next/link';
+import { SENTRY_DSN } from '../common/constants';
 
 const NAVBAR_ITEMS = [
   { href: '/', name: 'Fag' },
@@ -11,7 +13,13 @@ const NAVBAR_ITEMS = [
   { href: '/api-info', name: 'API' },
 ];
 
-const App = ({ Component, pageProps }) => {
+Sentry.init({
+  dsn: SENTRY_DSN,
+});
+
+const App = ({ Component, pageProps, err }) => {
+  // Workaround for https://github.com/zeit/next.js/issues/8592
+  const modifiedPageProps = { ...pageProps, err };
   return (
     <>
       <Head>
@@ -72,7 +80,7 @@ const App = ({ Component, pageProps }) => {
       </nav>
 
       <div className="container">
-        <Component {...pageProps} />
+        <Component {...modifiedPageProps} />
       </div>
     </>
   );
