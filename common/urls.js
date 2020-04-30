@@ -1,0 +1,20 @@
+import { GRADES_API_URL } from './constants';
+
+export const getCourseListApiUrl = ({ limit, offset = 0, query = '' }) => {
+  return `${GRADES_API_URL}/api/v2/courses/?limit=${limit}&offset=${offset}&query=${query}`;
+};
+export const getCourseDetailApiUrl = (courseCode) => {
+  return `${GRADES_API_URL}/api/v2/courses/${courseCode}/`;
+};
+export const getCourseGradeListApiUrl = (courseCode, { limit = 300, offset = 0 } = {}) => {
+  return `${GRADES_API_URL}/api/v2/courses/${courseCode}/grades/?limit=${limit}&offset=${offset}`;
+};
+export const getCourseGradeDetailApiUrl = (courseCode, semesterCode) => {
+  return `${GRADES_API_URL}/api/v2/courses/${courseCode}/grades/${semesterCode}/`;
+};
+export const getCourseTagListApiUrl = (courseCode, { limit = 50, offset = 0 } = {}) => {
+  return `${GRADES_API_URL}/api/v2/courses/${courseCode}/tags/?limit=${limit}&offset=${offset}`;
+};
+export const getCourseTagDetailApiUrl = (courseCode, tagId) => {
+  return `${GRADES_API_URL}/api/v2/courses/${courseCode}/tags/${tagId}/`;
+};
