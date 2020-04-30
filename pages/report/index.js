@@ -42,7 +42,7 @@ const ReportPage = () => {
           </div>
 
           <div className="form-group">
-            <button id="report" name="report" className="btn btn-primary">
+            <button name="report" className="btn btn-primary">
               Rapporter
             </button>
           </div>

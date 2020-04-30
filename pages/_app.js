@@ -40,8 +40,8 @@ const App = ({ Component, pageProps }) => {
               <a className="navbar-brand">grades.no</a>
             </Link>
           </div>
-          <div className="collapse navbar-collapse" id="navigationlist">
-            <ul id="navbar" className="nav navbar-nav navbar-left">
+          <div className="collapse navbar-collapse">
+            <ul className="nav navbar-nav navbar-left">
               {NAVBAR_ITEMS.map(({ href, name }) => (
                 <li key={href} className="navbar-item">
                   <Link href={href}>
@@ -59,7 +59,7 @@ const App = ({ Component, pageProps }) => {
               style={{ marginTop: '-5px' }}
             >
               <div className="input-group">
-                <input type="text" className="form-control tt-query" placeholder="Søk" name="query" id="query" />
+                <input type="text" className="form-control tt-query" placeholder="Søk" name="query" />
                 <div className="input-group-btn">
                   <button className="btn btn-default" style={{ marginTop: '-5px' }} type="submit">
                     <i className="glyphicon glyphicon-search"></i>
