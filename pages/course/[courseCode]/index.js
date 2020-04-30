@@ -31,9 +31,11 @@ export const getStaticPaths = async () => {
 
 export const getServerSideProps = async ({ params }) => {
   const { courseCode } = params;
-  const initialCourse = await fetcher(getCourseDetailApiUrl(courseCode));
-  const initalGrades = await fetcher(getCourseGradeListApiUrl(courseCode));
-  const initalTags = await fetcher(getCourseTagListApiUrl(courseCode));
+  const [initialCourse, initalGrades, initalTags] = await Promise.all([
+    fetcher(getCourseDetailApiUrl(courseCode)),
+    fetcher(getCourseGradeListApiUrl(courseCode)),
+    fetcher(getCourseTagListApiUrl(courseCode)),
+  ]);
   return {
     props: {
       initialCourse,
