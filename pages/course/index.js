@@ -7,7 +7,7 @@ import { getCourseListApiUrl } from '../../common/urls';
 import { useQueryParam } from '../../common/hooks/useQueryParam';
 import { useIsomorphicLayoutEffect } from '../../common/hooks/useIsomorphicLayoutEffect';
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 20;
 
 const CourseListPage = () => {
   const searchBarRef = useRef(null);
@@ -70,9 +70,13 @@ const CourseListPage = () => {
             </tbody>
           </table>
           <div className="container-fluid text-center">
-            <a onClick={() => pageNumber - 1}>&lt;&lt;</a>
+            <Link href={{ pathname, query: { query, page: pageNumber - 1 } }}>
+              <a>&lt;&lt;</a>
+            </Link>
             {`${page} av ${pageCount}`}
-            <a onClick={() => pageNumber + 1}>&gt;&gt;</a>
+            <Link href={{ pathname, query: { query, page: pageNumber + 1 } }}>
+              <a>&gt;&gt;</a>
+            </Link>
           </div>
         </div>
       </div>
