@@ -11,10 +11,6 @@ select {
   position: relative;
 }
 
-.twitter-typeahead .tt-query,
-.twitter-typeahead .tt-hint {
-}
-
 .twitter-typeahead .tt-hint {
   color: #a1a1a1;
   z-index: 1;
@@ -112,9 +108,6 @@ tbody > tr:hover {
 
 #navigationlist.in {
   overflow: visible;
-}
-
-.navbar-brand {
 }
 
 .navbar-default {
