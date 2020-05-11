@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import useSWR from 'swr';
 
-// import { BUILD_TIME_COURSE_LIMIT } from '../../../common/constants';
+import { BUILD_TIME_COURSE_LIMIT } from '../../../common/constants';
 import {
-  // getCourseListApiUrl,
+  getCourseListApiUrl,
   getCourseDetailApiUrl,
   getCourseTagListApiUrl,
   getCourseGradeListApiUrl,
@@ -16,7 +15,6 @@ import { Facts } from '../../../components/Facts';
 import { CourseContent } from '../../../components/CourseContent';
 import { CourseCharts } from '../../../components/CourseCharts';
 
-/*
 export const getStaticPaths = async () => {
   const limit = BUILD_TIME_COURSE_LIMIT;
   const response = await fetcher(getCourseListApiUrl({ limit }));
@@ -27,9 +25,8 @@ export const getStaticPaths = async () => {
     fallback: true,
   };
 };
-*/
 
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const { courseCode } = params;
   const [initialCourse, initalGrades, initalTags] = await Promise.all([
     fetcher(getCourseDetailApiUrl(courseCode)),
@@ -37,6 +34,7 @@ export const getServerSideProps = async ({ params }) => {
     fetcher(getCourseTagListApiUrl(courseCode)),
   ]);
   return {
+    unstable_revalidate: 60, // Revalidate once each hour.
     props: {
       initialCourse,
       initalGrades,
@@ -46,19 +44,16 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 const CourseDetailPage = ({ initialCourse, initalGrades, initalTags }) => {
-  const router = useRouter();
-  const { courseCode } = router.query;
-  const { data: course } = useSWR(getCourseDetailApiUrl(courseCode), fetcher, {
-    initialData: initialCourse,
-  });
-  const { data: gradesResponse } = useSWR(getCourseGradeListApiUrl(courseCode), fetcher, {
-    initialData: initalGrades,
-  });
-  const { data: tagsResponse } = useSWR(getCourseTagListApiUrl(courseCode), fetcher, {
-    initialData: initalTags,
-  });
-  const grades = gradesResponse.results.sort(sortSemesters);
-  const tags = tagsResponse.results;
+  const { isFallback, query } = useRouter();
+  const { courseCode } = query;
+
+  if (isFallback || !courseCode) {
+    return 'Loading...';
+  }
+
+  const course = initialCourse;
+  const grades = initalGrades.results.sort(sortSemesters);
+  const tags = initalTags.results;
 
   return (
     <>

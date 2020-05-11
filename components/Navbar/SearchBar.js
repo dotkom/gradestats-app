@@ -20,8 +20,6 @@ export const SearchBar = () => {
     setQuery(event.target.value);
   };
 
-  console.log(data);
-
   return (
     <form
       className="navbar-form navbar-right"
