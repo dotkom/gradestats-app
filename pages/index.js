@@ -29,10 +29,15 @@ const IndexPage = ({ courses }) => {
       <div className="row">
         <div className="col-md-12">
           <br />
-          <div className="form-group has-feedback has-search">
-            <span className="glyphicon glyphicon-search form-control-feedback"></span>
+          <div className="input-group">
+            <div className="input-group-btn">
+              <button className="btn btn-default" type="submit">
+                <i className="glyphicon glyphicon-search" />
+              </button>
+            </div>
             <input type="text" className="form-control" placeholder="Søk..." onChange={handleSearch} />
           </div>
+          <br />
           <table className="table table-striped table-hover table-bordered">
             <thead>
               <tr>

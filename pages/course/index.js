@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import useSWR from 'swr';
+import { useRouter } from 'next/router';
 
 import { fetcher } from '../../common/fetcher';
 import { getCourseListApiUrl } from '../../common/urls';
@@ -10,6 +11,7 @@ import { useIsomorphicLayoutEffect } from '../../common/hooks/useIsomorphicLayou
 const PAGE_SIZE = 20;
 
 const CourseListPage = () => {
+  const { pathname } = useRouter();
   const searchBarRef = useRef(null);
   const [query, setQuery] = useQueryParam('query', '');
   const [page] = useQueryParam('page', '1');
@@ -37,8 +39,12 @@ const CourseListPage = () => {
       <div className="row">
         <div className="col-md-12">
           <br />
-          <div className="form-group has-feedback has-search">
-            <span className="glyphicon glyphicon-search form-control-feedback"></span>
+          <div className="input-group">
+            <div className="input-group-btn">
+              <button className="btn btn-default" type="submit">
+                <i className="glyphicon glyphicon-search" />
+              </button>
+            </div>
             <input
               ref={searchBarRef}
               type="text"
@@ -48,6 +54,7 @@ const CourseListPage = () => {
               value={query}
             />
           </div>
+          <br />
           <table className="table table-striped table-hover table-bordered">
             <thead>
               <tr>
