@@ -17,11 +17,11 @@ export const getStaticProps = async () => {
 };
 
 const IndexPage = ({ courses }) => {
-  const { replace } = useRouter();
+  const { push } = useRouter();
 
   const handleSearch = (event) => {
     const query = event.target.value;
-    replace({ pathname: '/course', query: { query } });
+    push({ pathname: '/course', query: { query } });
   };
 
   return (
