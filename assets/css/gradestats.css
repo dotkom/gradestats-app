@@ -11,10 +11,6 @@ select {
   position: relative;
 }
 
-.twitter-typeahead .tt-query,
-.twitter-typeahead .tt-hint {
-}
-
 .twitter-typeahead .tt-hint {
   color: #a1a1a1;
   z-index: 1;
@@ -114,9 +110,6 @@ tbody > tr:hover {
   overflow: visible;
 }
 
-.navbar-brand {
-}
-
 .navbar-default {
   background-color: #577492;
 }
@@ -200,4 +193,15 @@ html {
   user-select: auto !important;
   pointer-events: auto !important;
   touch-action: auto !important;
+}
+
+.has-search .form-control-feedback {
+  right: initial;
+  left: 0;
+  color: #ccc;
+}
+
+.has-search .form-control {
+  padding-right: 12px;
+  padding-left: 34px;
 }

@@ -34,7 +34,7 @@ export const getStaticProps = async ({ params }) => {
     fetcher(getCourseTagListApiUrl(courseCode)),
   ]);
   return {
-    unstable_revalidate: 60, // Revalidate once each hour.
+    unstable_revalidate: 60 * 60, // Revalidate once each hour.
     props: {
       initialCourse,
       initalGrades,

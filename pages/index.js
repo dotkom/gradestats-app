@@ -1,5 +1,5 @@
-// import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { getCourseListApiUrl } from '../common/urls';
@@ -17,17 +17,22 @@ export const getStaticProps = async () => {
 };
 
 const IndexPage = ({ courses }) => {
+  const { replace } = useRouter();
+
+  const handleSearch = (event) => {
+    const query = event.target.value;
+    replace({ pathname: '/course', query: { query } });
+  };
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-12">
           <br />
-          {!courses || courses.length === 0 ? (
-            <div className="alert alert-danger">
-              <p>Vi fant dessverre ingen fag</p>
-            </div>
-          ) : null}
-
+          <div className="form-group has-feedback has-search">
+            <span className="glyphicon glyphicon-search form-control-feedback"></span>
+            <input type="text" className="form-control" placeholder="Søk..." onChange={handleSearch} />
+          </div>
           <table className="table table-striped table-hover table-bordered">
             <thead>
               <tr>

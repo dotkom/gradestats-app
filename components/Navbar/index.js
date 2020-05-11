@@ -1,7 +1,6 @@
 import cx from 'classnames';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { SearchBar } from './SearchBar';
 
 const NAVBAR_ITEMS = [
   { href: '/', name: 'Fag' },
@@ -44,7 +43,6 @@ export const Navbar = () => {
               </li>
             ))}
           </ul>
-          <SearchBar />
         </div>
       </div>
     </nav>
