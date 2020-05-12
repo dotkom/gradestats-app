@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -57,6 +58,17 @@ const CourseDetailPage = ({ initialCourse, initalGrades, initalTags }) => {
 
   return (
     <>
+      <Head>
+        <title>{`${course.code} - ${course.norwegian_name}`}</title>
+        <meta property="og:title" content={`${course.code} - ${course.norwegian_name}`} />
+        <meta property="og:description" content={course.content} />
+        <meta property="og:article:tag" content={course.code} />
+        <meta property="og:article:tag" content={course.short_name} />
+        <meta property="og:article:tag" content={course.norwegian_name} />
+        <meta property="og:article:tag" content={course.english_name} />
+        <meta property="og:article:tag" content={course.course_level} />
+        <meta property="og:article:tag" content={course.place} />
+      </Head>
       <div className="row">
         <div className="col-md-8">
           <CourseContent course={course} />

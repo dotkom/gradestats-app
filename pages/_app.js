@@ -14,6 +14,10 @@ Sentry.init({
 
 Router.events.on('routeChangeComplete', (url) => pageView(url));
 
+const ABOUT_GRADES = `
+  Karakterstatisikk for emner ved Norges teknisk-naturvitenskapelige universitet.
+`;
+
 const App = ({ Component, pageProps, err }) => {
   // Workaround for https://github.com/zeit/next.js/issues/8592
   const modifiedPageProps = { ...pageProps, err };
@@ -21,7 +25,13 @@ const App = ({ Component, pageProps, err }) => {
     <>
       <Head>
         <meta charSet="utf-8" />
-        <title>Gradestats</title>
+        <title>grades.no - karakterstatistikk</title>
+        <meta property="og:title" content="grades.no - karakterstatistikk" />
+        <meta property="og:description" content={ABOUT_GRADES} />
+        <meta property="og:article:tag" content="NTNU" />
+        <meta property="og:article:tag" content="Karakterstatistikk" />
+        <meta property="og:article:tag" content="Norwegian University of Science and Technology" />
+        <meta property="og:article:tag" content="Emneinformasjon" />
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
