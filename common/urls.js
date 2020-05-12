@@ -1,7 +1,7 @@
 import { GRADES_API_URL } from './constants';
 
-export const getCourseListApiUrl = ({ limit, offset = 0, query = '' }) => {
-  return `${GRADES_API_URL}/api/v2/courses/?limit=${limit}&offset=${offset}&query=${query}`;
+export const getCourseListApiUrl = ({ limit, offset = 0, query = '', ordering = '-watson_rank' }) => {
+  return `${GRADES_API_URL}/api/v2/courses/?limit=${limit}&offset=${offset}&query=${query}&ordering=${ordering}`;
 };
 export const getCourseDetailApiUrl = (courseCode) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/`;

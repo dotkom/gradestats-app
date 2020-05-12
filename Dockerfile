@@ -18,6 +18,9 @@ FROM node:13.10.1-alpine3.11
 
 LABEL maintainer="utvikling@online.ntnu.no"
 
+ARG SENTRY_DSN=null
+ARG GA_TRACKING_ID=null
+
 ENV WORKDIR=/srv/app
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production

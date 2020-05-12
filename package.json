@@ -18,7 +18,7 @@
     "@zeit/next-source-maps": "^0.0.3",
     "classnames": "^2.2.6",
     "isomorphic-fetch": "^2.2.1",
-    "next": "^9.3.7-canary.19",
+    "next": "^9.4",
     "react": "^0.0.0-experimental-33c3af284",
     "react-dom": "^0.0.0-experimental-33c3af284",
     "swr": "^0.2.0",
