@@ -1,4 +1,4 @@
-FROM node:13.10.1-alpine3.11 AS builder
+FROM node:13-slim AS builder
 
 ARG SENTRY_DSN
 ARG GA_TRACKING_ID
@@ -17,7 +17,7 @@ COPY . .
 RUN yarn build
 RUN yarn --production
 
-FROM node:13.10.1-alpine3.11
+FROM node:13-slim
 
 LABEL maintainer="utvikling@online.ntnu.no"
 
