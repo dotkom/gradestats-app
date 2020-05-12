@@ -13,14 +13,6 @@ export const Tags = ({ tags }) => {
             ))}
           </div>
         </li>
-        <li>
-          <form className="form-inline" action="tags/add/" method="POST">
-            <input name="tag" type="text" placeholder="tag (maks 32 tegn)" className="form-control input-sm" />
-            <button type="submit" className="btn btn-sm btn-primary">
-              Legg til
-            </button>
-          </form>
-        </li>
       </ul>
     </div>
   );
