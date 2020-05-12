@@ -4,19 +4,27 @@ import React from 'react';
 
 import { getCourseListApiUrl } from '../common/urls';
 import { fetcher } from '../common/fetcher';
+import Head from 'next/head';
+
+const ABOUT_GRADES = (courseCount) => `
+  Karakterstatisikk for ${courseCount} emner ved Norges teknisk-naturvitenskapelige universitet.
+`;
 
 export const getStaticProps = async () => {
   const limit = 20;
   const response = await fetcher(getCourseListApiUrl({ limit }));
   const courses = response.results;
+  const courseCount = response.count;
   return {
+    unstable_revalidate: 60 * 60 * 24, // Revalidate once every day.
     props: {
       courses,
+      courseCount,
     },
   };
 };
 
-const IndexPage = ({ courses }) => {
+const IndexPage = ({ courses, courseCount }) => {
   const { push } = useRouter();
 
   const handleSearch = (event) => {
@@ -26,6 +34,9 @@ const IndexPage = ({ courses }) => {
 
   return (
     <div className="container">
+      <Head>
+        <meta property="og:description" content={ABOUT_GRADES(courseCount)} />
+      </Head>
       <div className="row">
         <div className="col-md-12">
           <br />
