@@ -5,9 +5,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withSourceMaps = require('@zeit/next-source-maps');
 
-const { GRADES_API_URL, BUILD_TIME_COURSE_LIMIT, SENTRY_DSN, GA_TRACKING_ID } = process.env;
+const { GRADES_API_URL, BUILD_TIME_COURSE_LIMIT, SENTRY_DSN, GA_TRACKING_ID, DISABLE_COMPRESSION } = process.env;
 
 nextConfig = {
+  compress: !Boolean(DISABLE_COMPRESSION),
   env: {
     GRADES_API_URL,
     BUILD_TIME_COURSE_LIMIT,
