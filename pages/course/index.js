@@ -70,7 +70,7 @@ const CourseListPage = () => {
                     <tr>
                       <td>{course.code}</td>
                       <td>{course.norwegian_name}</td>
-                      <td>{course.average > 0 ? course.average : '-'}</td>
+                      <td>{course.average > 0 ? course.average.toFixed(2) : '-'}</td>
                     </tr>
                   </Link>
                 ))}
