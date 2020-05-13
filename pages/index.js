@@ -12,7 +12,8 @@ const ABOUT_GRADES = (courseCount) => `
 
 export const getStaticProps = async () => {
   const limit = 20;
-  const response = await fetcher(getCourseListApiUrl({ limit }));
+  const ordering = '-attendee_count';
+  const response = await fetcher(getCourseListApiUrl({ limit, ordering }));
   const courses = response.results;
   const courseCount = response.count;
   return {
@@ -49,6 +50,7 @@ const IndexPage = ({ courses, courseCount }) => {
             <input type="text" className="form-control" placeholder="Søk..." onChange={handleSearch} />
           </div>
           <br />
+          <h2>Mest populære emner ved NTNU</h2>
           <table className="table table-striped table-hover table-bordered">
             <thead>
               <tr>

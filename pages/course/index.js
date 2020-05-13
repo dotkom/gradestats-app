@@ -17,7 +17,8 @@ const CourseListPage = () => {
   const [page] = useQueryParam('page', '1');
   const pageNumber = !Number.isNaN(Number(page)) ? Number(page) : 1;
   const offset = (pageNumber - 1) * PAGE_SIZE;
-  const searchUrl = getCourseListApiUrl({ limit: PAGE_SIZE, offset, query });
+  const ordering = '-watson_rank,-attendee_count';
+  const searchUrl = getCourseListApiUrl({ limit: PAGE_SIZE, offset, query, ordering });
   const { data } = useSWR(searchUrl, fetcher);
 
   const courses = (data && data.results) || [];
