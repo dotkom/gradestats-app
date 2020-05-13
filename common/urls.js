@@ -18,3 +18,9 @@ export const getCourseTagListApiUrl = (courseCode, { limit = 50, offset = 0 } = 
 export const getCourseTagDetailApiUrl = (courseCode, tagId) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/tags/${tagId}/`;
 };
+export const getReportListApiUrl = ({ limit = 50, offset = 0 } = {}) => {
+  return `${GRADES_API_URL}/api/v2/reports/?limit=${limit}&offset=${offset}`;
+};
+export const getReportDetailApiUrl = (reportId) => {
+  return `${GRADES_API_URL}/api/v2/reports/${reportId}/`;
+};
