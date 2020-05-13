@@ -18,7 +18,8 @@ import { CourseCharts } from '../../../components/CourseCharts';
 
 export const getStaticPaths = async () => {
   const limit = BUILD_TIME_COURSE_LIMIT;
-  const response = await fetcher(getCourseListApiUrl({ limit }));
+  const ordering = '-attendee_count';
+  const response = await fetcher(getCourseListApiUrl({ limit, ordering }));
   const courseCodes = response.results.map((course) => course.code);
   const paths = courseCodes.map((courseCode) => ({ params: { courseCode } }));
   return {
