@@ -12,7 +12,19 @@ Sentry.init({
   dsn: SENTRY_DSN,
 });
 
-Router.events.on('routeChangeComplete', (url) => pageView(url));
+const getPathFromUrl = (url) => {
+  return url.split(/[?#]/)[0];
+};
+
+let previousPath = '';
+
+Router.events.on('routeChangeComplete', (url) => {
+  const newPath = getPathFromUrl(url);
+  if (newPath !== previousPath) {
+    pageView(url);
+  }
+  previousPath = newPath;
+});
 
 const ABOUT_GRADES = `
   Karakterstatisikk for emner ved Norges teknisk-naturvitenskapelige universitet.
