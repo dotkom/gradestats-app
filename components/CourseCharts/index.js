@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import cx from 'classnames';
 
-import { calculateAverageGrade } from '../../common/utils/grades';
+import { calculateAverageGrade } from 'common/utils/grades';
 
 import { GradedGraph } from './GradedGraph';
 import { Averages } from './Averages';

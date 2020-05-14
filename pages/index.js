@@ -1,10 +1,10 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { getCourseListApiUrl } from '../common/urls';
-import { fetcher } from '../common/fetcher';
-import Head from 'next/head';
+import { getCourseListApiUrl } from 'common/urls';
+import { fetcher } from 'common/fetcher';
 
 const ABOUT_GRADES = (courseCount) => `
   Karakterstatisikk for ${courseCount} emner ved Norges teknisk-naturvitenskapelige universitet.

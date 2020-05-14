@@ -5,15 +5,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const withSourceMaps = require('@zeit/next-source-maps');
 
-const { GRADES_API_URL, BUILD_TIME_COURSE_LIMIT, SENTRY_DSN, GA_TRACKING_ID } = process.env;
-
 nextConfig = {
-  env: {
-    GRADES_API_URL,
-    BUILD_TIME_COURSE_LIMIT,
-    SENTRY_DSN,
-    GA_TRACKING_ID,
-  },
   experimental: {
     reactMode: 'concurrent',
   },
