@@ -2,8 +2,8 @@ import cx from 'classnames';
 import React, { useState } from 'react';
 import useSWR from 'swr';
 
-import { getCourseListApiUrl } from '../../common/urls';
-import { fetcher } from '../../common/fetcher';
+import { getCourseListApiUrl } from 'common/urls';
+import { fetcher } from 'common/fetcher';
 import Link from 'next/link';
 
 export const SearchBar = () => {

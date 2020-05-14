@@ -1,7 +1,7 @@
 import React from 'react';
 import DefaultDocument, { Head, Main, NextScript } from 'next/document';
 
-import { GA_TRACKING_ID } from '../common/constants';
+import { GA_TRACKING_ID } from 'common/constants';
 
 class Document extends DefaultDocument {
   render() {

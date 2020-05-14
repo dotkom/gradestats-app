@@ -1,7 +1,7 @@
 import React from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel } from 'victory';
 
-import { isKont, calculateFailureRate } from '../../common/utils/grades';
+import { isKont, calculateFailureRate } from 'common/utils/grades';
 
 export const FailedChart = ({ grades, showKont }) => {
   const gradesData = grades

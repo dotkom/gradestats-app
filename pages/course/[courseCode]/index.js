@@ -2,19 +2,19 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { BUILD_TIME_COURSE_LIMIT } from '../../../common/constants';
+import { BUILD_TIME_COURSE_LIMIT } from 'common/constants';
 import {
   getCourseListApiUrl,
   getCourseDetailApiUrl,
   getCourseTagListApiUrl,
   getCourseGradeListApiUrl,
-} from '../../../common/urls';
-import { fetcher } from '../../../common/fetcher';
-import { sortSemesters } from '../../../common/sortSemesters';
-import { Tags } from '../../../components/Tags';
-import { Facts } from '../../../components/Facts';
-import { CourseContent } from '../../../components/CourseContent';
-import { CourseCharts } from '../../../components/CourseCharts';
+} from 'common/urls';
+import { fetcher } from 'common/fetcher';
+import { sortSemesters } from 'common/sortSemesters';
+import { Tags } from 'components/Tags';
+import { Facts } from 'components/Facts';
+import { CourseContent } from 'components/CourseContent';
+import { CourseCharts } from 'components/CourseCharts';
 
 export const getStaticPaths = async () => {
   const limit = BUILD_TIME_COURSE_LIMIT;

@@ -3,10 +3,10 @@ import React, { useRef } from 'react';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
 
-import { fetcher } from '../../common/fetcher';
-import { getCourseListApiUrl } from '../../common/urls';
-import { useQueryParam } from '../../common/hooks/useQueryParam';
-import { useIsomorphicLayoutEffect } from '../../common/hooks/useIsomorphicLayoutEffect';
+import { fetcher } from 'common/fetcher';
+import { getCourseListApiUrl } from 'common/urls';
+import { useQueryParam } from 'common/hooks/useQueryParam';
+import { useIsomorphicLayoutEffect } from 'common/hooks/useIsomorphicLayoutEffect';
 
 const PAGE_SIZE = 20;
 
