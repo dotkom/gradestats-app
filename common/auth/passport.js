@@ -1,12 +1,10 @@
 import passport from 'passport';
 import { Issuer, Strategy } from 'openid-client';
 
-import { FEIDE_CLIENT_SECRET, FEIDE_CLIENT_ID } from '../constants';
+import { FEIDE_CLIENT_SECRET, FEIDE_CLIENT_ID, CANONICAL_URL } from '../constants';
 
-const FEIDE_AUTH_ENDPOINT = 'https://auth.dataporten.no';
 const FEIDE_SCOPES = 'profile userid-feide email groups userid openid';
-const FEIDE_REDIRECT_URL = 'http://localhost:3000/api/auth/callback';
-
+export const FEIDE_REDIRECT_URL = `${CANONICAL_URL}/api/auth/callback`;
 export const OIDC_CLIENT_NAME = 'feide';
 
 export const parseOidcUserData = async (openIdUserData, tokenData) => {
