@@ -20,6 +20,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Environment
 
+### Are you adding environment variables?
+
+Variables have to be added in a lot of places to make everything work correctly!
+
+1. Add them to the `/common/constants` file where they are used. Here you can also add defaults.
+2. Add them to the Dockerfile to make them available to production.
+3. Add the variables to the `secrets` in the github repository, which is where we store variables for production.
+4. Proxy the variables in the required github actions files.
+5. Add them to the list of variables below to make it easier to keep track for everyone involved.
+
+### List of variables
+
 ```bash
 # How many courses should be pre-rendered at build time
 NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT # Default = 100
