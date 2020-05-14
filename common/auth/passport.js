@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Issuer, Strategy } from 'openid-client';
 
-import { FEIDE_CLIENT_SECRET, FEIDE_CLIENT_ID, CANONICAL_URL } from '../constants';
+import { FEIDE_CLIENT_SECRET, FEIDE_CLIENT_ID, CANONICAL_URL, FEIDE_AUTH_ENDPOINT } from '../constants';
 
 const FEIDE_SCOPES = 'profile userid-feide email groups userid openid';
 export const FEIDE_REDIRECT_URL = `${CANONICAL_URL}/api/auth/callback`;
