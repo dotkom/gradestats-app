@@ -26,8 +26,15 @@ jobs:
       - name: Publish docker image
         uses: elgohr/Publish-Docker-Github-Action@master
         env:
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-          GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
+          NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT: ${{ secrets.NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT }}
+          NEXT_PUBLIC_GRADES_API_URL: ${{ secrets.NEXT_PUBLIC_GRADES_API_URL }}
+          NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+          NEXT_PUBLIC_GA_TRACKING_ID: ${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}
+          NEXT_PUBLIC_CANONICAL_URL: ${{ secrets.NEXT_PUBLIC_CANONICAL_URL }}
+          NEXT_PUBLIC_FEIDE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_FEIDE_CLIENT_ID }}
+          NEXT_PRIVATE_FEIDE_CLIENT_SECRET: ${{ secrets.NEXT_PRIVATE_FEIDE_CLIENT_SECRET }}
+          NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT }}
+          NEXT_PRIVATE_SESSION_SECRET: ${{ secrets.NEXT_PRIVATE_SESSION_SECRET }}
         with:
           name: gradestats-app
           dockerfile: Dockerfile
