@@ -35,4 +35,6 @@ NEXT_PUBLIC_CANONICAL_URL # Default = http://localhost:3000
 NEXT_PUBLIC_FEIDE_CLIENT_ID # Default = undefined
 # Client Secret for dataporten/FEIDE client for OIDC. HAS TO BE KEPT SECRET
 NEXT_PRIVATE_FEIDE_CLIENT_SECRET # Default = undefined
+# Secret for encryting cookie for session. HAS TO BE KEPT SECRET
+NEXT_SECRET_SESSION_SECRET # Default = "some_random_string"
 ```

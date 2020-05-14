@@ -3,6 +3,7 @@ import passport from 'passport';
 
 import session from './session';
 import { configurePassport } from './passport';
+import { SESSION_SECRET } from 'common/constants';
 
 const redirectMiddleWare = (req, res, next) => {
   if (!res.redirect) {
@@ -23,7 +24,7 @@ const redirectMiddleWare = (req, res, next) => {
 
 const sessionMiddleware = session({
   name: 'sess',
-  secret: 'some_not_random_password_that_is_at_least_32_characters', // This should be kept securely, preferably in env vars
+  secret: SESSION_SECRET,
   cookie: {
     maxAge: 60 * 60 * 8, // 8 hours,
     httpOnly: true,

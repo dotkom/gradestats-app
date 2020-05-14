@@ -5,3 +5,5 @@ export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID || '__REPLA
 export const CANONICAL_URL = process.env.NEXT_PUBLIC_CANONICAL_URL || 'http://localhost:3000';
 export const FEIDE_CLIENT_ID = process.env.NEXT_PUBLIC_FEIDE_CLIENT_ID;
 export const FEIDE_CLIENT_SECRET = process.env.NEXT_PRIVATE_FEIDE_CLIENT_SECRET;
+export const SESSION_SECRET =
+  process.env.NEXT_SECRET_SESSION_SECRET || 'some_not_random_password_that_is_at_least_32_characters';
