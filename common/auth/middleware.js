@@ -5,7 +5,6 @@ import session from './session';
 import { configurePassport } from './passport';
 
 const redirectMiddleWare = (req, res, next) => {
-  console.log('Add redirect');
   if (!res.redirect) {
     // passport needs res.redirect:
     //
@@ -13,11 +12,9 @@ const redirectMiddleWare = (req, res, next) => {
     // since it doesn't exist in micro. default redirect status is 302
     // as it is in express. https://expressjs.com/en/api.html#res.redirect
     const redirect = (location) => {
-      console.log(location);
       res.setHeader('Location', location);
       res.status(302);
       res.send(null);
-      console.log('end');
     };
     res.redirect = redirect;
   }
