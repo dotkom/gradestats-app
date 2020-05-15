@@ -15,12 +15,18 @@ export const getCourseGradeDetailApiUrl = (courseCode, semesterCode) => {
 export const getCourseTagListApiUrl = (courseCode, { limit = 50, offset = 0 } = {}) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/tags/?limit=${limit}&offset=${offset}`;
 };
-export const getCourseTagDetailApiUrl = (courseCode, tagId) => {
-  return `${GRADES_API_URL}/api/v2/courses/${courseCode}/tags/${tagId}/`;
+export const getCourseTagDetailApiUrl = (courseCode, tagName) => {
+  return `${GRADES_API_URL}/api/v2/courses/${courseCode}/tags/${tagName}/`;
 };
 export const getReportListApiUrl = ({ limit = 50, offset = 0 } = {}) => {
   return `${GRADES_API_URL}/api/v2/reports/?limit=${limit}&offset=${offset}`;
 };
 export const getReportDetailApiUrl = (reportId) => {
   return `${GRADES_API_URL}/api/v2/reports/${reportId}/`;
+};
+export const getTagListApiUrl = ({ limit = 50, offset = 0 } = {}) => {
+  return `${GRADES_API_URL}/api/v2/tags/?limit=${limit}&offset=${offset}`;
+};
+export const getTagDetailApiUrl = (tagName) => {
+  return `${GRADES_API_URL}/api/v2/tags/${tagName}/`;
 };
