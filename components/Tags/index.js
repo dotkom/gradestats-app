@@ -40,8 +40,8 @@ export const Tags = ({ tags, courseCode, reloadTags }) => {
       </button>
       {!user && (
         <>
-          <small className="text-muted">Du må være logget inn for å kunne legge til tags.</small>
           <br />
+          <small className="text-muted">Du må være logget inn for å kunne legge til tags.</small>
         </>
       )}
       <AddTagDialog isOpen={showDialog} closeDialog={closeDialog} courseCode={courseCode} reloadTags={reloadTags} />
