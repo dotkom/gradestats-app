@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hapi/iron": "^6.0.0",
+    "@reach/dialog": "^0.10.2",
     "@sentry/browser": "^5.15.5",
     "@sentry/node": "^5.15.5",
     "@sentry/webpack-plugin": "^1.11.1",

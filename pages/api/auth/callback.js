@@ -8,8 +8,8 @@ const handler = nextConnect();
 
 handler.use(authMiddleware).get(async (req, res, next) => {
   const authenticator = passport.authenticate(OIDC_CLIENT_NAME, {
-    successRedirect: '/',
     failureRedirect: '/',
+    successReturnToOrRedirect: '/',
   });
   return authenticator(req, res, next);
 });

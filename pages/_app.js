@@ -3,10 +3,12 @@ import Head from 'next/head';
 import Router from 'next/router';
 import React from 'react';
 
-import 'assets/css/gradestats.css';
 import { pageView } from 'common/analytics';
 import { SENTRY_DSN } from 'common/constants';
 import { Navbar } from 'components/Navbar';
+
+import '@reach/dialog/styles.css';
+import 'assets/css/gradestats.css';
 
 Sentry.init({
   dsn: SENTRY_DSN,

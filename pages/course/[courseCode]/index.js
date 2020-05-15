@@ -77,7 +77,7 @@ const CourseDetailPage = ({ initialCourse, initalGrades, initalTags }) => {
         <div className="col-md-4">
           <CourseCharts grades={grades} />
           <Facts course={course} />
-          <Tags tags={tags} />
+          <Tags tags={tags} courseCode={courseCode} />
         </div>
       </div>
     </>
