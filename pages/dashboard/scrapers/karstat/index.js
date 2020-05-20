@@ -3,8 +3,8 @@ import useSWR from 'swr';
 import { getDepartmentListApiUrl } from 'common/urls';
 import { fetcher } from 'common/fetcher';
 import { useUser } from 'common/hooks/userUser';
-import { requestKarstateScrapeGradeReport } from 'common/api/karstat';
-import { Department } from './Department';
+import { requestKarstatScrapeGradeReport } from 'common/api/karstat';
+import { Department } from 'components/Scrapers/Department';
 
 const KarstatScraperPage = () => {
   const [user] = useUser();
@@ -45,7 +45,7 @@ const KarstatScraperPage = () => {
 
   const scrapeGradeReportForDepartment = async (departmentId) => {
     setCurrentDepartmentId(departmentId);
-    const response = await requestKarstateScrapeGradeReport(
+    const response = await requestKarstatScrapeGradeReport(
       { username, password, departmentId, year, semester },
       user?.token.accessToken
     );
