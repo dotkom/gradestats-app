@@ -15,9 +15,15 @@ export const CourseCharts = ({ grades }) => {
   const [currentGrade, setCurrentGrade] = useState([...grades].reverse()[0]);
   const totalAverage = calculateAverageGrade(grades);
 
+  const courseHasGrades = grades.length > 0;
+
   const toggleShowKont = () => {
     setShowKont((current) => !current);
   };
+
+  if (!courseHasGrades) {
+    return null;
+  }
 
   return (
     <div className="well text-center">
