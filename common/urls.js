@@ -30,3 +30,21 @@ export const getTagListApiUrl = ({ limit = 50, offset = 0 } = {}) => {
 export const getTagDetailApiUrl = (tagName) => {
   return `${GRADES_API_URL}/api/v2/tags/${tagName}/`;
 };
+export const getFacultyListApiUrl = ({ limit = 200, offset = 0 } = {}) => {
+  return `${GRADES_API_URL}/api/v2/faculties/?limit=${limit}&offset=${offset}`;
+};
+export const getFacultyDetailApiUrl = (facultyId) => {
+  return `${GRADES_API_URL}/api/v2/faculties/${facultyId}/`;
+};
+export const getDepartmentListApiUrl = ({ limit = 200, offset = 0 } = {}) => {
+  return `${GRADES_API_URL}/api/v2/departments/?limit=${limit}&offset=${offset}`;
+};
+export const getDepartmentDetailApiUrl = (departmentId) => {
+  return `${GRADES_API_URL}/api/v2/departments/${departmentId}/`;
+};
+export const getKarstatScrapeGradeReportUrl = () => {
+  return `${GRADES_API_URL}/api/v2/scrapers/karstat/grade-report/`;
+};
+export const getTIAScrapeCoursesUrl = () => {
+  return `${GRADES_API_URL}/api/v2/scrapers/tia/refresh-courses/`;
+};

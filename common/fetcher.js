@@ -35,10 +35,12 @@ export const poster = async (url, data, accessToken) => {
       messages,
     };
   }
-  if (response.status === 201) {
+  if (response.ok) {
     return {
-      status: 201,
+      status: response.status,
       data: responseData,
     };
   }
+
+  throw response;
 };
