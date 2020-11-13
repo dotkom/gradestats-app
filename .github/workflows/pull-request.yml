@@ -9,13 +9,13 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Install dependencies
-        run: yarn
+        run: npm ci
 
       - name: Check format (prettier)
-        run: yarn format-check
+        run: npm run format-check
 
       - name: Lint (eslint)
-        run: yarn lint-check
+        run: npm runlint-check
 
       - name: Compile
-        run: yarn build
+        run: npm run build
