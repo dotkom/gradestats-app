@@ -40,4 +40,4 @@ jobs:
         app-name: 'gradestats-frontend'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_88d6388077534297a4feaf00e5409317 }}
-        package: dist
+        package: .
