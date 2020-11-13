@@ -20,7 +20,7 @@ COPY package-lock.json .
 RUN npm ci 
 
 COPY . .
-RUN npm build
+RUN npm run build
 
 FROM node:14-slim
 
@@ -50,4 +50,4 @@ COPY --from=builder $WORKDIR/package.json ./package.json
 
 EXPOSE 3000
 
-CMD ["npm", "start", "--hostname", "0.0.0.0"]
+CMD ["npm", "start", "--","--hostname", "0.0.0.0"]
