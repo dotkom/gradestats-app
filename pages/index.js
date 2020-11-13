@@ -17,7 +17,7 @@ export const getStaticProps = async () => {
   const courses = response.results;
   const courseCount = response.count;
   return {
-    unstable_revalidate: 60 * 60 * 24, // Revalidate once every day.
+    revalidate: 60 * 60 * 24, // Revalidate once every day.
     props: {
       courses,
       courseCount,
