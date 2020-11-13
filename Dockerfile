@@ -16,12 +16,11 @@ ENV NODE_ENV=production
 WORKDIR $WORKDIR
 
 COPY package.json .
-COPY yarn.lock .
-RUN yarn install
+COPY package-lock.json .
+RUN npm ci 
 
 COPY . .
-RUN yarn build
-RUN yarn --production
+RUN npm run build
 
 FROM node:14-slim
 
@@ -42,6 +41,7 @@ ENV NODE_ENV=production
 
 WORKDIR $WORKDIR
 
+RUN ls
 COPY --from=builder $WORKDIR/node_modules ./node_modules
 COPY --from=builder $WORKDIR/.next ./.next
 # COPY --from=builder $WORKDIR/public ./public
@@ -50,4 +50,4 @@ COPY --from=builder $WORKDIR/package.json ./package.json
 
 EXPOSE 3000
 
-CMD ["yarn", "start", "--hostname", "0.0.0.0"]
+CMD ["npm", "start", "--","--hostname", "0.0.0.0"]

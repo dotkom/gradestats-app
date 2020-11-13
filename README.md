@@ -10,10 +10,10 @@ First, run the development server:
 
 ```bash
 # Install dependencies
-yarn
+npm i
 
 # Run development server
-yarn dev
+npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
