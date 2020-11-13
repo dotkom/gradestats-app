@@ -17,11 +17,10 @@ WORKDIR $WORKDIR
 
 COPY package.json .
 COPY package-lock.json .
-RUN npm ci
+RUN npm ci 
 
 COPY . .
 RUN npm build
-RUN npm i --only=production
 
 FROM node:14-slim
 
@@ -42,6 +41,7 @@ ENV NODE_ENV=production
 
 WORKDIR $WORKDIR
 
+RUN ls
 COPY --from=builder $WORKDIR/node_modules ./node_modules
 COPY --from=builder $WORKDIR/.next ./.next
 # COPY --from=builder $WORKDIR/public ./public
