@@ -1,4 +1,4 @@
-FROM node:13-slim AS builder
+FROM node:14-slim AS builder
 
 # Public variables are only required at build time.
 ARG NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT
@@ -23,7 +23,7 @@ COPY . .
 RUN yarn build
 RUN yarn --production
 
-FROM node:13-slim
+FROM node:14-slim
 
 LABEL maintainer="utvikling@online.ntnu.no"
 
