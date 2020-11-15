@@ -30,7 +30,10 @@ Variables have to be added in a lot of places to make everything work correctly!
 4. Proxy the variables in the required github actions files.
 5. Add them to the list of variables below to make it easier to keep track for everyone involved.
 
-Secret variables have to be re-defined in the Dockerfile, from ARG til ENV.
+#### Private variables
+
+Private variables have to be set in the runtime environment to be kept private.
+
 
 ### List of variables
 
