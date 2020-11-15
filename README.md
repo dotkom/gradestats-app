@@ -30,7 +30,10 @@ Variables have to be added in a lot of places to make everything work correctly!
 4. Proxy the variables in the required github actions files.
 5. Add them to the list of variables below to make it easier to keep track for everyone involved.
 
-Secret variables have to be re-defined in the Dockerfile, from ARG til ENV.
+#### Private variables
+
+Private variables have to be set in the runtime environment to be kept private.
+
 
 ### List of variables
 
@@ -44,7 +47,7 @@ NEXT_PUBLIC_SENTRY_DSN # Default = undefined
 # Google analytics tracking ID
 NEXT_PUBLIC_GA_TRACKING_ID # Default = __REPLACE_ME__
 # Actual URL of the hosted project. Important for linking. for prod it should be https://grades.no
-NEXT_PUBLIC_CANONICAL_URL # Default = http://localhost:3000
+NEXT_PRIVATE_CANONICAL_URL # Default = http://localhost:3000
 # Client ID for dataporten/FEIDE client for OIDC
 NEXT_PUBLIC_FEIDE_CLIENT_ID # Default = undefined
 # Client Secret for dataporten/FEIDE client for OIDC. HAS TO BE KEPT SECRET
