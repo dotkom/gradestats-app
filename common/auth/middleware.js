@@ -12,7 +12,7 @@ const redirectMiddleWare = (req, res, next) => {
   // since it doesn't exist in micro. default redirect status is 302
   // as it is in express. https://expressjs.com/en/api.html#res.redirect
   const redirect = (location) => {
-    console.log('redirect', location)
+    console.log('redirect', location);
     res.setHeader('Location', location);
     res.status(302);
     res.send(null);
