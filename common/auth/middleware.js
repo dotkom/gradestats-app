@@ -6,19 +6,18 @@ import { configurePassport } from './passport';
 import { SESSION_SECRET } from 'common/constants';
 
 const redirectMiddleWare = (req, res, next) => {
-  if (!res.redirect) {
-    // passport needs res.redirect:
-    //
-    // Monkey-patch res.redirect to emulate express.js's res.redirect,
-    // since it doesn't exist in micro. default redirect status is 302
-    // as it is in express. https://expressjs.com/en/api.html#res.redirect
-    const redirect = (location) => {
-      res.setHeader('Location', location);
-      res.status(302);
-      res.send(null);
-    };
-    res.redirect = redirect;
-  }
+  // passport needs res.redirect:
+  //
+  // Monkey-patch res.redirect to emulate express.js's res.redirect,
+  // since it doesn't exist in micro. default redirect status is 302
+  // as it is in express. https://expressjs.com/en/api.html#res.redirect
+  const redirect = (location) => {
+    console.log('redirect', location)
+    res.setHeader('Location', location);
+    res.status(302);
+    res.send(null);
+  };
+  res.redirect = redirect;
   next();
 };
 
