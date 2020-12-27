@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router';
 
-export const useQueryParam = (name, defaultValue = '') => {
+export const useQueryParam = (name: string, defaultValue = '') => {
   const { query, pathname, replace } = useRouter();
   const value = query[name] || defaultValue;
 
-  const setValue = (newValue) => {
+  const setValue = (newValue: string | string[]) => {
     replace({ pathname, query: { ...query, [name]: newValue } });
   };
 
-  return [value, setValue];
+  return [value, setValue] as [typeof value, typeof setValue];
 };
