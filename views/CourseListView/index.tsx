@@ -1,4 +1,5 @@
 import { mapGradeAverageToLetter } from 'common/utils/grades';
+import { Button } from 'components/common/Button';
 import { SearchInput } from 'components/forms/SearchInput';
 import { StatValue } from 'components/Stat/Stat';
 import { Text } from 'components/Typography/Text';
@@ -14,10 +15,21 @@ interface Props {
   query: string;
   courses: Course[];
   isLoading: boolean;
+  nextPage: () => void;
+  resetPages: () => void;
 }
 
-export const CourseListView: FC<Props> = ({ searchBarRef, onSearchChange, query, courses, isLoading }) => {
+export const CourseListView: FC<Props> = ({
+  searchBarRef,
+  onSearchChange,
+  query,
+  courses,
+  isLoading,
+  nextPage,
+  resetPages,
+}) => {
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    resetPages();
     onSearchChange(event.target.value);
   };
 
@@ -57,6 +69,7 @@ export const CourseListView: FC<Props> = ({ searchBarRef, onSearchChange, query,
           </tbody>
         </table>
       ) : null}
+      <Button onClick={nextPage}>Last flere resultater</Button>
     </section>
   );
 };

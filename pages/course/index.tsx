@@ -1,35 +1,49 @@
 import React, { useRef } from 'react';
-import useSWR from 'swr';
-import { useRouter } from 'next/router';
+import { useSWRInfinite } from 'swr';
 
 import { fetcher } from 'common/fetcher';
 import { getCourseListApiUrl } from 'common/urls';
 import { useQueryParam } from 'common/hooks/useQueryParam';
 import { useIsomorphicLayoutEffect } from 'common/hooks/useIsomorphicLayoutEffect';
 import { CourseListView } from 'views/CourseListView';
+import { Course } from 'models/Course';
 
 const PAGE_SIZE = 20;
 
-const CourseListPage = () => {
-  const { pathname } = useRouter();
-  const searchBarRef = useRef<HTMLInputElement | null>(null);
-  const [queryParam, setQuery] = useQueryParam('query', '');
-  const query = Array.isArray(queryParam) ? queryParam.join(',') : queryParam;
-  const [page] = useQueryParam('page', '1');
-  const pageNumber = !Number.isNaN(Number(page)) ? Number(page) : 1;
-  const offset = (pageNumber - 1) * PAGE_SIZE;
+interface ListResponse<Data> {
+  count: number;
+  results: Data[];
+}
+
+// A function to get the SWR key of each page,
+// its return value will be accepted by `fetcher`.
+// If `null` is returned, the request of that page won't start.
+const getSearchUrlPaginatedGetter = (query: string) => (
+  pageNumber: number,
+  previousPageData: ListResponse<Course> | null
+) => {
+  if (previousPageData && !previousPageData?.results.length) return null; // reached the end
+  const offset = pageNumber * PAGE_SIZE;
   const ordering = '-watson_rank,-attendee_count';
-  const searchUrl = getCourseListApiUrl({
+  return getCourseListApiUrl({
     limit: PAGE_SIZE,
     offset,
     query,
     ordering,
   });
-  const { data, isValidating } = useSWR(searchUrl, fetcher);
+};
 
-  const courses = (data && data.results) || [];
-  const coursesCount = (data && data.count) || 0;
-  const pageCount = Math.ceil(coursesCount / PAGE_SIZE);
+const CourseListPage = () => {
+  const searchBarRef = useRef<HTMLInputElement | null>(null);
+  const [queryParam, setQuery] = useQueryParam('query', '');
+  const query = Array.isArray(queryParam) ? queryParam.join(',') : queryParam;
+  const getSearchUrl = getSearchUrlPaginatedGetter(query);
+  const { data, isValidating, setSize } = useSWRInfinite<ListResponse<Course>>(getSearchUrl, fetcher);
+
+  const nextPage = () => setSize((currentSize) => currentSize + 1);
+  const resetPages = () => setSize(1);
+
+  const courses = data?.flatMap((coursesResponse) => coursesResponse.results) || [];
 
   useIsomorphicLayoutEffect(() => {
     if (searchBarRef.current) {
@@ -44,7 +58,10 @@ const CourseListPage = () => {
       onSearchChange={setQuery}
       courses={courses}
       isLoading={isValidating}
+      nextPage={nextPage}
+      resetPages={resetPages}
     />
   );
 };
+
 export default CourseListPage;
