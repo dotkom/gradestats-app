@@ -25,9 +25,22 @@
 
   @media screen and (min-width: 480px) {
     grid-template-columns: repeat(2, 1fr);
+
+    /* Terrible way of doing it really, but this is the way. */
+    /* Hide the last element in an even grid because an off number is loaded */
+    .courseCard {
+      &:last-child {
+        display: none;
+      }
+    }
   }
 
   @media screen and (min-width: 800px) {
     grid-template-columns: repeat(3, 1fr);
+    .courseCard {
+      &:last-child {
+        display: grid;
+      }
+    }
   }
 }

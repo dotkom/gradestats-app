@@ -46,6 +46,7 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
             ? courses.map((course) => (
                 <CourseCard
                   key={course.code}
+                  className={styles.courseCard}
                   code={course.code}
                   name={course.norwegian_name}
                   gradeAverage={course.average}

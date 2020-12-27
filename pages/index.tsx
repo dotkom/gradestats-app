@@ -17,7 +17,7 @@ const IndexPage: FC<StaticProps> = ({ courses, courseCount }) => {
 };
 
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
-  const limit = 20;
+  const limit = 21;
   const ordering = '-attendee_count';
   const response = await fetcher(getCourseListApiUrl({ limit, ordering }));
   const courses = response.results;

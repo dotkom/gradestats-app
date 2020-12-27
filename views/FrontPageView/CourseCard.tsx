@@ -19,16 +19,17 @@ export const GRADE_COLORS: Record<string, string> = {
 };
 
 interface Props {
+  className?: string;
   code: string;
   name: string;
   gradeAverage: number;
 }
 
-export const CourseCard: FC<Props> = ({ code, name, gradeAverage }) => {
+export const CourseCard: FC<Props> = ({ className, code, name, gradeAverage }) => {
   const gradeLetter = mapGradeAverageToLetter(gradeAverage);
   return (
     <Link href="/course/[courseCode]" as={`/course/${code}`}>
-      <a className={styles.card}>
+      <a className={cx(className, styles.card)}>
         <Heading className={styles.code} as="h3">
           {code}
         </Heading>
