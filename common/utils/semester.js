@@ -1,5 +1,10 @@
 const semesterLetters = { V: 0.1, S: 0.2, K: 0.2, H: 0.3 };
 
+/**
+ * @param {Grade} gradeA
+ * @param {Grade} gradeB
+ * @returns {number}
+ */
 export const sortSemesters = (gradeA, gradeB) => {
   gradeA.extra = semesterLetters[gradeA.semester_code.slice(0, 1)];
   gradeB.extra = semesterLetters[gradeB.semester_code.slice(0, 1)];

@@ -1,9 +1,17 @@
 import { getKarstatScrapeGradeReportUrl } from '../urls';
 import { poster } from 'common/fetcher';
 
+interface Data {
+  username: string;
+  password: string;
+  departmentId: number;
+  year: number;
+  semester: string;
+}
+
 export const requestKarstatScrapeGradeReport = async (
-  { username, password, departmentId, year, semester },
-  accessToken
+  { username, password, departmentId, year, semester }: Data,
+  accessToken: string
 ) => {
   const data = {
     username,

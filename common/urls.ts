@@ -1,45 +1,55 @@
 import { GRADES_API_URL } from './constants';
 
-export const getCourseListApiUrl = ({ limit, offset = 0, query = '', ordering = '-watson_rank' }) => {
+interface ListParams {
+  limit?: number;
+  offset?: number;
+}
+
+interface CourseListParams extends ListParams {
+  query?: string;
+  ordering?: string;
+}
+
+export const getCourseListApiUrl = ({ limit, offset = 0, query = '', ordering = '-watson_rank' }: CourseListParams) => {
   return `${GRADES_API_URL}/api/v2/courses/?limit=${limit}&offset=${offset}&query=${query}&ordering=${ordering}`;
 };
-export const getCourseDetailApiUrl = (courseCode) => {
+export const getCourseDetailApiUrl = (courseCode: string) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/`;
 };
-export const getCourseGradeListApiUrl = (courseCode, { limit = 300, offset = 0 } = {}) => {
+export const getCourseGradeListApiUrl = (courseCode: string, { limit = 300, offset = 0 }: ListParams = {}) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/grades/?limit=${limit}&offset=${offset}`;
 };
-export const getCourseGradeDetailApiUrl = (courseCode, semesterCode) => {
+export const getCourseGradeDetailApiUrl = (courseCode: string, semesterCode: string) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/grades/${semesterCode}/`;
 };
-export const getCourseTagListApiUrl = (courseCode, { limit = 50, offset = 0 } = {}) => {
+export const getCourseTagListApiUrl = (courseCode: string, { limit = 50, offset = 0 }: ListParams = {}) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/tags/?limit=${limit}&offset=${offset}`;
 };
-export const getCourseTagDetailApiUrl = (courseCode, tagName) => {
+export const getCourseTagDetailApiUrl = (courseCode: string, tagName: string) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/tags/${tagName}/`;
 };
-export const getReportListApiUrl = ({ limit = 50, offset = 0 } = {}) => {
+export const getReportListApiUrl = ({ limit = 50, offset = 0 }: ListParams = {}) => {
   return `${GRADES_API_URL}/api/v2/reports/?limit=${limit}&offset=${offset}`;
 };
-export const getReportDetailApiUrl = (reportId) => {
+export const getReportDetailApiUrl = (reportId: number) => {
   return `${GRADES_API_URL}/api/v2/reports/${reportId}/`;
 };
 export const getTagListApiUrl = ({ limit = 50, offset = 0 } = {}) => {
   return `${GRADES_API_URL}/api/v2/tags/?limit=${limit}&offset=${offset}`;
 };
-export const getTagDetailApiUrl = (tagName) => {
+export const getTagDetailApiUrl = (tagName: string) => {
   return `${GRADES_API_URL}/api/v2/tags/${tagName}/`;
 };
-export const getFacultyListApiUrl = ({ limit = 200, offset = 0 } = {}) => {
+export const getFacultyListApiUrl = ({ limit = 200, offset = 0 }: ListParams = {}) => {
   return `${GRADES_API_URL}/api/v2/faculties/?limit=${limit}&offset=${offset}`;
 };
-export const getFacultyDetailApiUrl = (facultyId) => {
+export const getFacultyDetailApiUrl = (facultyId: number) => {
   return `${GRADES_API_URL}/api/v2/faculties/${facultyId}/`;
 };
-export const getDepartmentListApiUrl = ({ limit = 200, offset = 0 } = {}) => {
+export const getDepartmentListApiUrl = ({ limit = 200, offset = 0 }: ListParams = {}) => {
   return `${GRADES_API_URL}/api/v2/departments/?limit=${limit}&offset=${offset}`;
 };
-export const getDepartmentDetailApiUrl = (departmentId) => {
+export const getDepartmentDetailApiUrl = (departmentId: number) => {
   return `${GRADES_API_URL}/api/v2/departments/${departmentId}/`;
 };
 export const getKarstatScrapeGradeReportUrl = () => {

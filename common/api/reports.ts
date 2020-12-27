@@ -1,7 +1,13 @@
 import { getReportListApiUrl } from '../urls';
 import { poster } from 'common/fetcher';
 
-export const requestCreateReport = async ({ description, course, contactEmail }) => {
+interface Data {
+  description: string;
+  course?: string;
+  contactEmail?: string;
+}
+
+export const requestCreateReport = async ({ description, course, contactEmail }: Data) => {
   const data = {
     description,
     course,

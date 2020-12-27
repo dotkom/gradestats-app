@@ -1,13 +1,11 @@
-import fetch from 'isomorphic-fetch';
-
-export const fetcher = async (url) => {
+export const fetcher = async (url: string) => {
   const uri = encodeURI(url);
   const response = await fetch(uri);
   const data = await response.json();
   return data;
 };
 
-export const poster = async (url, data, accessToken) => {
+export const poster = async <Data>(url: string, data: Data, accessToken?: string) => {
   const headers = new Headers({
     'Content-Type': 'application/json',
   });
@@ -22,12 +20,12 @@ export const poster = async (url, data, accessToken) => {
   const responseData = await response.json();
 
   if (response.status === 400) {
-    const messages = [];
+    const messages: string[] = [];
     Object.values(responseData).forEach((message) => {
       if (Array.isArray(message)) {
         messages.push(...message);
       } else {
-        messages.push(message);
+        messages.push(message as string);
       }
     });
     return {
