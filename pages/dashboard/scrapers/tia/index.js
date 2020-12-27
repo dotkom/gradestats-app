@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useUser } from 'common/hooks/userUser';
+import { useUser } from 'common/hooks/useUser';
 import { requestTIAScrapeCourses } from 'common/api/tia';
 
 const TIAScraperPage = () => {

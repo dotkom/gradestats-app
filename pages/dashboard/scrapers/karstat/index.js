@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useSWR from 'swr';
 import { getDepartmentListApiUrl } from 'common/urls';
 import { fetcher } from 'common/fetcher';
-import { useUser } from 'common/hooks/userUser';
+import { useUser } from 'common/hooks/useUser';
 import { requestKarstatScrapeGradeReport } from 'common/api/karstat';
 import { Department } from 'components/Scrapers/Department';
 

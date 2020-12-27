@@ -1,0 +1,130 @@
+:root {
+  --screen-sm: 320px;
+  --screen-md: 800px;
+  --screen-lg: 1100px;
+
+  --spacing-1: 6px;
+  --spacing-2: 12px;
+  --spacing-3: 18px;
+  --spacing-4: 24px;
+  --spacing-5: 30px;
+  --spcaing-6: 36px;
+  --spacing-7: 42px;
+  --spacing-8: 48px;
+
+  --font-size-xxl: 36px;
+  --font-size-xl: 30px;
+  --font-size-lg: 24px;
+  --font-size-md: 20px;
+  --font-size-sm: 16px;
+  --font-size-xs: 14px;
+
+  --blue: #08b2e3;
+  --red: #ee6352;
+  --off-white: #efe9f4;
+  --green: #57a773;
+  --dark-gray: #484d6d;
+  --very-dark-gray: #1a202c;
+  --middle-gray: #888888;
+  --feide-blue: #1f4698;
+
+  --test-yellow: #ffc857;
+  --test-dark: #373f51;
+  --test-blue: #33a1fd;
+  --test-red: #f56476;
+  --test-green: #0cce6b;
+
+  --grade-a: #16dbc4;
+  --grade-b: #16dbc4;
+  --grade-c: #43cbff;
+  --grade-d: #43cbff;
+  --grade-e: #33a1fd;
+  --grade-f: #ff9999;
+  --grade-passed: #16dbc4;
+  --grade-not-passed: #ff9999;
+
+  --grade-a-old: #00cc00;
+  --grade-b-old: #00cc33;
+  --grade-c-old: #ccff33;
+  --grade-d-old: #ffff00;
+  --grade-e-old: #ff6600;
+  --grade-f-old: #cc0000;
+  --grade-passed-old: #00cc00;
+  --grade-not-passed-old: #cc0000;
+
+  @media (prefers-color-scheme: dark) {
+    --text-color: white;
+    --background-color: #1a202c;
+  }
+
+  @media (prefers-color-scheme: light) {
+    --background-color: white;
+    --text-color: #1a202c;
+  }
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+#__next {
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+a {
+  background-color: transparent;
+  color: inherit;
+  -webkit-text-decoration: inherit;
+  text-decoration: inherit;
+}
+
+ul {
+  list-style: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  padding: 0;
+  line-height: inherit;
+  color: inherit;
+}

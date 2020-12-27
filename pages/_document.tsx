@@ -1,12 +1,12 @@
 import React from 'react';
-import DefaultDocument, { Head, Main, NextScript } from 'next/document';
+import DefaultDocument, { Head, Main, NextScript, Html } from 'next/document';
 
 import { GA_TRACKING_ID } from 'common/constants';
 
 class Document extends DefaultDocument {
   render() {
     return (
-      <html>
+      <Html lang="no">
         <Head>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
@@ -27,7 +27,7 @@ class Document extends DefaultDocument {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

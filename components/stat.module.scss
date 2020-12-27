@@ -1,0 +1,29 @@
+.label {
+  margin-inline-start: 0;
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 0;
+  &:first-letter {
+    text-transform: capitalize;
+  }
+}
+
+.value {
+  margin-inline-start: 0;
+  font-size: var(--font-size-lg);
+  line-height: 1.5;
+  font-weight: 700;
+  margin: 0;
+  &:first-letter {
+    text-transform: capitalize;
+  }
+}
+
+.extra {
+  margin-left: var(--spacing-2);
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+  font-weight: 500;
+  vertical-align: text-top;
+}

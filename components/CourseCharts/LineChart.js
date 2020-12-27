@@ -4,7 +4,7 @@ import { VictoryChart, VictoryLine } from 'victory';
 
 export const LineChart = ({ data }) => {
   return (
-    <VictoryChart>
+    <VictoryChart height={220}>
       <VictoryLine data={data} />
     </VictoryChart>
   );

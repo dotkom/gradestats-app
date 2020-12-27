@@ -1,25 +1,18 @@
+import { getColorForGradeLetter } from 'common/utils/grades';
 import React from 'react';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
-
-const GRADE_COLORS = {
-  A: '#00CC00',
-  B: '#00CC33',
-  C: '#CCFF33',
-  D: '#FFFF00',
-  E: '#FF6600',
-  F: '#CC0000',
-};
 
 export const GradedGraph = ({ grade }) => {
   return (
     <VictoryChart
+      height={220}
       theme={VictoryTheme.material}
       domainPadding={0}
       padding={32}
       style={{
         parent: {
           border: '1px solid #666666',
-          background: '#ffffff',
+          background: 'var(--background-color)',
         },
       }}
     >
@@ -31,7 +24,7 @@ export const GradedGraph = ({ grade }) => {
       />
       <VictoryBar
         barRatio={1.5}
-        style={{ data: { fill: ({ datum }) => GRADE_COLORS[datum.letter] } }}
+        style={{ data: { fill: ({ datum }) => getColorForGradeLetter(datum.letter) } }}
         labels={({ datum }) => datum.attendees}
         data={[
           {

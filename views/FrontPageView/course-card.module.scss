@@ -1,0 +1,43 @@
+.notLink {
+  text-decoration: none;
+  &:hover,
+  &:visited,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.card {
+  @extend .notLink;
+  padding: var(--spacing-4);
+  border-radius: var(--spacing-1);
+  border: solid 1px var(--middle-gray);
+
+  &:hover {
+    border: solid 1px var(--text-color);
+  }
+
+  display: grid;
+  gap: var(--spacing-2);
+  grid-template-columns: 1fr min-content;
+  grid-auto-rows: min-content;
+  grid-template-areas: 'code grade' 'name name';
+}
+
+.code {
+  grid-area: code;
+}
+
+.text {
+  grid-area: name;
+  opacity: 0.7;
+  align-self: flex-start;
+  text-align: start;
+}
+
+.grade {
+  grid-area: grade;
+  font-size: var(--font-size-lg);
+  opacity: 0.7;
+  line-height: 1;
+}

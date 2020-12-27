@@ -13,7 +13,7 @@ export const FailedChart = ({ grades, showKont }) => {
   const ticks = gradesData.map((datum) => datum.x);
   return (
     <VictoryChart
-      height={350}
+      height={220}
       width={350}
       domainPadding={5}
       padding={{

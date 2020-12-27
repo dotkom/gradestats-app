@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -10,11 +9,10 @@ import {
   getCourseGradeListApiUrl,
 } from 'common/urls';
 import { fetcher } from 'common/fetcher';
-import { sortSemesters } from 'common/sortSemesters';
-import { Tags } from 'components/Tags';
-import { Facts } from 'components/Facts';
-import { CourseContent } from 'components/CourseContent';
-import { CourseCharts } from 'components/CourseCharts';
+import { sortSemesters } from 'common/utils/semester';
+
+import { CourseDetailView } from 'views/CourseDetailView';
+import { FallbackView } from 'views/FallbackView';
 
 export const getStaticPaths = async () => {
   const limit = BUILD_TIME_COURSE_LIMIT;
@@ -49,39 +47,19 @@ const CourseDetailPage = ({ initialCourse, initalGrades, initalTags }) => {
   const { isFallback, query } = useRouter();
   const { courseCode } = query;
 
-  if (isFallback || !courseCode) {
-    return 'Loading...';
+  if (isFallback) {
+    return <FallbackView />;
+  }
+
+  if (!courseCode) {
+    return 'Ikke funnet';
   }
 
   const course = initialCourse;
   const grades = initalGrades.results.sort(sortSemesters);
   const tags = initalTags.results;
 
-  return (
-    <>
-      <Head>
-        <title>{`${course.code} - ${course.norwegian_name}`}</title>
-        <meta property="og:title" content={`${course.code} - ${course.norwegian_name}`} />
-        <meta property="og:description" content={course.content} />
-        <meta property="og:article:tag" content={course.code} />
-        <meta property="og:article:tag" content={course.short_name} />
-        <meta property="og:article:tag" content={course.norwegian_name} />
-        <meta property="og:article:tag" content={course.english_name} />
-        <meta property="og:article:tag" content={course.course_level} />
-        <meta property="og:article:tag" content={course.place} />
-      </Head>
-      <div className="row">
-        <div className="col-md-8">
-          <CourseContent course={course} />
-        </div>
-        <div className="col-md-4">
-          <CourseCharts grades={grades} />
-          <Facts course={course} />
-          <Tags tags={tags} courseCode={courseCode} />
-        </div>
-      </div>
-    </>
-  );
+  return <CourseDetailView course={course} grades={grades} tags={tags} />;
 };
 
 export default CourseDetailPage;

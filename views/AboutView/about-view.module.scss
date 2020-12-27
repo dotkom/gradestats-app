@@ -1,0 +1,56 @@
+.container {
+  max-width: var(--screen-md);
+  margin: 0 auto;
+}
+
+.sectionHeading {
+  margin: var(--spacing-2) 0;
+}
+
+.contributorsSection {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'text'
+    'contributors';
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+
+  @media screen and (min-width: 800px) {
+    grid-template-areas:
+      'header header'
+      'text contributors';
+    grid-template-columns: 360px 1fr;
+  }
+}
+
+.contributorsTitle {
+  @extend .sectionHeading;
+  grid-area: header;
+}
+
+.contributorsText {
+  grid-area: text;
+}
+
+.contributorsList {
+  grid-area: contributors;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.contributorsItem {
+  width: 180px;
+  text-align: center;
+}
+
+.contributorImage {
+  margin: 0 auto;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: var(--spacing-1);
+  border: solid 2px var(--text-color);
+}

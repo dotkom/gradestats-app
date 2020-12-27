@@ -1,19 +1,32 @@
 import { Dialog } from '@reach/dialog';
-import React, { useState } from 'react';
+import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { requestCreateCourseTag } from 'common/api/tags';
-import { useUser } from 'common/hooks/userUser';
+import { useUser } from 'common/hooks/useUser';
+import { Button } from 'components/common/Button';
+import { Heading } from 'components/Typography/Heading';
+import { Text } from 'components/Typography/Text';
 
-export const AddTagDialog = ({ isOpen, closeDialog, courseCode }) => {
+import styles from './add-tag-dialog.module.scss';
+
+interface Props {
+  isOpen: boolean;
+  closeDialog: () => void;
+  courseCode: string;
+}
+
+type Status = 'IDLE' | 'PENDING' | 'ERROR' | 'COMPLETED';
+
+export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => {
   const [user] = useUser();
-  const [messages, setMessages] = useState([]);
-  const [submitStatus, setSubmitStatus] = useState('IDLE'); // 'IDLE' | 'PENDING' | 'ERROR' | 'COMPLETED'
+  const [messages, setMessages] = useState<string[]>([]);
+  const [submitStatus, setSubmitStatus] = useState<Status>('IDLE');
   const [name, setName] = useState('');
 
-  const handleNameChange = (event) => {
+  const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitStatus('PENDING');
     const response = await requestCreateCourseTag({ courseCode, name }, user.token.accessToken);
@@ -22,13 +35,15 @@ export const AddTagDialog = ({ isOpen, closeDialog, courseCode }) => {
       setName('');
     } else if (response.status === 400) {
       setSubmitStatus('ERROR');
-      setMessages(response.messages);
+      setMessages(response.messages || []);
     }
   };
 
   return (
     <Dialog isOpen={isOpen} onDismiss={closeDialog} aria-label="Legg til tags">
-      <h3>Legg til tags</h3>
+      <Heading as="h1" size="h3">
+        Legg til tags
+      </Heading>
       {submitStatus === 'ERROR' &&
         messages.map((message) => (
           <div key={message} className="alert alert-danger" role="alert">
@@ -43,32 +58,29 @@ export const AddTagDialog = ({ isOpen, closeDialog, courseCode }) => {
           Taggen ble lagt til, takk for at du bidrar! Det kan ta opptil én time før den vises på siden.
         </div>
       )}
-      <p>Gjør det lettere å søke i emner ved å legge til tags!</p>
-      <p>
+      <Text>Gjør det lettere å søke i emner ved å legge til tags!</Text>
+      <Text>
         Vi setter veldig stor pris på at du bidrar til å gjøre det lettere å søke i emner. Vennligst vis hensyn ved å
         ikke legge til useriøse forlag.
-      </p>
+      </Text>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label className="control-label" htmlFor="tag-name">
-            Navn:
-          </label>
+        <div>
+          <label htmlFor="tag-name">Navn:</label>
           <input
             id="tag-name"
             type="text"
             placeholder="Skriv inn et kallenavn eller noe som beskriver emnet"
-            className="form-control input-default"
-            required={true}
+            required
             value={name}
             onChange={handleNameChange}
           />
         </div>
-        <button type="button" className="btn btn-default" onClick={closeDialog}>
-          Lukk
-        </button>
-        <button type="submit" className="btn btn-success pull-right">
-          Legg til!
-        </button>
+        <div className={styles.buttons}>
+          <Button type="button" onClick={closeDialog}>
+            Lukk
+          </Button>
+          <Button type="submit">Legg til!</Button>
+        </div>
       </form>
     </Dialog>
   );

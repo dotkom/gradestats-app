@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'heading'
+    'charts'
+    'facts'
+    'content';
+  gap: var(--spacing-4);
+
+  @media screen and (min-width: 800px) {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      'heading heading'
+      'charts facts'
+      'content facts';
+  }
+}
+
+.heading {
+  margin: var(--spacing-1);
+  grid-area: heading;
+}
+
+.charts {
+  grid-area: charts;
+}
+
+.facts {
+  grid-area: facts;
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: var(--spacing-4);
+}
+
+.content {
+  grid-area: content;
+}

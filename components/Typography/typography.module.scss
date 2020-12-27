@@ -1,0 +1,41 @@
+.heading1 {
+  font-size: var(--font-size-xxl);
+  line-height: 1;
+  font-weight: bold;
+}
+
+.heading2 {
+  font-size: var(--font-size-xl);
+  line-height: 1;
+  font-weight: bold;
+}
+
+.heading3 {
+  font-size: var(--font-size-lg);
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+.heading4 {
+  font-size: var(--font-size-md);
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+.heading5 {
+  font-size: var(--font-size-sm);
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+.heading6 {
+  font-size: var(--font-size-xs);
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+.text {
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  font-weight: normal;
+}
