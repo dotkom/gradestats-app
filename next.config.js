@@ -6,9 +6,6 @@
 const withSourceMaps = require('@zeit/next-source-maps');
 
 nextConfig = {
-  experimental: {
-    reactMode: 'concurrent',
-  },
   webpack: (config, options) => {
     if (!options.isServer) {
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
