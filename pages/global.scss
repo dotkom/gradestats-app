@@ -61,6 +61,11 @@
     --background-color: white;
     --text-color: #1a202c;
   }
+
+  [data-reach-dialog-content] {
+    --background-color: white;
+    --text-color: #1a202c;
+  }
 }
 
 html,
@@ -74,6 +79,11 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+[data-reach-dialog-content] {
   color: var(--text-color);
   background-color: var(--background-color);
 }

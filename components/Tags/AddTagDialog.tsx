@@ -7,6 +7,7 @@ import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 
 import styles from './add-tag-dialog.module.scss';
+import { TextInput } from 'components/forms/TextInput';
 
 interface Props {
   isOpen: boolean;
@@ -61,12 +62,12 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
       <Text>Gjør det lettere å søke i emner ved å legge til tags!</Text>
       <Text>
         Vi setter veldig stor pris på at du bidrar til å gjøre det lettere å søke i emner. Vennligst vis hensyn ved å
-        ikke legge til useriøse forlag.
+        ikke legge til useriøse forslag.
       </Text>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="tag-name">Navn:</label>
-          <input
+          <TextInput
             id="tag-name"
             type="text"
             placeholder="Skriv inn et kallenavn eller noe som beskriver emnet"
