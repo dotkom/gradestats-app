@@ -8,6 +8,7 @@ import { Text } from 'components/Typography/Text';
 
 import styles from './front-page-view.module.scss';
 import { CourseCard } from './CourseCard';
+import { SearchInput } from 'components/forms/SearchInput';
 
 const ABOUT_GRADES = (courseCount: number) => `
   Karakterstatisikk for ${courseCount} emner ved Norges teknisk-naturvitenskapelige universitet.
@@ -36,20 +37,21 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
           <Heading as="h1">Grades.no</Heading>
           <Text className={styles.byline}>Karakterstatistikk for alle emner ved NTNU</Text>
         </div>
-        <input placeholder="Søk i emner..." type="search" onChange={handleSearch} />
+        <SearchInput placeholder="Søk i emner..." type="search" onChange={handleSearch} />
         <Heading className={styles.featuredHeadline} as="h2">
           Mest populære emner ved NTNU
         </Heading>
         <div className={styles.featuredCourses}>
-          {courses &&
-            courses.map((course) => (
-              <CourseCard
-                key={course.code}
-                code={course.code}
-                name={course.norwegian_name}
-                gradeAverage={course.average}
-              />
-            ))}
+          {courses
+            ? courses.map((course) => (
+                <CourseCard
+                  key={course.code}
+                  code={course.code}
+                  name={course.norwegian_name}
+                  gradeAverage={course.average}
+                />
+              ))
+            : null}
         </div>
       </section>
     </>

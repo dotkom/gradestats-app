@@ -1,0 +1,18 @@
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.searchBar {
+  margin: var(--spacing-2) 0;
+}
+
+.courseList {
+  width: 100%;
+}
+
+.listItem {
+  padding: var(--spacing-1) 0;
+  display: table-row;
+}
