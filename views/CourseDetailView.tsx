@@ -35,6 +35,7 @@ const filterGradesBySemesters = (grades: Grade[], semesterFilter: SemesterFilter
 };
 
 export const CourseDetailView: FC<Props> = ({ course, grades }) => {
+  const hasGrades = grades.length !== 0;
   const [semesterFilter, setSemesterFilter] = useState<SemesterFilter>('all');
   const filteredGrades = filterGradesBySemesters(grades, semesterFilter);
   const [currentGrade, setCurrentGrade] = useState([...filteredGrades].reverse()[0]);
@@ -74,28 +75,32 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
         <Heading className={styles.heading} as="h1">
           {course.code} - {course.norwegian_name}
         </Heading>
-        <div className={styles.charts}>
-          <CourseCharts grades={filteredGrades} currentGrade={currentGrade} />
-          <input
-            type="range"
-            defaultValue={filteredGrades.length - 1}
-            min={0}
-            max={filteredGrades.length - 1}
-            onChange={handleGradeChange}
-          />
-          <input
-            type="checkbox"
-            name="Inkluder kont"
-            onChange={handleSemesterFilterChange}
-            checked={semesterFilter === 'all'}
-          />
-        </div>
+        {hasGrades ? (
+          <div className={styles.charts}>
+            <CourseCharts grades={filteredGrades} currentGrade={currentGrade} />
+            <input
+              type="range"
+              defaultValue={filteredGrades.length - 1}
+              min={0}
+              max={filteredGrades.length - 1}
+              onChange={handleGradeChange}
+            />
+            <input
+              type="checkbox"
+              name="Inkluder kont"
+              onChange={handleSemesterFilterChange}
+              checked={semesterFilter === 'all'}
+            />
+          </div>
+        ) : null}
         <aside className={styles.facts}>
-          <GradeAverages
-            allGrades={filteredGrades}
-            selectedGrade={currentGrade}
-            rollingYearCount={ROLLING_AVERAGE_YEARS}
-          />
+          {hasGrades ? (
+            <GradeAverages
+              allGrades={filteredGrades}
+              selectedGrade={currentGrade}
+              rollingYearCount={ROLLING_AVERAGE_YEARS}
+            />
+          ) : null}
           <Facts course={course} />
           <Tags courseCode={course.code} />
         </aside>

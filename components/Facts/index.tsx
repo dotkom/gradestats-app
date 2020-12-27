@@ -22,7 +22,10 @@ export const Facts: FC<Props> = ({ course }) => {
         <Stat label="Studiepoeng" value={String(course.credit)} />
         <Stat label="Nivå" value={course.course_level} />
         <Stat label="Undervisningsspråk" value={course.taught_in_english ? 'Engelsk' : 'Norsk'} />
-        <Stat label={semesters.length === 1 ? 'Semester' : 'Semestere'} value={semesters.join(` og `)} />
+        <Stat
+          label={semesters.length === 1 ? 'Semester' : 'Semestere'}
+          value={semesters.length ? semesters.join(` og `) : 'Ingen'}
+        />
       </div>
     </div>
   );
