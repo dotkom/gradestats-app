@@ -3,8 +3,20 @@ import Link from 'next/link';
 import React, { FC } from 'react';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
+import cx from 'classnames';
 
 import styles from './course-card.module.scss';
+
+export const GRADE_COLORS: Record<string, string> = {
+  A: styles.gradeA,
+  B: styles.gradeB,
+  C: styles.gradeC,
+  D: styles.gradeD,
+  E: styles.gradeE,
+  F: styles.gradeF,
+  PASSED: styles.gradePassed,
+  NOT_PASSED: styles.gradeNotPassed,
+};
 
 interface Props {
   code: string;
@@ -13,6 +25,7 @@ interface Props {
 }
 
 export const CourseCard: FC<Props> = ({ code, name, gradeAverage }) => {
+  const gradeLetter = mapGradeAverageToLetter(gradeAverage);
   return (
     <Link href="/course/[courseCode]" as={`/course/${code}`}>
       <a className={styles.card}>
@@ -20,7 +33,7 @@ export const CourseCard: FC<Props> = ({ code, name, gradeAverage }) => {
           {code}
         </Heading>
         <Text className={styles.text}>{name}</Text>
-        <Text className={styles.grade}>{mapGradeAverageToLetter(gradeAverage)}</Text>
+        <Text className={cx(styles.grade, GRADE_COLORS[gradeLetter])}>{gradeLetter}</Text>
       </a>
     </Link>
   );
