@@ -17,5 +17,8 @@ jobs:
       - name: Lint (eslint)
         run: npm run lint-check
 
+      - name: Typescript Compile
+        run: yarn tsc
+
       - name: Compile
         run: npm run build
