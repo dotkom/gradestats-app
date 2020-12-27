@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { Heading } from 'components/Typography/Heading';
 
-import { Stat } from '../Stat';
+import { Stat } from '../Stat/Stat';
 
 import s from './facts.module.scss';
 import { Course } from 'models/Course';

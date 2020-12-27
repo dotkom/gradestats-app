@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
 import s from './grade-averages.module.scss';
-import { GradedStat } from 'components/GradeStat/GradedStat';
-import { UngradedStat } from 'components/GradeStat/UngradedStat';
+import { GradedStat } from 'components/Stat/GradedStat';
+import { UngradedStat } from 'components/Stat/UngradedStat';
 import { Heading } from 'components/Typography/Heading';
 import { Grade } from 'models/Grade';
 import {

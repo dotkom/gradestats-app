@@ -1,5 +1,5 @@
 import { formatPercentage } from 'common/utils/math';
-import { Stat } from 'components/Stat';
+import { Stat } from 'components/Stat/Stat';
 import React, { FC } from 'react';
 
 interface Props {
