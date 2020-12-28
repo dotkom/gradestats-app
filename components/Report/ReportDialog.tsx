@@ -8,6 +8,7 @@ import { Heading } from 'components/Typography/Heading';
 import { Label } from 'components/forms/Label';
 import { TextInput } from 'components/forms/TextInput';
 import { Textarea } from 'components/forms/Textarea';
+import { Alert } from 'components/Alert';
 
 interface Props {
   isOpen: boolean;
@@ -66,18 +67,14 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
 
         {submitStatus === 'ERROR' &&
           messages.map((message) => (
-            <div key={message} className="alert alert-danger" role="alert">
-              <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-              <span className="sr-only">Feil:</span>
+            <Alert key={message} type="error" title="Feil">
               {message}
-            </div>
+            </Alert>
           ))}
         {submitStatus === 'COMPLETED' && (
-          <div className="alert alert-success" role="alert">
-            <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            <span className="sr-only">Repport mottatt</span>
+          <Alert type="success" title="Tilbakemelding mottatt">
             Takk for tilbakemeldingen!
-          </div>
+          </Alert>
         )}
 
         <Label label="Beskrivelse:">

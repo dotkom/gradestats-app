@@ -15,6 +15,7 @@ import 'cssremedy/css/quotes.css';
 import './global.scss';
 
 import styles from './_app.module.scss';
+import { Alert } from 'components/Alert';
 
 Sentry.init({
   dsn: SENTRY_DSN ?? undefined,
@@ -60,10 +61,10 @@ const App: FC<AppProps & { err: any }> = ({ Component, pageProps, err }) => {
         <Navbar className={styles.header} />
         <main className={styles.main}>
           <noscript>
-            <div>
-              Denne nettsiden bruker javascript for all interaktivitet, for å dra full nytte av nettsiden må du derfor
-              aktivere javascript.
-            </div>
+            <Alert type="info">
+              Denne nettsiden bruker JavaScript for all interaktivitet, for å dra full nytte av nettsiden må du derfor
+              aktivere JavaScript.
+            </Alert>
           </noscript>
           <Component {...modifiedPageProps} />
         </main>

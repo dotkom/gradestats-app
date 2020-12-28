@@ -1,0 +1,31 @@
+.infoColors {
+  --main: var(--blue);
+  --muted: var(--blue-muted);
+}
+
+.successColors {
+  --main: var(--green);
+  --muted: var(--green-muted);
+}
+
+.warningColors {
+  --main: var(--yellow);
+  --muted: var(--yellow-muted);
+}
+
+.errorColors {
+  --main: var(--red);
+  --muted: var(--red-muted);
+}
+
+.alert {
+  padding: var(--spacing-4);
+  background-color: var(--muted);
+  color: var(--text-dark);
+  border-left: solid var(--spacing-1) var(--main);
+  border-radius: var(--spacing-1);
+}
+
+.heading {
+  color: var(--main);
+}

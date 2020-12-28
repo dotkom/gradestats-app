@@ -8,6 +8,7 @@ import { Text } from 'components/Typography/Text';
 
 import styles from './add-tag-dialog.module.scss';
 import { TextInput } from 'components/forms/TextInput';
+import { Alert } from 'components/Alert';
 
 interface Props {
   isOpen: boolean;
@@ -47,17 +48,14 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
       </Heading>
       {submitStatus === 'ERROR' &&
         messages.map((message) => (
-          <div key={message} className="alert alert-danger" role="alert">
-            <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span className="sr-only">Feil:</span>
+          <Alert key={message} type="error" title="Feil">
             {message}
-          </div>
+          </Alert>
         ))}
       {submitStatus === 'COMPLETED' && (
-        <div className="alert alert-success" role="alert">
-          <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        <Alert type="success" title="Tilbakemelding mottatt">
           Taggen ble lagt til, takk for at du bidrar! Det kan ta opptil én time før den vises på siden.
-        </div>
+        </Alert>
       )}
       <Text>Gjør det lettere å søke i emner ved å legge til tags!</Text>
       <Text>
