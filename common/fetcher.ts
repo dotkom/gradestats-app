@@ -1,9 +1,14 @@
-export const fetcher = async (url: string) => {
+export const fetcher = async <T>(url: string) => {
   const uri = encodeURI(url);
   const response = await fetch(uri);
   const data = await response.json();
-  return data;
+  return data as T;
 };
+
+export interface ListResponse<Data> {
+  count: number;
+  results: Data[];
+}
 
 export const poster = async <Data>(url: string, data: Data, accessToken?: string) => {
   const headers = new Headers({

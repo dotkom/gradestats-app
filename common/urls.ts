@@ -16,8 +16,16 @@ export const getCourseListApiUrl = ({ limit, offset = 0, query = '', ordering = 
 export const getCourseDetailApiUrl = (courseCode: string) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/`;
 };
-export const getCourseGradeListApiUrl = (courseCode: string, { limit = 300, offset = 0 }: ListParams = {}) => {
-  return `${GRADES_API_URL}/api/v2/courses/${courseCode}/grades/?limit=${limit}&offset=${offset}`;
+
+interface CourseGradeListParams extends ListParams {
+  ordering?: string;
+}
+
+export const getCourseGradeListApiUrl = (
+  courseCode: string,
+  { limit = 300, offset = 0, ordering = '-year' }: CourseGradeListParams = {}
+) => {
+  return `${GRADES_API_URL}/api/v2/courses/${courseCode}/grades/?limit=${limit}&offset=${offset}&ordering=${ordering}`;
 };
 export const getCourseGradeDetailApiUrl = (courseCode: string, semesterCode: string) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/grades/${semesterCode}/`;

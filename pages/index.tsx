@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 import { getCourseListApiUrl } from 'common/urls';
-import { fetcher } from 'common/fetcher';
+import { fetcher, ListResponse } from 'common/fetcher';
 
 import { FrontPageView } from 'views/FrontPageView';
 import { GetStaticProps } from 'next';
@@ -19,7 +19,7 @@ const IndexPage: FC<StaticProps> = ({ courses, courseCount }) => {
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   const limit = 21;
   const ordering = '-attendee_count';
-  const response = await fetcher(getCourseListApiUrl({ limit, ordering }));
+  const response = await fetcher<ListResponse<Course>>(getCourseListApiUrl({ limit, ordering }));
   const courses = response.results;
   const courseCount = response.count;
   return {
