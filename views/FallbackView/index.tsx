@@ -12,7 +12,7 @@ export const FallbackView: FC = () => {
       <Heading as="h1" size="h3">
         Laster inn
       </Heading>
-      <AnimatedGraphIcon />
+      <AnimatedGraphIcon className={styles.loadingIcon} />
       <Text>Henter statistikk... Dette kan ta noen sekunder</Text>
     </section>
   );
