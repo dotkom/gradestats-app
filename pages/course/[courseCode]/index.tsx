@@ -1,0 +1,79 @@
+import { useRouter } from 'next/router';
+import React, { FC } from 'react';
+
+import { BUILD_TIME_COURSE_LIMIT } from 'common/constants';
+import {
+  getCourseListApiUrl,
+  getCourseDetailApiUrl,
+  getCourseTagListApiUrl,
+  getCourseGradeListApiUrl,
+} from 'common/urls';
+import { fetcher, ListResponse } from 'common/fetcher';
+import { sortSemesters } from 'common/utils/semester';
+
+import { CourseDetailView } from 'views/CourseDetailView';
+import { FallbackView } from 'views/FallbackView';
+import { Course } from 'models/Course';
+import { Grade } from 'models/Grade';
+import { Tag } from 'models/Tag';
+import { GetStaticPaths, GetStaticProps } from 'next';
+
+type QueryParams = {
+  courseCode: string;
+};
+
+interface StaticProps {
+  courseResponse: Course;
+  gradesResponse: ListResponse<Grade>;
+  tagsResponse: ListResponse<Tag>;
+}
+
+const CourseDetailPage: FC<StaticProps> = ({ courseResponse, gradesResponse, tagsResponse }) => {
+  const { isFallback, query } = useRouter();
+  const { courseCode } = query;
+
+  if (isFallback) {
+    return <FallbackView />;
+  }
+
+  if (!courseCode) {
+    return <>Ikke funnet</>;
+  }
+
+  const course = courseResponse;
+  const grades = gradesResponse.results.sort(sortSemesters);
+  const tags = tagsResponse.results;
+
+  return <CourseDetailView course={course} grades={grades} tags={tags} />;
+};
+
+export const getStaticPaths: GetStaticPaths<QueryParams> = async () => {
+  const limit = BUILD_TIME_COURSE_LIMIT;
+  const ordering = '-attendee_count';
+  const response = await fetcher<ListResponse<Course>>(getCourseListApiUrl({ limit, ordering }));
+  const courseCodes = response.results.map((course) => course.code);
+  const paths = courseCodes.map((courseCode) => ({ params: { courseCode } }));
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps<StaticProps, QueryParams> = async ({ params }) => {
+  const { courseCode } = params as QueryParams;
+  const [courseResponse, gradesResponse, tagsResponse] = await Promise.all([
+    fetcher<Course>(getCourseDetailApiUrl(courseCode)),
+    fetcher<ListResponse<Grade>>(getCourseGradeListApiUrl(courseCode)),
+    fetcher<ListResponse<Tag>>(getCourseTagListApiUrl(courseCode)),
+  ]);
+  return {
+    revalidate: 60 * 60, // Revalidate once each hour.
+    props: {
+      courseResponse,
+      gradesResponse,
+      tagsResponse,
+    },
+  };
+};
+
+export default CourseDetailPage;

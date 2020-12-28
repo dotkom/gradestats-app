@@ -57,7 +57,7 @@ export const AboutView: FC<Props> = ({ contributors }) => {
           <div className={styles.contributorsText}>
             <Text>Dette prosjektet har blitt holdt i live av en rekke studenter gjennom flere generasjoner.</Text>
             <Text>
-              Universitetsavise har også skrevet en kort artikkel om nettsiden og dens oppbrinnelse:
+              Universitetsavisa har også skrevet en kort artikkel om nettsiden og dens oppbrinnelse:
               <a href={UA_ARTICLE.HREF} target="_blank" rel="noopener noreferrer">
                 {UA_ARTICLE.NAME}
               </a>
