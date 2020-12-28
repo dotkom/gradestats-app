@@ -13,6 +13,7 @@ import { Tag } from 'models/Tag';
 import { Heading } from 'components/Typography/Heading';
 
 import styles from './course-detail-view.module.scss';
+import { ReportCourseButton } from 'components/Report/ReportCourseButton';
 
 interface Props {
   course: Course;
@@ -103,6 +104,7 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
           ) : null}
           <Facts course={course} />
           <Tags courseCode={course.code} />
+          <ReportCourseButton courseCode={course.code} />
         </aside>
         <CourseContent course={course} className={styles.content} />
       </section>
