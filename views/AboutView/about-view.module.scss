@@ -54,3 +54,33 @@
   padding: var(--spacing-1);
   border: solid 2px var(--text-color);
 }
+
+.orgsSection {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'text'
+    'organization';
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+
+  @media screen and (min-width: 800px) {
+    grid-template-areas:
+      'header header'
+      'text organization';
+    grid-template-columns: 360px 1fr;
+  }
+}
+
+.orgsHeader {
+  @extend .sectionHeading;
+  grid-area: header;
+}
+
+.orgsText {
+  grid-area: text;
+}
+
+.orgsCard {
+  grid-area: organization;
+}

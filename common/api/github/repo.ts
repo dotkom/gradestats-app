@@ -68,3 +68,37 @@ export const getAllContributors = async (): Promise<GithubUser[]> => {
   );
   return users;
 };
+
+const getGithubOrgByName = async (orgName: string) => {
+  const response = await api.orgs.get({ org: orgName });
+  if (response.status === 200) {
+    return response.data;
+  }
+  throw new Error(`Could not fetch org by name (${orgName}) from Github`);
+};
+
+export interface GithubOrg {
+  login: string;
+  url: string;
+  avatarUrl: string;
+  description: string | null;
+  name: string | undefined;
+  location: string | undefined;
+  email: string | undefined;
+  publicReposCount: number;
+}
+
+export const getGithubOrg = async (): Promise<GithubOrg> => {
+  const githubOrgResponse = await getGithubOrgByName(ORG);
+  const githubOrg: GithubOrg = {
+    login: githubOrgResponse.login,
+    url: githubOrgResponse.html_url,
+    avatarUrl: githubOrgResponse.avatar_url,
+    description: githubOrgResponse.description,
+    name: githubOrgResponse.name,
+    location: githubOrgResponse.location,
+    email: githubOrgResponse.email,
+    publicReposCount: githubOrgResponse.public_repos,
+  };
+  return githubOrg;
+};
