@@ -30,7 +30,7 @@ export const GradeAverages: FC<Props> = ({ selectedGrade, allGrades, rollingYear
       <Heading className={s.heading} as="h2">
         Karakterer
       </Heading>
-      <div className={s.stats}>
+      <dl className={s.stats}>
         {isSelectedGradeGraded ? (
           <GradedStat
             label={`${selectedGrade.year} ${selectedGrade.semester_display}`}
@@ -60,7 +60,7 @@ export const GradeAverages: FC<Props> = ({ selectedGrade, allGrades, rollingYear
         ) : (
           <UngradedStat label="Alle år" percentage={calculateAveragePassingRate(allGrades)} mode="passing" />
         )}
-      </div>
+      </dl>
     </div>
   );
 };

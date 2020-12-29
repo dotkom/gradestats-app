@@ -31,7 +31,7 @@ export const Tags: FC<Props> = ({ courseCode }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div>
       <Heading className={styles.header} as="h2">
         Tags
       </Heading>

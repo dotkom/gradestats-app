@@ -13,8 +13,8 @@ interface Props {
 export const Navbar: FC<Props> = ({ className }) => {
   const [user] = useUser();
   return (
-    <nav className={cx(styles.navbar, className)}>
-      <div className={styles.content}>
+    <header className={cx(styles.navbar, className)}>
+      <nav className={styles.content}>
         <Link href="/">
           <a>
             <Heading className={styles.pageName} as="p" size="h1">
@@ -47,7 +47,7 @@ export const Navbar: FC<Props> = ({ className }) => {
             </li>
           )}
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };

@@ -55,7 +55,7 @@ const App: FC<AppProps & { err: any }> = ({ Component, pageProps, err }) => {
         {TAGS.map((tag) => (
           <meta property="og:article:tag" content={tag} key={tag} />
         ))}
-        <meta name="description" content="" />
+        <meta name="description" content={ABOUT_GRADES} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <div className={styles.app}>
