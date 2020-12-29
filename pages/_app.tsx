@@ -16,6 +16,7 @@ import './global.scss';
 
 import styles from './_app.module.scss';
 import { Alert } from 'components/Alert';
+import { Footer } from 'components/Footer';
 
 Sentry.init({
   dsn: SENTRY_DSN ?? undefined,
@@ -69,7 +70,7 @@ const App: FC<AppProps & { err: any }> = ({ Component, pageProps, err }) => {
           </noscript>
           <Component {...modifiedPageProps} />
         </main>
-        <footer className={styles.footer}></footer>
+        <Footer className={styles.footer} />
       </div>
     </>
   );
