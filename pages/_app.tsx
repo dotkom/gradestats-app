@@ -41,6 +41,7 @@ const ABOUT_GRADES = `
 
 const TAGS = ['NTNU', 'Karakterstatistikk', 'Norwegian University of Science and Technology', 'Emneinformasjon'];
 
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const App: FC<AppProps & { err: any }> = ({ Component, pageProps, err }) => {
   // Workaround for https://github.com/zeit/next.js/issues/8592
   const modifiedPageProps = { ...pageProps, err };

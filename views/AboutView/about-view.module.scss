@@ -20,7 +20,7 @@
     grid-template-areas:
       'header header'
       'text contributors';
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: 320px 1fr;
   }
 }
 
@@ -35,24 +35,14 @@
 
 .contributorsList {
   grid-area: contributors;
-  display: flex;
-  flex-wrap: wrap;
   width: 100%;
-  justify-content: space-evenly;
-}
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2);
 
-.contributorsItem {
-  width: 180px;
-  text-align: center;
-}
-
-.contributorImage {
-  margin: 0 auto;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  padding: var(--spacing-1);
-  border: solid 2px var(--text-color);
+  @media screen and (min-width: 360px) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .orgsSection {
@@ -68,7 +58,7 @@
     grid-template-areas:
       'header header'
       'text organization';
-    grid-template-columns: 360px 1fr;
+    grid-template-columns: 320px 1fr;
   }
 }
 

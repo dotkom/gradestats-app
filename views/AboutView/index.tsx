@@ -5,6 +5,7 @@ import { Text } from 'components/Typography/Text';
 import React, { FC } from 'react';
 
 import styles from './about-view.module.scss';
+import { ContributorCard } from './ContributorCard';
 import { OrgCard } from './OrgCard';
 
 const UA_ARTICLE = {
@@ -45,6 +46,8 @@ export const AboutView: FC<Props> = ({ contributors, organization }) => {
         </Heading>
         <Text>
           <a href={GRADES_API_V2.HREF}>{GRADES_API_V2.HREF}</a>
+        </Text>
+        <Text>
           <a href={GRADES_API_V2.DOCS.HREF}>{GRADES_API_V2.DOCS.HREF}</a>
         </Text>
       </section>
@@ -65,13 +68,7 @@ export const AboutView: FC<Props> = ({ contributors, organization }) => {
           {contributors
             .sort((userA, userB) => userB.contributions - userA.contributions)
             .map((user) => (
-              <li key={user.id} className={styles.contributorsItem}>
-                <a href={user.url} target="_blank" rel="noopener noreferrer">
-                  <img className={styles.contributorImage} src={user.avatarUrl} alt={user.name ?? user.username} />
-                  <Text size="h5">{user.name ?? user.username}</Text>
-                  <Text>{user.name && <span>({user.username})</span>}</Text>
-                </a>
-              </li>
+              <ContributorCard key={user.id} user={user} />
             ))}
         </ul>
       </section>

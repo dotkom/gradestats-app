@@ -39,7 +39,7 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
         </div>
         <SearchInput placeholder="Søk i emner..." type="search" onChange={handleSearch} />
         <Heading className={styles.featuredHeadline} as="h2">
-          Mest populære emner ved NTNU
+          Mest populære emner
         </Heading>
         <div className={styles.featuredCourses}>
           {courses
