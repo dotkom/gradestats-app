@@ -9,6 +9,7 @@ import { Label } from 'components/forms/Label';
 import { TextInput } from 'components/forms/TextInput';
 import { Textarea } from 'components/forms/Textarea';
 import { Alert } from 'components/Alert';
+import { useUser } from 'common/hooks/useUser';
 
 interface Props {
   isOpen: boolean;
@@ -19,6 +20,7 @@ interface Props {
 type Status = 'IDLE' | 'PENDING' | 'ERROR' | 'COMPLETED';
 
 export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode }) => {
+  const [user] = useUser();
   const [messages, setMessages] = useState<string[]>([]);
   const [submitStatus, setSubmitStatus] = useState<Status>('IDLE');
   const [course, setCourse] = useState<string>(prefillCourseCode ?? '');
@@ -57,6 +59,12 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
       setCourse(prefillCourseCode);
     }
   }, [prefillCourseCode]);
+
+  useEffect(() => {
+    if (user?.email) {
+      setContactEmail(user?.email);
+    }
+  }, [user?.email]);
 
   return (
     <Dialog isOpen={isOpen} onDismiss={closeDialog} aria-label="Send tilbakemelding">

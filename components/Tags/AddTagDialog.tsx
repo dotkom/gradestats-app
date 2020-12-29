@@ -31,7 +31,7 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitStatus('PENDING');
-    const response = await requestCreateCourseTag({ courseCode, name }, user.token.accessToken);
+    const response = await requestCreateCourseTag({ courseCode, name }, user?.token.accessToken as string);
     if (response.status === 201) {
       setSubmitStatus('COMPLETED');
       setName('');

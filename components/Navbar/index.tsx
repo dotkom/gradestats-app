@@ -4,36 +4,48 @@ import { Heading } from 'components/Typography/Heading';
 import cx from 'classnames';
 
 import styles from './navbar.module.scss';
-
-const NAVBAR_ITEMS = [
-  { href: '/', name: 'Emner', className: styles.courses },
-  { href: '/about', name: 'Om siden', className: styles.about },
-  { href: '/login', name: 'Logg inn', className: styles.login },
-];
+import { useUser } from 'common/hooks/useUser';
 
 interface Props {
   className?: string;
 }
 
 export const Navbar: FC<Props> = ({ className }) => {
+  const [user] = useUser();
   return (
     <nav className={cx(styles.navbar, className)}>
       <div className={styles.content}>
         <Link href="/">
           <a>
-            <Heading className={styles.pageName} as="h1">
+            <Heading className={styles.pageName} as="p" size="h1">
               Grades.no
             </Heading>
           </a>
         </Link>
         <ul className={styles.linksList}>
-          {NAVBAR_ITEMS.map(({ href, name, className }) => (
-            <li key={href} className={className}>
-              <Link href={href}>
-                <a>{name}</a>
+          <li className={styles.courses}>
+            <Link href="/">
+              <a>Emner</a>
+            </Link>
+          </li>
+          <li className={styles.about}>
+            <Link href="/about">
+              <a>Om siden</a>
+            </Link>
+          </li>
+          {!user ? (
+            <li className={styles.login}>
+              <Link href="/login">
+                <a>Logg inn</a>
               </Link>
             </li>
-          ))}
+          ) : (
+            <li className={styles.login}>
+              <Link href="/users/me">
+                <a>Bruker</a>
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
