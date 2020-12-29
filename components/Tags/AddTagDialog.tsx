@@ -9,6 +9,7 @@ import { Text } from 'components/Typography/Text';
 import styles from './add-tag-dialog.module.scss';
 import { TextInput } from 'components/forms/TextInput';
 import { Alert } from 'components/Alert';
+import { Label } from 'components/forms/Label';
 
 interface Props {
   isOpen: boolean;
@@ -63,17 +64,16 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
         ikke legge til useriøse forslag.
       </Text>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="tag-name">Navn:</label>
+        <Label label="navn">
           <TextInput
-            id="tag-name"
+            name="tag navn"
             type="text"
             placeholder="Skriv inn et kallenavn eller noe som beskriver emnet"
             required
             value={name}
             onChange={handleNameChange}
           />
-        </div>
+        </Label>
         <div className={styles.buttons}>
           <Button type="button" onClick={closeDialog}>
             Lukk
@@ -84,3 +84,5 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
     </Dialog>
   );
 };
+
+export default AddTagDialog;

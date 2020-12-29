@@ -47,3 +47,5 @@ export const AverageChart = ({ grades, showKont }) => {
     </VictoryChart>
   );
 };
+
+export default AverageChart;

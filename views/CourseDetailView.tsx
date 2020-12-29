@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-
 import { Tags } from 'components/Tags';
 import { Facts } from 'components/Facts';
 import { CourseContent } from 'components/CourseContent';
@@ -11,9 +10,9 @@ import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
 import { Tag } from 'models/Tag';
 import { Heading } from 'components/Typography/Heading';
+import { ReportCourseButton } from 'components/Report/ReportCourseButton';
 
 import styles from './course-detail-view.module.scss';
-import { ReportCourseButton } from 'components/Report/ReportCourseButton';
 
 interface Props {
   course: Course;

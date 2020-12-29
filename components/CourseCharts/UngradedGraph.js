@@ -45,3 +45,5 @@ export const UngradedGraph = ({ grade }) => {
     </VictoryChart>
   );
 };
+
+export default UngradedGraph;

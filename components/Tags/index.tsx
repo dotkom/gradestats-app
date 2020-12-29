@@ -1,14 +1,14 @@
 import React, { FC, useState } from 'react';
-
 import { useUser } from 'common/hooks/useUser';
-
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { AddTagDialog } from './AddTagDialog';
 import { Heading } from 'components/Typography/Heading';
-
-import styles from './tags.module.scss';
 import { Text } from 'components/Typography/Text';
 import { Button } from 'components/common/Button';
+
+import styles from './tags.module.scss';
+
+const DynamicAddTagDialog = dynamic(() => import('./AddTagDialog'), { ssr: false });
 
 interface Props {
   courseCode: string;
@@ -43,7 +43,7 @@ export const Tags: FC<Props> = ({ courseCode }) => {
           <small>Du må være logget inn for å kunne legge til tags.</small>
         </Text>
       )}
-      <AddTagDialog isOpen={showDialog} closeDialog={closeDialog} courseCode={courseCode} />
+      <DynamicAddTagDialog isOpen={showDialog} closeDialog={closeDialog} courseCode={courseCode} />
     </div>
   );
 };

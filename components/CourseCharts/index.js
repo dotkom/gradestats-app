@@ -1,11 +1,13 @@
+import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 import cx from 'classnames';
 
-import { GradedGraph } from './GradedGraph';
-import { UngradedGraph } from './UngradedGraph';
-import { AverageChart } from './AverageChart';
-import { FailedChart } from './FailedChart';
 import { Button } from 'components/common/Button';
+
+const DynamicGradedGraph = dynamic(() => import('./GradedGraph'), { ssr: true });
+const DynamicUngradedGraph = dynamic(() => import('./UngradedGraph'), { ssr: true });
+const DynamicAverageChart = dynamic(() => import('./AverageChart'), { ssr: false });
+const DynamicFailedChart = dynamic(() => import('./FailedChart'), { ssr: false });
 
 export const CourseCharts = ({ grades, currentGrade }) => {
   const [tab, setTab] = useState('BAR'); // 'BAR' | 'AVERAGE' | 'FAILED'
@@ -25,9 +27,13 @@ export const CourseCharts = ({ grades, currentGrade }) => {
     <div className="well text-center">
       <div className="victory-container" style={{ padding: 'var(--spacing-2)' }}>
         {tab === 'BAR' &&
-          (currentGrade.passed === 0 ? <GradedGraph grade={currentGrade} /> : <UngradedGraph grade={currentGrade} />)}
-        {tab === 'AVERAGE' && <AverageChart grades={grades} showKont={showKont} />}
-        {tab === 'FAILED' && <FailedChart grades={grades} showKont={showKont} />}
+          (currentGrade.passed === 0 ? (
+            <DynamicGradedGraph grade={currentGrade} />
+          ) : (
+            <DynamicUngradedGraph grade={currentGrade} />
+          ))}
+        {tab === 'AVERAGE' && <DynamicAverageChart grades={grades} showKont={showKont} />}
+        {tab === 'FAILED' && <DynamicFailedChart grades={grades} showKont={showKont} />}
       </div>
       <br />
       {(tab === 'FAILED' || tab === 'AVERAGE') && (
@@ -63,3 +69,5 @@ export const CourseCharts = ({ grades, currentGrade }) => {
     </div>
   );
 };
+
+export default CourseCharts;

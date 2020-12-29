@@ -2,7 +2,7 @@ import { Button } from 'components/common/Button';
 import dynamic from 'next/dynamic';
 import React, { FC, useCallback, useState } from 'react';
 
-const DynamicReportDialog = dynamic(() => import('./ReportDialog'));
+const DynamicReportDialog = dynamic(() => import('./ReportDialog'), { ssr: false });
 
 interface Props {
   className?: string;

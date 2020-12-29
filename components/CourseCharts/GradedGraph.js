@@ -64,3 +64,5 @@ export const GradedGraph = ({ grade }) => {
     </VictoryChart>
   );
 };
+
+export default GradedGraph;

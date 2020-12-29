@@ -44,3 +44,5 @@ export const FailedChart = ({ grades, showKont }) => {
     </VictoryChart>
   );
 };
+
+export default FailedChart;
