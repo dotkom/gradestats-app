@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel } from 'victory';
 
-export const AverageChart = ({ grades }) => {
+import { calculateFailureRate } from 'common/utils/grades';
+import { Grade } from 'models/Grade';
+
+interface Props {
+  grades: Grade[];
+}
+
+export const FailedChart: FC<Props> = ({ grades }) => {
   const gradesData = grades.map((grade) => ({
     x: grade.semester_code,
-    y: grade.average_grade,
+    y: calculateFailureRate(grade),
   }));
   const ticks = gradesData.map((datum) => datum.x);
   return (
@@ -32,16 +39,13 @@ export const AverageChart = ({ grades }) => {
       <VictoryLine
         data={gradesData}
         domain={{
-          y: [
-            Math.min(...gradesData.map((datum) => datum.y)) - 0.3,
-            Math.max(...gradesData.map((datum) => datum.y)) + 0.3,
-          ],
+          y: [Math.min(...gradesData.map((datum) => datum.y)) - 5, Math.max(...gradesData.map((datum) => datum.y)) + 5],
         }}
-        labels={({ datum }) => datum.y.toFixed(2)}
-        labelComponent={<VictoryLabel renderInPortal dy={-20} />}
+        labels={({ datum }) => `${datum.y.toFixed(0)} %`}
+        labelComponent={<VictoryLabel renderInPortal dy={-10} />}
       />
     </VictoryChart>
   );
 };
 
-export default AverageChart;
+export default FailedChart;

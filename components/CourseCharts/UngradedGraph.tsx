@@ -1,8 +1,13 @@
 import { getColorForGradeLetter } from 'common/utils/grades';
-import React from 'react';
+import { Grade } from 'models/Grade';
+import React, { FC } from 'react';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
 
-export const UngradedGraph = ({ grade }) => {
+interface Props {
+  grade: Grade;
+}
+
+export const UngradedGraph: FC<Props> = ({ grade }) => {
   return (
     <VictoryChart
       height={220}
