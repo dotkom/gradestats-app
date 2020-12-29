@@ -7,6 +7,19 @@
   margin: var(--spacing-2) 0;
 }
 
+.reposSection {
+}
+
+.reposList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+
+  @media screen and (min-width: 360px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 .contributorsSection {
   display: grid;
   grid-template-areas:
