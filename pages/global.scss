@@ -147,8 +147,8 @@ textarea {
   color: inherit;
 }
 
-.victory-container {
-  user-select: auto !important;
-  pointer-events: auto !important;
-  touch-action: auto !important;
+menu {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding-inline-start: 0;
 }

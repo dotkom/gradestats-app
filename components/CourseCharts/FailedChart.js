@@ -1,15 +1,13 @@
 import React from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel } from 'victory';
 
-import { isKont, calculateFailureRate } from 'common/utils/grades';
+import { calculateFailureRate } from 'common/utils/grades';
 
-export const FailedChart = ({ grades, showKont }) => {
-  const gradesData = grades
-    .filter((grade) => !isKont(grade) || showKont)
-    .map((grade) => ({
-      x: grade.semester_code,
-      y: calculateFailureRate(grade),
-    }));
+export const FailedChart = ({ grades }) => {
+  const gradesData = grades.map((grade) => ({
+    x: grade.semester_code,
+    y: calculateFailureRate(grade),
+  }));
   const ticks = gradesData.map((datum) => datum.x);
   return (
     <VictoryChart

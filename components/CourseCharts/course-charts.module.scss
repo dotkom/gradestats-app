@@ -1,0 +1,14 @@
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.victoryContainer {
+  user-select: auto !important;
+  pointer-events: auto !important;
+  touch-action: auto !important;
+}
+
+.charts {
+  margin: var(--spacing-2) 0;
+}

@@ -1,15 +1,11 @@
 import React from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel } from 'victory';
 
-import { isKont } from 'common/utils/grades';
-
-export const AverageChart = ({ grades, showKont }) => {
-  const gradesData = grades
-    .filter((grade) => !isKont(grade) || showKont)
-    .map((grade) => ({
-      x: grade.semester_code,
-      y: grade.average_grade,
-    }));
+export const AverageChart = ({ grades }) => {
+  const gradesData = grades.map((grade) => ({
+    x: grade.semester_code,
+    y: grade.average_grade,
+  }));
   const ticks = gradesData.map((datum) => datum.x);
   return (
     <VictoryChart
