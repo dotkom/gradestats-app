@@ -1,7 +1,8 @@
 import { Octokit } from '@octokit/rest';
+import { GITHUB_TOKEN } from 'common/constants';
 import { filterDistinctBy } from 'common/utils/array';
 
-const api = new Octokit();
+const api = new Octokit({ auth: GITHUB_TOKEN });
 
 const ORG = 'dotkom';
 // const REPOS = ['gradestats', 'gradestats-app'];

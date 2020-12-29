@@ -8,3 +8,4 @@ export const FEIDE_CLIENT_SECRET = process.env.NEXT_PRIVATE_FEIDE_CLIENT_SECRET;
 export const FEIDE_AUTH_ENDPOINT = process.env.NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT || 'https://auth.dataporten.no';
 export const SESSION_SECRET =
   process.env.NEXT_PRIVATE_SESSION_SECRET || 'some_not_random_password_that_is_at_least_32_characters';
+export const GITHUB_TOKEN = process.env.NEXT_PRIVATE_GITHUB_TOKEN || undefined;
