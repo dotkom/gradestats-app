@@ -17,6 +17,7 @@ import './global.scss';
 import styles from './_app.module.scss';
 import { Alert } from 'components/Alert';
 import { Footer } from 'components/Footer';
+import { WelcomeMessage } from 'components/Alert/WelcomeMessage';
 
 Sentry.init({
   dsn: SENTRY_DSN ?? undefined,
@@ -68,6 +69,7 @@ const App: FC<AppProps & { err: any }> = ({ Component, pageProps, err }) => {
               aktivere JavaScript.
             </Alert>
           </noscript>
+          <WelcomeMessage />
           <Component {...modifiedPageProps} />
         </main>
         <Footer className={styles.footer} />
