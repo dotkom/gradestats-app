@@ -3,5 +3,5 @@
   border: solid 1px var(--text-color);
   border-radius: var(--spacing-1);
   gap: var(--spacing-2);
-  grid-template-columns: 60px 1fr;
+  grid-template-columns: minmax(50px, 60px) 1fr;
 }

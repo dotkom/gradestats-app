@@ -16,7 +16,7 @@ export const RepoCard: FC<Props> = ({ className, repo }) => {
   return (
     <a className={cx(styles.card, className)} href={repo.url} target="_blank" rel="noopener noreferrer">
       <Heading as="p" size="h5">
-        {repo.fullName}
+        {repo.name}
       </Heading>
       {repo.description ? <Text>{repo.description}</Text> : null}
       <Text>Språk: {repo.language}</Text>

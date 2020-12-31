@@ -3,23 +3,31 @@ import { GRADES_API_URL } from 'common/constants';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import React, { FC } from 'react';
+import cx from 'classnames';
 
 import styles from './about-view.module.scss';
 import { ContributorCard } from './ContributorCard';
 import { OrgCard } from './OrgCard';
 import { RepoCard } from './RepoCard';
 
-const UA_ARTICLE = {
-  NAME: 'Denne tjenesten gjør at du kan sjekke karakterene i alle emner',
-  HREF:
-    'https://www.universitetsavisa.no/student/denne-tjenesten-gjor-at-du-kan-sjekke-karakterene-i-alle-emner/101265',
-};
-
-const GRADES_API_V2 = {
-  DOCS: {
-    HREF: `${GRADES_API_URL}/api/v2/docs/`,
+const TEXT = {
+  KARSTAT: {
+    LINK: 'http://www.ntnu.no/karstat/login.do',
   },
-  HREF: `${GRADES_API_URL}/api/v2/`,
+  TIA: {
+    LINK: 'https://api.ntnu.no/api.html',
+  },
+  GRADES_API_V2: {
+    DOCS: {
+      LINK: `${GRADES_API_URL}/api/v2/docs/`,
+    },
+    LINK: `${GRADES_API_URL}/api/v2/`,
+  },
+  UA_ARTICLE: {
+    NAME: 'Denne tjenesten gjør at du kan sjekke karakterene i alle emner',
+    LINK:
+      'https://www.universitetsavisa.no/student/denne-tjenesten-gjor-at-du-kan-sjekke-karakterene-i-alle-emner/101265',
+  },
 };
 
 interface Props {
@@ -35,37 +43,43 @@ export const AboutView: FC<Props> = ({ contributors, organization, repos }) => {
         Om siden
       </Heading>
       <section>
-        <Heading className={styles.contributorsTitle} as="h2" size="h3">
-          Datagrunnlaget
-        </Heading>
-        <Heading className={styles.contributorsTitle} as="h3" size="h4">
+        <Heading className={cx(styles.contributorsTitle, styles.sectionHeading)} as="h2" size="h3">
           Hvor hentes informasjonen fra?
         </Heading>
-        <Text>Karakterstatistikk </Text>
-
-        <Heading className={styles.contributorsTitle} as="h3" size="h4">
+        <Text>
+          Karakterstatistikk er hentet fra{' '}
+          <ExternalLink href={TEXT.KARSTAT.LINK}>NTNU Karstat (ikke lenger tilgjengelig)</ExternalLink>
+        </Text>
+        <Text>
+          Emneinformasjon er hentet fra <ExternalLink href={TEXT.TIA.LINK}>NTNU API</ExternalLink>
+        </Text>
+        <Heading className={cx(styles.contributorsTitle, styles.sectionHeading)} as="h2" size="h3">
           Grades.no har et åpent API!
         </Heading>
         <Text>
-          <a href={GRADES_API_V2.HREF}>{GRADES_API_V2.HREF}</a>
+          Ønsker du å lage en applikasjon som drar nytte av emneinformasjon eller karakterstatistikk? Vi har et åpent
+          API du kan bruke!
         </Text>
         <Text>
-          <a href={GRADES_API_V2.DOCS.HREF}>{GRADES_API_V2.DOCS.HREF}</a>
+          <ExternalLink href={TEXT.GRADES_API_V2.DOCS.LINK}>
+            Dokumentasjon for API-et finner du her (Swagger)
+          </ExternalLink>
+        </Text>
+        <Text>
+          <ExternalLink href={TEXT.GRADES_API_V2.LINK}>API-et finner du her</ExternalLink>
         </Text>
       </section>
       <section>
-        <Heading as="h3" size="h4">
+        <Heading className={styles.sectionHeading} as="h2" size="h3">
           Historie
         </Heading>
         <Text>
-          Universitetsavisa har også skrevet en kort artikkel om nettsiden og dens oppbrinnelse:
-          <a href={UA_ARTICLE.HREF} target="_blank" rel="noopener noreferrer">
-            {UA_ARTICLE.NAME}
-          </a>
+          Universitetsavisa har også skrevet en kort artikkel om nettsiden og dens historie: <br />
+          <ExternalLink href={TEXT.UA_ARTICLE.LINK}>{TEXT.UA_ARTICLE.NAME}</ExternalLink>
         </Text>
       </section>
       <section className={styles.reposSection}>
-        <Heading className={styles.contributorsTitle} as="h3" size="h4">
+        <Heading className={cx(styles.contributorsTitle, styles.sectionHeading)} as="h2" size="h3">
           Kode
         </Heading>
         <Text>
@@ -79,11 +93,12 @@ export const AboutView: FC<Props> = ({ contributors, organization, repos }) => {
         </div>
       </section>
       <section className={styles.contributorsSection}>
-        <Heading className={styles.contributorsTitle} as="h3" size="h4">
-          Utviklerne
+        <Heading className={cx(styles.contributorsTitle, styles.sectionHeading)} as="h2" size="h3">
+          Utviklere
         </Heading>
         <div className={styles.contributorsText}>
-          <Text>Dette prosjektet har blitt holdt i live av en rekke studenter gjennom flere generasjoner.</Text>
+          <Text>Prosjektet er utviklet flere {'"generasjoner"'} med studenter siden 2013.</Text>
+          <Text>Det ble startet av en gruppe frivillige før det ble overført til Linjeforeningen Online i 2017</Text>
         </div>
         <ul className={styles.contributorsList}>
           {contributors
@@ -94,12 +109,25 @@ export const AboutView: FC<Props> = ({ contributors, organization, repos }) => {
         </ul>
       </section>
       <section className={styles.orgsSection}>
-        <Heading className={styles.orgsTitle} as="h2" size="h3">
+        <Heading className={cx(styles.orgsTitle, styles.sectionHeading)} as="h2" size="h3">
           Med støtte fra
         </Heading>
-        <Text className={styles.orgsText}>Online holder denne tjenesten i live</Text>
+        <Text className={styles.orgsText}>Nettsidene vedlikeholdes og driftes as Linjeforeningen Online.</Text>
         <OrgCard className={styles.orgsCard} org={organization} />
       </section>
     </article>
+  );
+};
+
+interface ExternalLinkProps {
+  className?: string;
+  href: string;
+}
+
+const ExternalLink: FC<ExternalLinkProps> = ({ className, href, children }) => {
+  return (
+    <a className={cx(className, styles.externalLink)} href={href} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
   );
 };

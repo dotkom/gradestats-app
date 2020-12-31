@@ -13,10 +13,12 @@
 .reposList {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-4);
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
 
   @media screen and (min-width: 360px) {
     grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-4);
   }
 }
 
@@ -28,6 +30,7 @@
     'contributors';
   grid-template-columns: 1fr;
   gap: var(--spacing-4);
+  row-gap: 0;
 
   @media screen and (min-width: 800px) {
     grid-template-areas:
@@ -38,12 +41,12 @@
 }
 
 .contributorsTitle {
-  @extend .sectionHeading;
   grid-area: header;
 }
 
 .contributorsText {
   grid-area: text;
+  margin-bottom: var(--spacing-2);
 }
 
 .contributorsList {
@@ -66,6 +69,7 @@
     'organization';
   grid-template-columns: 1fr;
   gap: var(--spacing-4);
+  row-gap: 0;
 
   @media screen and (min-width: 800px) {
     grid-template-areas:
@@ -76,14 +80,19 @@
 }
 
 .orgsHeader {
-  @extend .sectionHeading;
   grid-area: header;
 }
 
 .orgsText {
   grid-area: text;
+  margin-bottom: var(--spacing-2);
 }
 
 .orgsCard {
   grid-area: organization;
+}
+
+.externalLink {
+  display: block;
+  text-decoration: underline;
 }
