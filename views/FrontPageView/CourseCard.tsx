@@ -6,6 +6,7 @@ import { Text } from 'components/Typography/Text';
 import cx from 'classnames';
 
 import styles from './course-card.module.scss';
+import { OutlinedCard } from 'components/Card/OutlinedCard';
 
 export const GRADE_COLORS: Record<string, string> = {
   A: styles.gradeA,
@@ -29,13 +30,13 @@ export const CourseCard: FC<Props> = ({ className, code, name, gradeAverage }) =
   const gradeLetter = mapGradeAverageToLetter(gradeAverage);
   return (
     <Link href="/course/[courseCode]" as={`/course/${code}`}>
-      <a className={cx(className, styles.card)}>
+      <OutlinedCard as="a" className={cx(className, styles.card)}>
         <Heading className={styles.code} as="h3">
           {code}
         </Heading>
         <Text className={styles.text}>{name}</Text>
         <Text className={cx(styles.grade, GRADE_COLORS[gradeLetter])}>{gradeLetter}</Text>
-      </a>
+      </OutlinedCard>
     </Link>
   );
 };

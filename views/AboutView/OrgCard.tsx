@@ -5,6 +5,7 @@ import React, { FC } from 'react';
 import cx from 'classnames';
 
 import styles from './org-card.module.scss';
+import { OutlinedCard } from 'components/Card/OutlinedCard';
 
 interface Props {
   className?: string;
@@ -13,7 +14,13 @@ interface Props {
 
 export const OrgCard: FC<Props> = ({ org, className }) => {
   return (
-    <a className={cx(styles.card, className)} href={org.url} target="_blank" rel="noopener noreferrer">
+    <OutlinedCard
+      as="a"
+      className={cx(styles.card, className)}
+      href={org.url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <img className={styles.image} src={org.avatarUrl} alt={`${org.name} logo`} />
       <Heading className={styles.name} as="h4" size="h5">
         {org.name}
@@ -24,6 +31,6 @@ export const OrgCard: FC<Props> = ({ org, className }) => {
         <Text>{org.publicReposCount}</Text>
       </div>
       <Text className={styles.description}>{org.description}</Text>
-    </a>
+    </OutlinedCard>
   );
 };

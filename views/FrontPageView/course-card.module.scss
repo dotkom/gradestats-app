@@ -1,15 +1,4 @@
-.notLink {
-  text-decoration: none;
-  &:hover,
-  &:visited,
-  &:active {
-    text-decoration: none;
-  }
-}
-
 .card {
-  @extend .notLink;
-
   display: grid;
   gap: var(--spacing-2);
   grid-template-columns: 1fr min-content;
@@ -17,12 +6,7 @@
   grid-template-areas: 'code grade' 'name name';
   padding: var(--spacing-4);
 
-  border-radius: var(--spacing-1);
-  border: solid 1px var(--middle-gray);
-
   &:hover {
-    border: solid 1px var(--text-color);
-
     .gradeA {
       color: var(--grade-a);
     }

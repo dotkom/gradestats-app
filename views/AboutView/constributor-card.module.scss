@@ -1,7 +1,4 @@
 .card {
-  padding: var(--spacing-2);
-  border: solid 1px var(--text-color);
-  border-radius: var(--spacing-1);
   display: grid;
   grid-template-areas:
     'image name'
