@@ -37,12 +37,6 @@ Router.events.on('routeChangeComplete', (url: string) => {
   previousPath = newPath;
 });
 
-const ABOUT_GRADES = `
-  Karakterstatisikk for emner ved Norges teknisk-naturvitenskapelige universitet.
-`;
-
-const TAGS = ['NTNU', 'Karakterstatistikk', 'Norwegian University of Science and Technology', 'Emneinformasjon'];
-
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const App: FC<AppProps & { err: any }> = ({ Component, pageProps, err }) => {
   // Workaround for https://github.com/zeit/next.js/issues/8592
@@ -51,13 +45,6 @@ const App: FC<AppProps & { err: any }> = ({ Component, pageProps, err }) => {
     <>
       <Head>
         <meta charSet="utf-8" />
-        <title>grades.no - karakterstatistikk</title> 
-        <meta property="og:title" content="grades.no - karakterstatistikk" />
-        <meta property="og:description" content={ABOUT_GRADES} />
-        {TAGS.map((tag) => (
-          <meta property="og:article:tag" content={tag} key={tag} />
-        ))}
-        <meta name="description" content={ABOUT_GRADES} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <div className={styles.app}>

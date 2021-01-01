@@ -14,6 +14,8 @@ const ABOUT_GRADES = (courseCount: number) => `
   Karakterstatisikk for ${courseCount} emner ved Norges teknisk-naturvitenskapelige universitet.
 `;
 
+const TAGS = ['NTNU', 'Karakterstatistikk', 'Norwegian University of Science and Technology', 'Emneinformasjon'];
+
 interface Props {
   courses: Course[];
   totalCourseCount: number;
@@ -30,7 +32,13 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
   return (
     <>
       <Head>
+        <title>grades.no - karakterstatistikk</title> 
+        <meta property="og:title" content="grades.no - karakterstatistikk" />
+        <meta name="description" content={ABOUT_GRADES(totalCourseCount)} />
         <meta property="og:description" content={ABOUT_GRADES(totalCourseCount)} />
+        {TAGS.map((tag) => (
+          <meta property="og:article:tag" content={tag} key={tag} />
+        ))}
       </Head>
       <section className={styles.container}>
         <div className={styles.headlineContainer}>

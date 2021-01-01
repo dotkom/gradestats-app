@@ -63,6 +63,7 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
       <Head>
         <title>{`${course.code} - ${course.norwegian_name}`}</title>
         <meta property="og:title" content={`${course.code} - ${course.norwegian_name}`} />
+        <meta name="description" content={course.content} />
         <meta property="og:description" content={course.content} />
         <meta property="og:article:tag" content={course.code} />
         <meta property="og:article:tag" content={course.short_name} />
