@@ -1,13 +1,13 @@
 import { getColorForGradeLetter } from 'common/utils/grades';
 import { Grade } from 'models/Grade';
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
 
 interface Props {
   grade: Grade;
 }
 
-export const GradedGraph: FC<Props> = ({ grade }) => {
+export const GradedGraphComponent: FC<Props> = ({ grade }) => {
   return (
     <VictoryChart
       height={220}
@@ -69,5 +69,9 @@ export const GradedGraph: FC<Props> = ({ grade }) => {
     </VictoryChart>
   );
 };
+
+export const GradedGraph = memo(GradedGraphComponent, (prevProps, nextProps) => {
+  return prevProps.grade.id === nextProps.grade.id;
+});
 
 export default GradedGraph;

@@ -1,12 +1,12 @@
 import { Grade } from 'models/Grade';
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel } from 'victory';
 
 interface Props {
   grades: Grade[];
 }
 
-export const AverageChart: FC<Props> = ({ grades }) => {
+export const AverageChartComponent: FC<Props> = ({ grades }) => {
   const gradesData = grades.map((grade) => ({
     x: grade.semester_code,
     y: grade.average_grade,
@@ -48,5 +48,11 @@ export const AverageChart: FC<Props> = ({ grades }) => {
     </VictoryChart>
   );
 };
+
+export const AverageChart = memo(AverageChartComponent, (prevProps, nextProps) => {
+  const prevGrades = prevProps.grades.map((grade) => grade.id);
+  const nextGrades = nextProps.grades.map((grade) => grade.id);
+  return String(prevGrades) === String(nextGrades);
+});
 
 export default AverageChart;

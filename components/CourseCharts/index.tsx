@@ -1,17 +1,18 @@
 import dynamic from 'next/dynamic';
 import React, { FC, useState } from 'react';
+import Carousel from 'react-alice-carousel';
 import cx from 'classnames';
 
 import styles from './course-charts.module.scss';
 
 import { Button } from 'components/common/Button';
 import { Grade } from 'models/Grade';
+import GradedGraph from './GradedGraph';
+import UngradedGraph from './UngradedGraph';
+import { EventObject } from 'react-alice-carousel/lib/types';
 
-const DynamicGradedGraph = dynamic(() => import('./GradedGraph'), { ssr: true });
-const DynamicUngradedGraph = dynamic(() => import('./UngradedGraph'), { ssr: true });
 const DynamicAverageChart = dynamic(() => import('./AverageChart'), { ssr: false });
 const DynamicFailedChart = dynamic(() => import('./FailedChart'), { ssr: false });
-
 interface Props {
   className?: string;
   grades: Grade[];
@@ -19,6 +20,18 @@ interface Props {
 }
 
 type Tab = 'BAR' | 'AVERAGE' | 'FAILED';
+
+const TAB_INDEX: Record<Tab, number> = {
+  BAR: 0,
+  AVERAGE: 1,
+  FAILED: 2,
+};
+
+const INDEX_TAB: Record<number, Tab> = {
+  0: 'BAR',
+  1: 'AVERAGE',
+  2: 'FAILED',
+};
 
 export const CourseCharts: FC<Props> = ({ className, grades, currentGrade }) => {
   const [tab, setTab] = useState<Tab>('BAR');
@@ -28,18 +41,28 @@ export const CourseCharts: FC<Props> = ({ className, grades, currentGrade }) => 
     return null;
   }
 
+  const handleSlideChange = (event: EventObject) => {
+    setTab(INDEX_TAB[event.item]);
+  };
+
   return (
-    <div className={className}>
-      <div className={cx(styles.victoryContainer, styles.charts)}>
-        {tab === 'BAR' &&
-          (currentGrade.passed === 0 ? (
-            <DynamicGradedGraph grade={currentGrade} />
+    <div className={cx(styles.victoryContainer, styles.charts, className)}>
+      <Carousel
+        mouseTracking
+        activeIndex={TAB_INDEX[tab]}
+        onSlideChanged={handleSlideChange}
+        disableButtonsControls
+        items={[
+          currentGrade.passed === 0 ? (
+            <GradedGraph key="graded" grade={currentGrade} />
           ) : (
-            <DynamicUngradedGraph grade={currentGrade} />
-          ))}
-        {tab === 'AVERAGE' && <DynamicAverageChart grades={grades} />}
-        {tab === 'FAILED' && <DynamicFailedChart grades={grades} />}
-      </div>
+            <UngradedGraph key="ungraded" grade={currentGrade} />
+          ),
+          <DynamicAverageChart key="averages" grades={grades} />,
+          <DynamicFailedChart key="failed" grades={grades} />,
+        ]}
+      ></Carousel>
+      {/*
       <menu className={styles.buttons}>
         <Button type="button" className={cx({ active: tab === 'BAR' })} onClick={() => setTab('BAR')}>
           Karakterer
@@ -51,6 +74,7 @@ export const CourseCharts: FC<Props> = ({ className, grades, currentGrade }) => 
           Strykprosent
         </Button>
       </menu>
+      */}
     </div>
   );
 };

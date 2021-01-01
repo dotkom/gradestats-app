@@ -9,6 +9,7 @@ import { SENTRY_DSN } from 'common/constants';
 import { Navbar } from 'components/Navbar';
 
 import '@reach/dialog/styles.css';
+import 'react-alice-carousel/lib/scss/alice-carousel.scss';
 import 'cssremedy/css/remedy.css';
 import 'cssremedy/css/reminders.css';
 import 'cssremedy/css/quotes.css';

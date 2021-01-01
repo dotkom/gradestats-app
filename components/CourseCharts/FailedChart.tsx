@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel } from 'victory';
 
 import { calculateFailureRate } from 'common/utils/grades';
@@ -8,7 +8,7 @@ interface Props {
   grades: Grade[];
 }
 
-export const FailedChart: FC<Props> = ({ grades }) => {
+export const FailedChartComponent: FC<Props> = ({ grades }) => {
   const gradesData = grades.map((grade) => ({
     x: grade.semester_code,
     y: calculateFailureRate(grade),
@@ -47,5 +47,11 @@ export const FailedChart: FC<Props> = ({ grades }) => {
     </VictoryChart>
   );
 };
+
+export const FailedChart = memo(FailedChartComponent, (prevProps, nextProps) => {
+  const prevGrades = prevProps.grades.map((grade) => grade.id);
+  const nextGrades = nextProps.grades.map((grade) => grade.id);
+  return String(prevGrades) === String(nextGrades);
+});
 
 export default FailedChart;
