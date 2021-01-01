@@ -1,0 +1,18 @@
+.container {
+  max-width: var(--screen-md);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  justify-items: center;
+  gap: var(--spacing-4);
+  text-align: center;
+}
+
+.reportButton {
+  width: fit-content;
+}
+
+.illustration {
+  margin: var(--spacing-8) 0;
+}

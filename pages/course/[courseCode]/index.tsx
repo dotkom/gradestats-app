@@ -17,6 +17,7 @@ import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
 import { Tag } from 'models/Tag';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { NotFoundView } from 'views/NotFoundView';
 
 type QueryParams = {
   courseCode: string;
@@ -36,8 +37,12 @@ const CourseDetailPage: FC<StaticProps> = ({ courseResponse, gradesResponse, tag
     return <FallbackView />;
   }
 
-  if (!courseCode) {
-    return <>Ikke funnet</>;
+  if (!courseResponse?.code) {
+    return (
+      <NotFoundView
+        message={`Finner ikke emne for emnekode: ${courseCode}. Emnet kan være utgått, eller for nytt for karakterdatabasen.`}
+      />
+    );
   }
 
   const course = courseResponse;

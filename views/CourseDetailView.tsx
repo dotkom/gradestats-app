@@ -10,7 +10,7 @@ import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
 import { Tag } from 'models/Tag';
 import { Heading } from 'components/Typography/Heading';
-import { ReportCourseButton } from 'components/Report/ReportCourseButton';
+import { ReportDialogButton } from 'components/Report/ReportDialogButton';
 
 import styles from './course-detail-view.module.scss';
 import { Label } from 'components/forms/Label';
@@ -111,7 +111,7 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
           </Label>
         </menu>
         <CourseContent course={course} className={styles.content} />
-        <ReportCourseButton className={styles.report} courseCode={course.code} />
+        <ReportDialogButton className={styles.report} courseCode={course.code} />
       </section>
     </>
   );

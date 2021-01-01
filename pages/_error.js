@@ -2,6 +2,7 @@
 import React from 'react';
 import DefaultErrorPage from 'next/error';
 import * as Sentry from '@sentry/node';
+import { ErrorView } from 'views/ErrorView';
 
 const CustomErrorPage = ({ statusCode, hasGetInitialPropsRun, err }) => {
   if (!hasGetInitialPropsRun && err) {
@@ -11,7 +12,7 @@ const CustomErrorPage = ({ statusCode, hasGetInitialPropsRun, err }) => {
     Sentry.captureException(err);
   }
 
-  return <DefaultErrorPage statusCode={statusCode} />;
+  return <ErrorView statusCode={statusCode} />;
 };
 
 CustomErrorPage.getInitialProps = async ({ res, err, asPath }) => {
