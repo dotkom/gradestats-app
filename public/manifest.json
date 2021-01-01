@@ -1,0 +1,42 @@
+{
+  "short_name": "Grades.no",
+  "name": "Karakterstatistikk",
+  "description": "Karakterstatisikk for emner ved Norges teknisk-naturvitenskapelige universitet.",
+  "icons": [
+    {
+      "src": "/icons/icons-32.png",
+      "type": "image/png",
+      "size": "32×32"
+    },
+    {
+      "src": "/icons/icons-64.png",
+      "type": "image/png",
+      "size": "64×64"
+    },
+    {
+      "src": "/icons/icons-128.png",
+      "type": "image/png",
+      "size": "128×128"
+    },
+    {
+      "src": "/icons/icons-192.png",
+      "type": "image/png",
+      "size": "192×192"
+    },
+    {
+      "src": "/icons/icons-256.png",
+      "type": "image/png",
+      "size": "256×256"
+    },
+    {
+      "src": "/icons/icons-512.png",
+      "type": "image/png",
+      "size": "512×512"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "scope": "/",
+  "background_color": "#1a202c",
+  "theme_color": "#ffffff"
+}

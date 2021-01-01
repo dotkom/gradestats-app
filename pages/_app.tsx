@@ -47,6 +47,10 @@ const App: FC<AppProps & { err: any }> = ({ Component, pageProps, err }) => {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/icons/icon-64.png" />
+        <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#ffffff" />
       </Head>
       <div className={styles.app}>
         <Navbar className={styles.header} />
