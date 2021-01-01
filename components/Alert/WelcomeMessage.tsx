@@ -1,4 +1,5 @@
 import { Button } from 'components/common/Button';
+import { useDialog } from 'common/hooks/useDialog';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import dynamic from 'next/dynamic';
@@ -20,11 +21,9 @@ const TEXT = {
 
 export const WelcomeMessage = () => {
   const [showMessage, setShowMessage] = useState(true);
-  const [showDialog, setShowDialog] = useState(false);
+  const [showDialog, openDialog, closeDialog] = useDialog();
 
   const closeMessage = () => setShowMessage(false);
-  const openDialog = () => setShowDialog(true);
-  const closeDialog = () => setShowDialog(false);
 
   return showMessage ? (
     <div className={styles.container}>

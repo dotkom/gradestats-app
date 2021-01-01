@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { useUser } from 'common/hooks/useUser';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
@@ -7,6 +7,7 @@ import { Text } from 'components/Typography/Text';
 import { Button } from 'components/common/Button';
 
 import styles from './tags.module.scss';
+import { useDialog } from 'common/hooks/useDialog';
 
 const DynamicAddTagDialog = dynamic(() => import('./AddTagDialog'), { ssr: false });
 
@@ -17,10 +18,7 @@ interface Props {
 export const Tags: FC<Props> = ({ courseCode }) => {
   const [user] = useUser();
   const router = useRouter();
-  const [showDialog, setShowDialog] = useState(false);
-
-  const openDialog = () => setShowDialog(true);
-  const closeDialog = () => setShowDialog(false);
+  const [showDialog, openDialog, closeDialog] = useDialog();
 
   const handleClick = () => {
     if (!user) {

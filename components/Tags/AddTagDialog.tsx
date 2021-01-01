@@ -1,4 +1,3 @@
-import { Dialog } from '@reach/dialog';
 import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { requestCreateCourseTag } from 'common/api/tags';
 import { useUser } from 'common/hooks/useUser';
@@ -10,6 +9,7 @@ import styles from './add-tag-dialog.module.scss';
 import { TextInput } from 'components/forms/TextInput';
 import { Alert } from 'components/Alert';
 import { Label } from 'components/forms/Label';
+import { DynamicDialog } from 'components/Dialog/DynamicDialog';
 
 interface Props {
   isOpen: boolean;
@@ -43,7 +43,7 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
   };
 
   return (
-    <Dialog isOpen={isOpen} onDismiss={closeDialog} aria-label="Legg til tags">
+    <DynamicDialog isOpen={isOpen} onDismiss={closeDialog} aria-label="Legg til tags">
       <Heading as="h1" size="h3">
         Legg til tags
       </Heading>
@@ -81,7 +81,7 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
           <Button type="submit">Legg til!</Button>
         </div>
       </form>
-    </Dialog>
+    </DynamicDialog>
   );
 };
 

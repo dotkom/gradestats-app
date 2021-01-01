@@ -1,4 +1,3 @@
-import Dialog from '@reach/dialog';
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
 import { requestCreateReport } from 'common/api/reports';
 import { Button } from 'components/common/Button';
@@ -10,6 +9,7 @@ import { TextInput } from 'components/forms/TextInput';
 import { Textarea } from 'components/forms/Textarea';
 import { Alert } from 'components/Alert';
 import { useUser } from 'common/hooks/useUser';
+import { DynamicDialog } from 'components/Dialog/DynamicDialog';
 
 interface Props {
   isOpen: boolean;
@@ -67,7 +67,7 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
   }, [user?.email]);
 
   return (
-    <Dialog isOpen={isOpen} onDismiss={closeDialog} aria-label="Send tilbakemelding">
+    <DynamicDialog isOpen={isOpen} onDismiss={closeDialog} aria-label="Send tilbakemelding">
       <form className="form" onSubmit={handleSubmit}>
         <Heading className={styles.heading} as="h1" size="h3">
           Send tilbakemelding
@@ -130,7 +130,7 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
           </Button>
         </div>
       </form>
-    </Dialog>
+    </DynamicDialog>
   );
 };
 
