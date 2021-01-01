@@ -13,6 +13,9 @@ import { Heading } from 'components/Typography/Heading';
 import { ReportCourseButton } from 'components/Report/ReportCourseButton';
 
 import styles from './course-detail-view.module.scss';
+import { Label } from 'components/forms/Label';
+import { Select } from 'components/forms/Select';
+import { RangeInput } from 'components/forms/RangeInput';
 
 interface Props {
   course: Course;
@@ -45,14 +48,14 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
     setCurrentGrade(filteredGrades[index]);
   };
 
-  const handleSemesterFilterChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const isChecked = Boolean(event.target.checked);
-    if (isChecked) {
-      setSemesterFilter('all');
-    } else {
-      setSemesterFilter('regular');
-    }
+  const handleSemesterFilterSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value as SemesterFilter;
+    setSemesterFilter(value);
   };
+
+  useEffect(() => {
+    setCurrentGrade([...filteredGrades].reverse()[0]);
+  }, [semesterFilter]);
 
   useEffect(() => {
     setCurrentGrade([...filteredGrades].reverse()[0]);
@@ -77,22 +80,7 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
           {course.code} - {course.norwegian_name}
         </Heading>
         {hasGrades ? (
-          <div className={styles.charts}>
-            <CourseCharts grades={filteredGrades} currentGrade={currentGrade} />
-            <input
-              type="range"
-              defaultValue={filteredGrades.length - 1}
-              min={0}
-              max={filteredGrades.length - 1}
-              onChange={handleGradeChange}
-            />
-            <input
-              type="checkbox"
-              name="Inkluder kont"
-              onChange={handleSemesterFilterChange}
-              checked={semesterFilter === 'all'}
-            />
-          </div>
+          <CourseCharts className={styles.charts} grades={filteredGrades} currentGrade={currentGrade} />
         ) : null}
         <aside className={styles.facts}>
           {hasGrades ? (
@@ -104,9 +92,31 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
           ) : null}
           <Facts course={course} />
           <Tags courseCode={course.code} />
-          <ReportCourseButton courseCode={course.code} />
         </aside>
+        <menu className={styles.controls}>
+          <Label
+            label={currentGrade.semester_code}
+            style={{
+              width: '100%',
+            }}
+          >
+            <RangeInput
+              value={filteredGrades.findIndex((grade) => grade.id === currentGrade.id)}
+              min={0}
+              max={filteredGrades.length - 1}
+              onChange={handleGradeChange}
+            />
+          </Label>
+          <Label label="Eksamenstype">
+            <Select name="Filtrer eksamenstype" onChange={handleSemesterFilterSelectChange}>
+              <option value="all">Alle</option>
+              <option value="regular">Vanlig</option>
+              <option value="kont">Kont</option>
+            </Select>
+          </Label>
+        </menu>
         <CourseContent course={course} className={styles.content} />
+        <ReportCourseButton className={styles.report} courseCode={course.code} />
       </section>
     </>
   );

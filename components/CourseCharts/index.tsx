@@ -13,13 +13,14 @@ const DynamicAverageChart = dynamic(() => import('./AverageChart'), { ssr: false
 const DynamicFailedChart = dynamic(() => import('./FailedChart'), { ssr: false });
 
 interface Props {
+  className?: string;
   grades: Grade[];
   currentGrade: Grade;
 }
 
 type Tab = 'BAR' | 'AVERAGE' | 'FAILED';
 
-export const CourseCharts: FC<Props> = ({ grades, currentGrade }) => {
+export const CourseCharts: FC<Props> = ({ className, grades, currentGrade }) => {
   const [tab, setTab] = useState<Tab>('BAR');
   const courseHasGrades = grades.length > 0;
 
@@ -28,7 +29,7 @@ export const CourseCharts: FC<Props> = ({ grades, currentGrade }) => {
   }
 
   return (
-    <div>
+    <div className={className}>
       <div className={cx(styles.victoryContainer, styles.charts)}>
         {tab === 'BAR' &&
           (currentGrade.passed === 0 ? (

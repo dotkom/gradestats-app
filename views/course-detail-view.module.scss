@@ -5,7 +5,9 @@
     'heading'
     'charts'
     'facts'
-    'content';
+    'controls'
+    'content'
+    'report';
   gap: var(--spacing-4);
 
   @media screen and (min-width: 800px) {
@@ -13,7 +15,9 @@
     grid-template-areas:
       'heading heading'
       'charts facts'
-      'content facts';
+      'controls facts'
+      'content facts'
+      'content report';
   }
 }
 
@@ -35,4 +39,22 @@
 
 .content {
   grid-area: content;
+}
+
+.controls {
+  grid-area: controls;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  padding: var(--spacing-1) 0 var(--spacing-2);
+  background-color: var(--background-color);
+  border-top: 1px solid var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+}
+
+.report {
+  grid-area: report;
+  align-self: start;
 }
