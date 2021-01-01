@@ -54,6 +54,14 @@
   gap: var(--spacing-2);
 }
 
+.semesterRangeLabel {
+  width: 100%;
+}
+
+.semesterFilterSelect {
+  min-width: 100px;
+}
+
 .report {
   grid-area: report;
   align-self: start;

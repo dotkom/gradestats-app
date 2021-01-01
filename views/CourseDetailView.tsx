@@ -48,14 +48,10 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
     setCurrentGrade(filteredGrades[index]);
   };
 
-  const handleSemesterFilterSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
+  const handleSemesterFilterChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value as SemesterFilter;
     setSemesterFilter(value);
   };
-
-  useEffect(() => {
-    setCurrentGrade([...filteredGrades].reverse()[0]);
-  }, [semesterFilter]);
 
   useEffect(() => {
     setCurrentGrade([...filteredGrades].reverse()[0]);
@@ -94,12 +90,7 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
           <Tags courseCode={course.code} />
         </aside>
         <menu className={styles.controls}>
-          <Label
-            label={currentGrade.semester_code}
-            style={{
-              width: '100%',
-            }}
-          >
+          <Label className={styles.semesterRangeLabel} label={currentGrade.semester_code}>
             <RangeInput
               value={filteredGrades.findIndex((grade) => grade.id === currentGrade.id)}
               min={0}
@@ -107,10 +98,14 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
               onChange={handleGradeChange}
             />
           </Label>
-          <Label label="Eksamenstype">
-            <Select name="Filtrer eksamenstype" onChange={handleSemesterFilterSelectChange}>
+          <Label label="Semestere">
+            <Select
+              className={styles.semesterFilterSelect}
+              name="filter-semesters"
+              onChange={handleSemesterFilterChange}
+            >
               <option value="all">Alle</option>
-              <option value="regular">Vanlig</option>
+              <option value="regular">Vår/Høst</option>
               <option value="kont">Kont</option>
             </Select>
           </Label>
