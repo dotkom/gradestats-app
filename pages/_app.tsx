@@ -38,8 +38,11 @@ Router.events.on('routeChangeComplete', (url: string) => {
   previousPath = newPath;
 });
 
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-const App: FC<AppProps & { err: any }> = ({ Component, pageProps, err }) => {
+type Props = AppProps & {
+  err?: Error;
+};
+
+const App: FC<Props> = ({ Component, pageProps, err }) => {
   // Workaround for https://github.com/zeit/next.js/issues/8592
   const modifiedPageProps = { ...pageProps, err };
   return (
