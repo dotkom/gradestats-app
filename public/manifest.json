@@ -4,32 +4,32 @@
   "description": "Karakterstatisikk for emner ved Norges teknisk-naturvitenskapelige universitet.",
   "icons": [
     {
-      "src": "/icons/icons-32.png",
+      "src": "/icons/icon-32.png",
       "type": "image/png",
       "size": "32×32"
     },
     {
-      "src": "/icons/icons-64.png",
+      "src": "/icons/icon-64.png",
       "type": "image/png",
       "size": "64×64"
     },
     {
-      "src": "/icons/icons-128.png",
+      "src": "/icons/icon-128.png",
       "type": "image/png",
       "size": "128×128"
     },
     {
-      "src": "/icons/icons-192.png",
+      "src": "/icons/icon-192.png",
       "type": "image/png",
       "size": "192×192"
     },
     {
-      "src": "/icons/icons-256.png",
+      "src": "/icons/icon-256.png",
       "type": "image/png",
       "size": "256×256"
     },
     {
-      "src": "/icons/icons-512.png",
+      "src": "/icons/icon-512.png",
       "type": "image/png",
       "size": "512×512"
     }
