@@ -89,29 +89,35 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
           <Facts course={course} />
           <Tags courseCode={course.code} />
         </aside>
-        <menu className={styles.controls}>
-          <Label className={styles.semesterRangeLabel} label={currentGrade.semester_code}>
-            <RangeInput
-              value={filteredGrades.findIndex((grade) => grade.id === currentGrade.id)}
-              min={0}
-              max={filteredGrades.length - 1}
-              onChange={handleGradeChange}
-            />
-          </Label>
-          <Label label="Semestere">
-            <Select
-              className={styles.semesterFilterSelect}
-              name="filter-semesters"
-              onChange={handleSemesterFilterChange}
-            >
-              <option value="all">Alle</option>
-              <option value="regular">Vår/Høst</option>
-              <option value="kont">Kont</option>
-            </Select>
-          </Label>
-        </menu>
+        {hasGrades ? (
+          <menu className={styles.controls}>
+            <Label className={styles.semesterRangeLabel} label={currentGrade.semester_code}>
+              <RangeInput
+                value={filteredGrades.findIndex((grade) => grade.id === currentGrade.id)}
+                min={0}
+                max={filteredGrades.length - 1}
+                onChange={handleGradeChange}
+              />
+            </Label>
+            {grades.some(isKont) ? (
+              <Label label="Semestere">
+                <Select
+                  className={styles.semesterFilterSelect}
+                  name="filter-semesters"
+                  onChange={handleSemesterFilterChange}
+                >
+                  <option value="all">Alle</option>
+                  <option value="regular">Vår/Høst</option>
+                  <option value="kont">Kont</option>
+                </Select>
+              </Label>
+            ) : null}
+          </menu>
+        ) : null}
         <CourseContent course={course} className={styles.content} />
-        <ReportDialogButton className={styles.report} courseCode={course.code} />
+        <ReportDialogButton className={styles.report} courseCode={course.code}>
+          Meld feil eller send tilbakemelding om emnet
+        </ReportDialogButton>
       </section>
     </>
   );
