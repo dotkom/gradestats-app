@@ -68,7 +68,7 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
 
   return (
     <DynamicDialog isOpen={isOpen} onDismiss={closeDialog} aria-label="Send tilbakemelding">
-      <form className="form" onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <Heading className={styles.heading} as="h1" size="h3">
           Send tilbakemelding
         </Heading>
