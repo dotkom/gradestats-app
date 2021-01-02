@@ -1,10 +1,10 @@
 import * as Sentry from '@sentry/node';
-import { AppProps } from 'next/app';
+import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import React, { FC } from 'react';
 
-import { pageView } from 'common/analytics';
+import { pageView, trackEvent } from 'common/analytics';
 import { SENTRY_DSN } from 'common/constants';
 import { Navbar } from 'components/Navbar';
 
@@ -72,5 +72,15 @@ const App: FC<Props> = ({ Component, pageProps, err }) => {
     </>
   );
 };
+
+export function reportWebVitals({ id, name, label, value }: NextWebVitalsMetric) {
+  trackEvent({
+    action: 'metrics',
+    category: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
+    label: id,
+    value: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
+    nonInteraction: true,
+  });
+}
 
 export default App;

@@ -11,14 +11,16 @@ interface EventParams {
   action: Gtag.EventNames | string;
   category?: string;
   label?: string;
-  value?: string;
+  value?: string | number;
+  nonInteraction?: boolean; // avoids affecting bounce rate.
 }
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const trackEvent = ({ action, category, label, value }: EventParams) => {
+export const trackEvent = ({ action, category, label, value, nonInteraction = false }: EventParams) => {
   window.gtag('event', action, {
     event_category: category,
     event_label: label,
-    value: value,
+    value,
+    non_interaction: nonInteraction,
   });
 };
