@@ -9,6 +9,8 @@
   touch-action: auto !important;
 }
 
-.charts {
-  margin: var(--spacing-1) 0 0;
+.titles {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-1);
 }

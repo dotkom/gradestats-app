@@ -6,15 +6,19 @@ import styles from './button.module.scss';
 import { trackEvent } from 'common/analytics';
 import { extractTextFromElement } from 'common/utils/react';
 
+type Variant = 'button' | 'link';
+
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   disableTracking?: boolean;
+  variant?: Variant;
 }
 
 export const Button: FC<Props> = ({
   className,
   disableTracking = false,
   type = 'button',
+  variant = 'button',
   onClick,
   children,
   ...props
@@ -28,7 +32,15 @@ export const Button: FC<Props> = ({
   };
 
   return (
-    <button className={cx(className, styles.button)} type={type} onClick={handleClick} {...props}>
+    <button
+      className={cx(className, styles.base, {
+        [styles.buttonVariant]: variant === 'button',
+        [styles.linkVariant]: variant === 'link',
+      })}
+      type={type}
+      onClick={handleClick}
+      {...props}
+    >
       {children}
     </button>
   );
