@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 
-import { LoggedInUser } from 'models/User';
-import { GetServerSideProps } from 'next';
-import { ssrAuthMiddleware } from 'common/auth/middleware';
+import type { LoggedInUser } from 'models/User';
 import { MyUserView } from 'views/MyUserView';
+import { withUser } from 'common/auth/ssr';
 
 interface ServerProps {
   user: LoggedInUser | null;
@@ -16,20 +15,12 @@ const MyUserPage: FC<ServerProps> = ({ user }) => {
   return <MyUserView user={user} />;
 };
 
-export const getServerSideProps: GetServerSideProps<ServerProps> = async (ctx) => {
-  await ssrAuthMiddleware(ctx);
-  const request = ctx.req as typeof ctx.req & { user?: LoggedInUser };
+export const getServerSideProps = withUser<ServerProps>(async (_, user) => {
   return {
-    redirect: !request.user
-      ? {
-          permanent: false,
-          destination: '/',
-        }
-      : undefined,
     props: {
-      user: request.user ?? null,
+      user,
     },
   };
-};
+});
 
 export default MyUserPage;
