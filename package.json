@@ -1,6 +1,6 @@
 {
   "name": "gradestats-app",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "engines": {
     "node": "^14 || ^12"
@@ -13,7 +13,8 @@
     "format-check": "prettier --check './**/*.{js,jsx,ts,tsx,css,scss}'",
     "lint-check": "eslint './**/*.{js,jsx,ts,tsx}'",
     "lint": "eslint './**/*.{js,jsx,ts,tsx}' --fix",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "release": "semantic-release"
   },
   "dependencies": {
     "@hapi/iron": "^6.0.0",
@@ -43,13 +44,23 @@
     "victory": "^35.4.4"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@semantic-release/github": "^7.2.0",
+    "@semantic-release/npm": "^7.0.9",
+    "@semantic-release/release-notes-generator": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
+    "conventional-changelog-conventionalcommits": "^4.5.0",
     "eslint": "^7.16.0",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.19.0",
+    "husky": "^4.3.6",
     "prettier": "^2.0.5",
+    "semantic-release": "^17.3.1",
     "typescript": "^4.1.3"
   }
 }
