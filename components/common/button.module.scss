@@ -1,0 +1,20 @@
+.base {
+  background-color: unset;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.buttonVariant {
+  padding: var(--spacing-2);
+  border-radius: var(--spacing-1);
+  border: solid 1px var(--text-color);
+  margin-top: var(--spacing-1);
+}
+
+.linkVariant {
+  text-decoration: underline;
+  appearance: none;
+  border: 0;
+}

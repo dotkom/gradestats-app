@@ -1,0 +1,28 @@
+.card {
+  padding: var(--spacing-4);
+  display: grid;
+  grid-template-areas:
+    'image name'
+    'image content'
+    'description description';
+  gap: var(--spacing-2);
+  column-gap: var(--spacing-4);
+}
+
+.image {
+  width: 100px;
+  border-radius: 50%;
+  grid-area: image;
+}
+
+.name {
+  grid-area: name;
+}
+
+.content {
+  grid-area: content;
+}
+
+.description {
+  grid-area: description;
+}

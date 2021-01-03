@@ -1,0 +1,11 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2);
+}
+
+.buttons {
+  margin-top: var(--spacing-2);
+  display: flex;
+  justify-content: space-between;
+}

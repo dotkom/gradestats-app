@@ -1,0 +1,11 @@
+.container {
+  max-width: var(--screen-md);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.logout {
+  width: fit-content;
+}

@@ -1,0 +1,10 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}

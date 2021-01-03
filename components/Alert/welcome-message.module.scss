@@ -1,0 +1,34 @@
+.container {
+  width: 100%;
+  max-width: var(--screen-md);
+  margin: 0 auto var(--spacing-4);
+  display: grid;
+  gap: var(--spacing-1);
+  grid-template-areas:
+    'title'
+    'message'
+    'controls';
+
+  @media screen and (min-width: 800px) {
+    grid-template-areas:
+      'title controls'
+      'message controls';
+  }
+}
+
+.title {
+  grid-area: title;
+}
+
+.message {
+  grid-area: message;
+}
+
+.controls {
+  height: fit-content;
+  grid-area: controls;
+  display: flex;
+  gap: var(--spacing-2);
+  align-self: end;
+  justify-content: flex-end;
+}

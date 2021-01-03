@@ -1,0 +1,18 @@
+.header {
+  margin-bottom: var(--spacing-2);
+}
+
+.text {
+  margin-bottom: var(--spacing-4);
+}
+
+.externalLinks {
+  border-top: solid 1px var(--text-color);
+  border-bottom: solid 1px var(--text-color);
+  padding: var(--spacing-2) 0;
+  width: 100%;
+}
+
+.link {
+  margin: var(--spacing-2) 0;
+}

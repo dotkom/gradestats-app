@@ -1,0 +1,22 @@
+.card {
+  display: grid;
+  grid-template-areas:
+    'image name'
+    'image username';
+  gap: var(--spacing-2);
+  grid-template-columns: 60px 1fr;
+}
+
+.image {
+  width: 60px;
+  border-radius: 50%;
+  grid-area: image;
+}
+
+.name {
+  grid-area: name;
+}
+
+.content {
+  grid-area: username;
+}

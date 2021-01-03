@@ -1,0 +1,45 @@
+.navbar {
+  width: 100%;
+  border-bottom: solid 1px var(--text-color);
+}
+
+.content {
+  max-width: var(--screen-lg);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-4);
+  display: flex;
+}
+
+.linksList {
+  display: flex;
+  gap: var(--spacing-4);
+  width: 100%;
+  align-items: center;
+  text-align: end;
+  margin-left: var(--spacing-6);
+}
+
+.linkItem {
+  text-align: end;
+}
+
+.courses {
+  @extend .linkItem;
+  justify-self: flex-start;
+}
+
+.about {
+  @extend .linkItem;
+  justify-self: flex-end;
+  margin-left: auto;
+}
+
+.login {
+  @extend .linkItem;
+  justify-self: flex-end;
+}
+
+.pageName {
+  vertical-align: middle;
+}

@@ -1,0 +1,74 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'heading'
+    'charts'
+    'facts'
+    'controls'
+    'content'
+    'report';
+  gap: var(--spacing-4);
+
+  @media screen and (min-width: 800px) {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      'heading heading'
+      'charts facts'
+      'controls facts'
+      'content facts'
+      'content report';
+  }
+}
+
+.heading {
+  margin: var(--spacing-1);
+  grid-area: heading;
+}
+
+.charts {
+  grid-area: charts;
+  min-width: 0;
+}
+
+.facts {
+  grid-area: facts;
+  display: grid;
+  grid-auto-rows: min-content;
+  gap: var(--spacing-4);
+}
+
+.content {
+  grid-area: content;
+}
+
+.controls {
+  grid-area: controls;
+  position: sticky;
+  bottom: 0;
+  background-color: var(--background-color);
+  border-top: 1px solid var(--text-color);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  margin: 0 calc(#{var(--main-page-padding-sides)} * -1);
+  padding: var(--spacing-1) var(--main-page-padding-sides) var(--spacing-2);
+
+  @media screen and (min-width: 480px) {
+    margin: 0;
+    padding: var(--spacing-1) 0;
+  }
+}
+
+.semesterRangeLabel {
+  width: 100%;
+}
+
+.semesterFilterSelect {
+  min-width: 100px;
+}
+
+.report {
+  grid-area: report;
+  align-self: start;
+}

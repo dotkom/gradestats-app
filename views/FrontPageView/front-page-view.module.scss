@@ -1,0 +1,46 @@
+.container {
+  margin: var(--spacing-4) 0;
+}
+
+.headlineContainer {
+  max-width: 760px;
+  text-align: center;
+  margin: 0 auto var(--spacing-8);
+}
+
+.byline {
+  opacity: 0.7;
+  font-size: var(--font-size-lg);
+}
+
+.featuredHeadline {
+  margin: var(--spacing-4) 0;
+}
+
+.featuredCourses {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-4);
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+
+    /* Terrible way of doing it really, but this is the way. */
+    /* Hide the last element in an even grid because an off number is loaded */
+    .courseCard {
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    grid-template-columns: repeat(3, 1fr);
+    .courseCard {
+      &:last-child {
+        display: grid;
+      }
+    }
+  }
+}

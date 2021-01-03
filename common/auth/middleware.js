@@ -49,3 +49,11 @@ export const authMiddleware = nextConnect()
   .use(initPassortMiddleware)
   .use(passport.initialize())
   .use(passport.session());
+
+export const ssrAuthMiddleware = async (ctx) => {
+  await configurePassport();
+  await new Promise((resolve) => sessionMiddleware(ctx.req, ctx.res, resolve));
+  await new Promise((resolve) => memoryDbMiddleware(ctx.req, ctx.res, resolve));
+  await new Promise((resolve) => passport.initialize()(ctx.req, ctx.res, resolve));
+  await new Promise((resolve) => passport.session()(ctx.req, ctx.res, resolve));
+};

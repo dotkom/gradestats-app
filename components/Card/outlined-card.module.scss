@@ -1,0 +1,21 @@
+.notLink {
+  text-decoration: none;
+  &:hover,
+  &:visited,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.card {
+  @extend .notLink;
+  padding: var(--spacing-2);
+
+  border-radius: var(--spacing-1);
+  border: solid 1px var(--middle-gray);
+
+  &:hover {
+    border: solid 1px var(--text-color);
+    cursor: pointer;
+  }
+}

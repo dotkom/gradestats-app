@@ -1,0 +1,97 @@
+.container {
+  max-width: var(--screen-md);
+  margin: 0 auto;
+}
+
+.sectionHeading {
+  margin: var(--spacing-2) 0;
+}
+
+.reposSection {
+}
+
+.reposList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-2);
+
+  @media screen and (min-width: 360px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contributorsSection {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'text'
+    'contributors';
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+  row-gap: 0;
+
+  @media screen and (min-width: 800px) {
+    grid-template-areas:
+      'header header'
+      'text contributors';
+    grid-template-columns: 320px 1fr;
+  }
+}
+
+.contributorsTitle {
+  grid-area: header;
+}
+
+.contributorsText {
+  grid-area: text;
+  margin-bottom: var(--spacing-2);
+}
+
+.contributorsList {
+  grid-area: contributors;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2);
+
+  @media screen and (min-width: 360px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.orgsSection {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'text'
+    'organization';
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+  row-gap: 0;
+
+  @media screen and (min-width: 800px) {
+    grid-template-areas:
+      'header header'
+      'text organization';
+    grid-template-columns: 320px 1fr;
+  }
+}
+
+.orgsHeader {
+  grid-area: header;
+}
+
+.orgsText {
+  grid-area: text;
+  margin-bottom: var(--spacing-2);
+}
+
+.orgsCard {
+  grid-area: organization;
+}
+
+.externalLink {
+  display: block;
+  text-decoration: underline;
+}
