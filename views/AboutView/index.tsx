@@ -112,7 +112,9 @@ export const AboutView: FC<Props> = ({ contributors, organization, repos }) => {
             {contributors
               .sort((userA, userB) => userB.contributions - userA.contributions)
               .map((user) => (
-                <ContributorCard key={user.id} user={user} />
+                <li key={user.id} className={styles.listItem}>
+                  <ContributorCard user={user} />
+                </li>
               ))}
           </ul>
         </section>

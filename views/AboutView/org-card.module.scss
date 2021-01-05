@@ -9,10 +9,13 @@
   column-gap: var(--spacing-4);
 }
 
+.imageContainer {
+  grid-area: image;
+}
+
 .image {
   width: 100px;
   border-radius: 50%;
-  grid-area: image;
 }
 
 .name {

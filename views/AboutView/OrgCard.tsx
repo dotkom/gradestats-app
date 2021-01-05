@@ -1,11 +1,12 @@
+import Image from 'next/image';
+import React, { FC } from 'react';
+import cx from 'classnames';
 import { GithubOrg } from 'common/api/github/repo';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
-import React, { FC } from 'react';
-import cx from 'classnames';
+import { OutlinedCard } from 'components/Card/OutlinedCard';
 
 import styles from './org-card.module.scss';
-import { OutlinedCard } from 'components/Card/OutlinedCard';
 
 interface Props {
   className?: string;
@@ -21,8 +22,10 @@ export const OrgCard: FC<Props> = ({ org, className }) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img className={styles.image} src={org.avatarUrl} alt={`${org.name} logo`} />
-      <Heading className={styles.name} as="h4" size="h5">
+      <div className={styles.imageContainer}>
+        <Image className={styles.image} src={org.avatarUrl} alt={`${org.name} logo`} width={100} height={100} />
+      </div>
+      <Heading className={styles.name} as="h3" size="h4">
         {org.name}
       </Heading>
       <div className={styles.content}>
