@@ -1,3 +1,4 @@
+import { Grade } from 'models/Grade';
 export interface Course {
   id: number;
   norwegian_name: string;
@@ -24,4 +25,8 @@ export interface Course {
   watson_rank: string;
   attendee_count: number;
   department: number;
+}
+
+export interface CourseWithGrades extends Course {
+  grades: Grade[];
 }
