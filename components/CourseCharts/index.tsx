@@ -79,7 +79,7 @@ export const CourseCharts: FC<Props> = ({ className, grades, currentGrade }) => 
           ) : (
             <UngradedGraph key="ungraded" grade={currentGrade} />
           ),
-          <DynamicAverageChart key="averages" grades={grades} />,
+          <DynamicAverageChart key="averages" grades={grades} currentSemesterCode={currentGrade.semester_code} />,
           <DynamicFailedChart key="failed" grades={grades} />,
         ]}
       />
