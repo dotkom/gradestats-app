@@ -7,10 +7,13 @@
   grid-template-columns: 60px 1fr;
 }
 
+.imageContainer {
+  grid-area: image;
+}
+
 .image {
   width: 60px;
   border-radius: 50%;
-  grid-area: image;
 }
 
 .name {

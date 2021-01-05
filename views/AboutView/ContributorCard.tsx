@@ -1,11 +1,12 @@
-import { GithubUser } from 'common/api/github/repo';
+import Image from 'next/image';
 import React, { FC } from 'react';
 import cx from 'classnames';
-
-import styles from './constributor-card.module.scss';
+import { GithubUser } from 'common/api/github/repo';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import { OutlinedCard } from 'components/Card/OutlinedCard';
+
+import styles from './constributor-card.module.scss';
 
 interface Props {
   className?: string;
@@ -21,7 +22,15 @@ export const ContributorCard: FC<Props> = ({ className, user }) => {
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img className={styles.image} src={user.avatarUrl} alt={`${user.name ?? user.username} avatar`} />
+      <div className={styles.imageContainer}>
+        <Image
+          className={styles.image}
+          src={user.avatarUrl}
+          alt={`${user.name ?? user.username} avatar`}
+          width={60}
+          height={60}
+        />
+      </div>
       <Heading className={styles.heading} as="p" size="h5">
         {user.name ?? user.username}
       </Heading>
