@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, FC } from 'react';
 
-import { Course } from 'models/Course';
+import { Course, CourseWithGrades } from 'models/Course';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 
@@ -17,7 +17,7 @@ const ABOUT_GRADES = (courseCount: number) => `
 const TAGS = ['NTNU', 'Karakterstatistikk', 'Norwegian University of Science and Technology', 'Emneinformasjon'];
 
 interface Props {
-  courses: Course[];
+  courses: CourseWithGrades[];
   totalCourseCount: number;
 }
 
@@ -50,17 +50,15 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
           Mest populære emner
         </Heading>
         <div className={styles.featuredCourses}>
-          {courses
-            ? courses.map((course) => (
-                <CourseCard
-                  key={course.code}
-                  className={styles.courseCard}
-                  code={course.code}
-                  name={course.norwegian_name}
-                  gradeAverage={course.average}
-                />
-              ))
-            : null}
+          {courses.map((course) => (
+            <CourseCard
+              key={course.code}
+              className={styles.courseCard}
+              code={course.code}
+              name={course.norwegian_name}
+              grades={course.grades}
+            />
+          ))}
         </div>
       </section>
     </>

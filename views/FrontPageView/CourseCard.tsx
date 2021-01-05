@@ -1,4 +1,9 @@
-import { mapGradeAverageToLetter } from 'common/utils/grades';
+import {
+  calculateAverageGrade,
+  calculateAveragePassingRate,
+  isGraded,
+  mapGradeAverageToLetter,
+} from 'common/utils/grades';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import { Heading } from 'components/Typography/Heading';
@@ -7,6 +12,8 @@ import cx from 'classnames';
 
 import styles from './course-card.module.scss';
 import { OutlinedCard } from 'components/Card/OutlinedCard';
+import { Grade } from 'models/Grade';
+import { formatPercentage } from 'common/utils/math';
 
 export const GRADE_COLORS: Record<string, string> = {
   A: styles.gradeA,
@@ -23,11 +30,17 @@ interface Props {
   className?: string;
   code: string;
   name: string;
-  gradeAverage: number;
+  grades: Grade[];
 }
 
-export const CourseCard: FC<Props> = ({ className, code, name, gradeAverage }) => {
-  const gradeLetter = mapGradeAverageToLetter(gradeAverage);
+export const CourseCard: FC<Props> = ({ className, code, name, grades }) => {
+  const showGradeLetter = grades.some(isGraded);
+  const averageGrade = grades
+    ? showGradeLetter
+      ? calculateAverageGrade(grades)
+      : calculateAveragePassingRate(grades)
+    : undefined;
+  const gradeLetter = averageGrade ? mapGradeAverageToLetter(averageGrade) : undefined;
   return (
     <Link href="/course/[courseCode]" as={`/course/${code}`}>
       <OutlinedCard as="a" className={cx(className, styles.card)}>
@@ -35,7 +48,9 @@ export const CourseCard: FC<Props> = ({ className, code, name, gradeAverage }) =
           {code}
         </Heading>
         <Text className={styles.text}>{name}</Text>
-        <Text className={cx(styles.grade, GRADE_COLORS[gradeLetter])}>{gradeLetter}</Text>
+        <Text className={cx(styles.grade, GRADE_COLORS[gradeLetter ?? 'PASSED'])}>
+          {showGradeLetter ? gradeLetter || '-' : averageGrade ? formatPercentage(averageGrade) : '-'}
+        </Text>
       </OutlinedCard>
     </Link>
   );
