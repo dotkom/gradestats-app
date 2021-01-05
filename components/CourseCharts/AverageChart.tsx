@@ -1,50 +1,73 @@
+import { graphTheme } from 'common/utils/chart';
+import { isKont, isNotKont } from 'common/utils/grades';
 import { Grade } from 'models/Grade';
 import React, { FC, memo } from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel } from 'victory';
 
 interface Props {
   grades: Grade[];
+  currentSemesterCode: string;
 }
 
 export const AverageChartComponent: FC<Props> = ({ grades }) => {
-  const gradesData = grades.map((grade) => ({
+  const ticks = grades.map((datum) => datum.semester_code);
+  const regularGradesData = grades.filter(isNotKont).map((grade) => ({
     x: grade.semester_code,
     y: grade.average_grade,
   }));
-  const ticks = gradesData.map((datum) => datum.x);
+  const kontGradesData = grades.filter(isKont).map((grade) => ({
+    x: grade.semester_code,
+    y: grade.average_grade,
+  }));
   return (
     <VictoryChart
-      height={220}
-      width={350}
-      domainPadding={5}
+      theme={graphTheme}
+      domainPadding={0}
       padding={{
-        bottom: 32,
-      }}
-      style={{
-        parent: {
-          border: '1px solid #666666',
-          background: '#ffffff',
-        },
+        top: 5,
+        left: 12,
+        bottom: 5,
+        right: -15,
       }}
     >
+      <VictoryAxis tickFormat={ticks} style={{ grid: { stroke: 'none' } }} />
+
       <VictoryAxis
-        label="Semester"
-        style={{
-          axisLabel: { padding: 30 },
-        }}
-        tickFormat={ticks}
+        dependentAxis
+        domain={[0, 5]}
+        tickValues={[0, 1, 2, 3, 4, 5]}
+        style={{ tickLabels: { fontSize: 10, padding: 0 } }}
       />
-      <VictoryLine
-        data={gradesData}
-        domain={{
-          y: [
-            Math.min(...gradesData.map((datum) => datum.y)) - 0.3,
-            Math.max(...gradesData.map((datum) => datum.y)) + 0.3,
-          ],
-        }}
-        labels={({ datum }) => datum.y.toFixed(2)}
-        labelComponent={<VictoryLabel renderInPortal dy={-20} />}
-      />
+      {regularGradesData.length ? (
+        <VictoryLine
+          data={regularGradesData}
+          interpolation="linear"
+          style={{ data: { stroke: 'var(--green)' } }}
+          labels={({ datum }) => `${datum.y.toFixed(2)}`}
+          labelComponent={
+            <VictoryLabel
+              style={{ color: 'var(--text-color)', fill: 'var(--text-color)', fontSize: 10 }}
+              renderInPortal
+              dy={-10}
+            />
+          }
+        />
+      ) : null}
+      {kontGradesData.length ? (
+        <VictoryLine
+          data={kontGradesData}
+          interpolation="linear"
+          style={{ data: { stroke: 'var(--blue)' } }}
+          labels={({ datum }) => `${datum.y.toFixed(2)}`}
+          labelComponent={
+            <VictoryLabel
+              style={{ color: 'var(--text-color)', fill: 'var(--text-color)', fontSize: 10 }}
+              renderInPortal
+              dy={-10}
+            />
+          }
+        />
+      ) : null}
     </VictoryChart>
   );
 };
@@ -52,7 +75,7 @@ export const AverageChartComponent: FC<Props> = ({ grades }) => {
 export const AverageChart = memo(AverageChartComponent, (prevProps, nextProps) => {
   const prevGrades = prevProps.grades.map((grade) => grade.id);
   const nextGrades = nextProps.grades.map((grade) => grade.id);
-  return String(prevGrades) === String(nextGrades);
+  return String(prevGrades) === String(nextGrades) && prevProps.currentSemesterCode === nextProps.currentSemesterCode;
 });
 
 export default AverageChart;
