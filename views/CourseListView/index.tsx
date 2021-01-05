@@ -43,10 +43,15 @@ export const CourseListView: FC<Props> = ({
         <meta property="og:description" content="Søk i emner ved NTNU" />
       </Head>
       <section className={styles.container}>
+        <label className={styles.searchLabel} htmlFor="search">
+          Søk i emner
+        </label>
         <SearchInput
+          id="search"
           className={styles.searchBar}
           ref={searchBarRef}
-          placeholder="Søk..."
+          placeholder="Søk i emner..."
+          aria-label="Søk i emner"
           onChange={handleSearchChange}
           value={query}
         />

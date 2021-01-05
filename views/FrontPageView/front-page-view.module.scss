@@ -17,6 +17,10 @@
   margin: var(--spacing-4) 0;
 }
 
+.searchLabel {
+  display: none;
+}
+
 .featuredCourses {
   display: grid;
   grid-template-columns: 1fr;

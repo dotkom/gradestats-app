@@ -45,7 +45,16 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
           <Heading as="h1">Grades.no</Heading>
           <Text className={styles.byline}>Karakterstatistikk for alle emner ved NTNU</Text>
         </div>
-        <SearchInput placeholder="Søk i emner..." type="search" onChange={handleSearch} />
+        <label className={styles.searchLabel} htmlFor="search">
+          Søk i emner
+        </label>
+        <SearchInput
+          id="search"
+          placeholder="Søk i emner..."
+          type="search"
+          onChange={handleSearch}
+          aria-label="Søk i emner"
+        />
         <Heading className={styles.featuredHeadline} as="h2">
           Mest populære emner
         </Heading>
