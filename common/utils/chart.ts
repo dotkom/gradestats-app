@@ -49,7 +49,7 @@ const centeredLabelStyles = {
 };
 
 // Strokes
-const strokeDasharray = '0';
+const strokeDasharray = '5,10';
 const strokeLinecap = 'round';
 const strokeLinejoin = 'round';
 
