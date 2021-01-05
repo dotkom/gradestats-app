@@ -15,7 +15,6 @@ import { ReportDialogButton } from 'components/Report/ReportDialogButton';
 import styles from './course-detail-view.module.scss';
 import { Label } from 'components/forms/Label';
 import { Select } from 'components/forms/Select';
-import { RangeInput } from 'components/forms/RangeInput';
 
 interface Props {
   course: Course;
@@ -43,14 +42,17 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
   const filteredGrades = filterGradesBySemesters(grades, semesterFilter);
   const [currentGrade, setCurrentGrade] = useState([...filteredGrades].reverse()[0]);
 
-  const handleGradeChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const index = Number(event.target.value);
-    setCurrentGrade(filteredGrades[index]);
-  };
-
   const handleSemesterFilterChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value as SemesterFilter;
     setSemesterFilter(value);
+  };
+
+  const handleSemesterChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const { value } = event.target;
+    const newCurrentGrade = filteredGrades.find((grade) => grade.semester_code == value);
+    if (newCurrentGrade) {
+      setCurrentGrade(newCurrentGrade);
+    }
   };
 
   useEffect(() => {
@@ -91,16 +93,23 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
         </aside>
         {hasGrades ? (
           <menu className={styles.controls}>
-            <Label className={styles.semesterRangeLabel} label={currentGrade.semester_code}>
-              <RangeInput
-                value={filteredGrades.findIndex((grade) => grade.id === currentGrade.id)}
-                min={0}
-                max={filteredGrades.length - 1}
-                onChange={handleGradeChange}
-              />
+            <Label className={styles.semesterRangeLabel} label="Semester">
+              <Select
+                className={styles.semesterFilterSelect}
+                name="semester"
+                onChange={handleSemesterChange}
+                value={currentGrade.semester_code}
+              >
+                {[...filteredGrades].reverse().map((grade) => (
+                  <option
+                    key={grade.semester_code}
+                    value={grade.semester_code}
+                  >{`${grade.semester_display} ${grade.year}`}</option>
+                ))}
+              </Select>
             </Label>
             {grades.some(isKont) ? (
-              <Label label="Semestere">
+              <Label label="Vis semester">
                 <Select
                   className={styles.semesterFilterSelect}
                   name="filter-semesters"
