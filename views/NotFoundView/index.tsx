@@ -2,6 +2,7 @@ import { AnimatedFailIcon } from 'components/Graphics/AnimatedFailIcon';
 import { ReportDialogButton } from 'components/Report/ReportDialogButton';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
+import Head from 'next/head';
 import React, { FC } from 'react';
 
 import styles from './not-found-view.module.scss';
@@ -19,13 +20,21 @@ const TEXT = {
 
 export const NotFoundView: FC<Props> = ({ message }) => {
   return (
-    <section className={styles.container}>
-      <Heading as="h1">{TEXT.TITLE}</Heading>
-      <AnimatedFailIcon className={styles.illustration} />
-      <Text>
-        {message ?? TEXT.DEFAULT_MESSAGE} {TEXT.REPORT_TEXT}
-      </Text>
-      <ReportDialogButton className={styles.reportButton}>{TEXT.REPORT_BUTTON}</ReportDialogButton>
-    </section>
+    <>
+      <Head>
+        <title>{TEXT.TITLE}</title>
+        <meta property="og:title" content={TEXT.TITLE} />
+        <meta name="description" content={message ?? TEXT.DEFAULT_MESSAGE} />
+        <meta property="og:description" content={message ?? TEXT.DEFAULT_MESSAGE} />
+      </Head>
+      <section className={styles.container}>
+        <Heading as="h1">{TEXT.TITLE}</Heading>
+        <AnimatedFailIcon className={styles.illustration} />
+        <Text>
+          {message ?? TEXT.DEFAULT_MESSAGE} {TEXT.REPORT_TEXT}
+        </Text>
+        <ReportDialogButton className={styles.reportButton}>{TEXT.REPORT_BUTTON}</ReportDialogButton>
+      </section>
+    </>
   );
 };
