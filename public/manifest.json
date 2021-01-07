@@ -6,37 +6,44 @@
     {
       "src": "/icons/icon-32.png",
       "type": "image/png",
-      "size": "32×32"
+      "sizes": "32x32"
     },
     {
       "src": "/icons/icon-64.png",
       "type": "image/png",
-      "size": "64×64"
+      "sizes": "64x64"
     },
     {
       "src": "/icons/icon-128.png",
       "type": "image/png",
-      "size": "128×128"
+      "sizes": "128x128"
     },
     {
       "src": "/icons/icon-192.png",
       "type": "image/png",
-      "size": "192×192"
+      "sizes": "192x192"
     },
     {
       "src": "/icons/icon-256.png",
       "type": "image/png",
-      "size": "256×256"
+      "sizes": "256x256"
     },
     {
       "src": "/icons/icon-512.png",
       "type": "image/png",
-      "size": "512×512"
+      "sizes": "512x512"
+    },
+    {
+      "src": "/icons/icon-640.png",
+      "type": "image/png",
+      "sizes": "640x640",
+      "purpose": "maskable"
     }
   ],
   "start_url": "/",
   "display": "standalone",
   "scope": "/",
   "background_color": "#1a202c",
-  "theme_color": "#ffffff"
+  "theme_color": "#ffffff",
+  "prefer_related_applications": false
 }
