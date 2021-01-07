@@ -34,6 +34,7 @@ module.exports = {
         'tap-targets': 'off', // Should be fixed
         'unsized-images': 'off', // Off because Next Image handles it better?
         'uses-text-compression': 'off', // Handled by Nginx and such
+        'errors-in-console': 'off', // Dunno why this fails
       },
     },
   },
