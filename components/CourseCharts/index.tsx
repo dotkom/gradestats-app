@@ -35,7 +35,7 @@ const INDEX_TAB: Record<number, Tab> = {
 };
 
 const TAB_TITLE: Record<number, string> = {
-  0: 'Karakterer',
+  0: 'Karakterfordeling',
   1: 'Snitt',
   2: 'Strykprosent',
 };
@@ -59,11 +59,11 @@ export const CourseCharts: FC<Props> = ({ className, grades, currentGrade }) => 
   return (
     <div className={cx(styles.victoryContainer, className)}>
       <header className={styles.titles}>
-        <Heading as="h3" size="h4">
+        <Heading as="h2" size="h4">
           {TAB_TITLE[TAB_INDEX[tab]]}
         </Heading>
         <Button variant="link" onClick={handleNextSlideClick}>
-          <Heading as="h3" size="h4">
+          <Heading as="p" size="h4">
             {TAB_TITLE[(TAB_INDEX[tab] + 1) % 3] + ` ->`}
           </Heading>
         </Button>

@@ -5,6 +5,7 @@
     'image name'
     'image content'
     'description description';
+  grid-template-columns: 100px 1fr;
   gap: var(--spacing-2);
   column-gap: var(--spacing-4);
 }

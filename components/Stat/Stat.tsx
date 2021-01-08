@@ -18,15 +18,16 @@ export const Stat: FC<Props> = ({ label, value, extra }) => {
 };
 
 interface ValueProps {
+  as?: keyof JSX.IntrinsicElements;
   value: string;
   extra?: string;
 }
 
-export const StatValue: FC<ValueProps> = ({ value, extra }) => {
+export const StatValue: FC<ValueProps> = ({ as: Element = 'dd', value, extra }) => {
   return (
-    <dd className={s.value}>
+    <Element className={s.value}>
       {value}
       {extra && <span className={s.extra}>({extra})</span>}
-    </dd>
+    </Element>
   );
 };

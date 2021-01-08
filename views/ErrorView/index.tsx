@@ -2,6 +2,7 @@ import { AnimatedFailIcon } from 'components/Graphics/AnimatedFailIcon';
 import { ReportDialogButton } from 'components/Report/ReportDialogButton';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
+import Head from 'next/head';
 import React, { FC } from 'react';
 
 import styles from './error-view.module.scss';
@@ -22,16 +23,27 @@ const TEXT = {
 
 export const ErrorView: FC<Props> = ({ statusCode, message }) => {
   return (
-    <section className={styles.container}>
-      <Heading as="h1">
-        {TEXT.TITLE}
-        {statusCode ? ` (${statusCode})` : null}
-      </Heading>
-      <AnimatedFailIcon className={styles.illustration} />
-      <Text>
-        {message ?? TEXT.DEFAULT_MESSAGE} {TEXT.REPORT_TEXT}
-      </Text>
-      <ReportDialogButton className={styles.reportButton}>{TEXT.REPORT_BUTTON}</ReportDialogButton>
-    </section>
+    <>
+      <Head>
+        <title>
+          {TEXT.TITLE}
+          {statusCode ? ` (${statusCode})` : null}
+        </title>
+        <meta property="og:title" content={`${TEXT.TITLE} ${statusCode ? ` (${statusCode})` : null}`} />
+        <meta name="description" content={message ?? TEXT.DEFAULT_MESSAGE} />
+        <meta property="og:description" content={message ?? TEXT.DEFAULT_MESSAGE} />
+      </Head>
+      <section className={styles.container}>
+        <Heading as="h1">
+          {TEXT.TITLE}
+          {statusCode ? ` (${statusCode})` : null}
+        </Heading>
+        <AnimatedFailIcon className={styles.illustration} />
+        <Text>
+          {message ?? TEXT.DEFAULT_MESSAGE} {TEXT.REPORT_TEXT}
+        </Text>
+        <ReportDialogButton className={styles.reportButton}>{TEXT.REPORT_BUTTON}</ReportDialogButton>
+      </section>
+    </>
   );
 };

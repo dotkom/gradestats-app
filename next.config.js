@@ -21,6 +21,20 @@ nextConfig = {
       'avatars4.githubusercontent.com',
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/report',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/api-info',
+        destination: '/about',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = withSourceMaps(nextConfig);

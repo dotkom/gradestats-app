@@ -44,12 +44,11 @@ export const CourseItem: FC<Props> = ({ course }) => {
         <td>{course.norwegian_name}</td>
         <td>
           {grades ? (
-            <dl>
-              <StatValue
-                value={showGradeLetter ? gradeLetter || '-' : averageGrade ? formatPercentage(averageGrade) : '-'}
-                extra={showGradeLetter ? averageGrade?.toFixed(2) : undefined}
-              />
-            </dl>
+            <StatValue
+              as="div"
+              value={showGradeLetter ? gradeLetter || '-' : averageGrade ? formatPercentage(averageGrade) : '-'}
+              extra={showGradeLetter ? averageGrade?.toFixed(2) : undefined}
+            />
           ) : null}
         </td>
       </a>

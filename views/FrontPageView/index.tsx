@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { ChangeEvent, FC } from 'react';
 
-import { Course, CourseWithGrades } from 'models/Course';
+import { CourseWithGrades } from 'models/Course';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 
