@@ -15,6 +15,7 @@ import { ReportDialogButton } from 'components/Report/ReportDialogButton';
 import styles from './course-detail-view.module.scss';
 import { Label } from 'components/forms/Label';
 import { Select } from 'components/forms/Select';
+import { Scrolly } from 'components/forms/Scrolly';
 
 interface Props {
   course: Course;
@@ -47,9 +48,8 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
     setSemesterFilter(value);
   };
 
-  const handleSemesterChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const { value } = event.target;
-    const newCurrentGrade = filteredGrades.find((grade) => grade.semester_code == value);
+  const handleSemesterChange = (semesterCode: string) => {
+    const newCurrentGrade = filteredGrades.find((grade) => grade.semester_code === semesterCode);
     if (newCurrentGrade) {
       setCurrentGrade(newCurrentGrade);
     }
@@ -93,23 +93,11 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
         </aside>
         {hasGrades ? (
           <menu className={styles.controls}>
-            <Label className={styles.semesterRangeLabel} label="Semester">
-              <Select
-                className={styles.semesterFilterSelect}
-                name="semester"
-                onChange={handleSemesterChange}
-                value={currentGrade.semester_code}
-              >
-                {[...filteredGrades].reverse().map((grade) => (
-                  <option
-                    key={grade.semester_code}
-                    value={grade.semester_code}
-                  >{`${grade.semester_display} ${grade.year}`}</option>
-                ))}
-              </Select>
+            <Label className={styles.semesterSelectLabel} label="Semester">
+              <Scrolly values={filteredGrades.map((grade) => grade.semester_code)} onClick={handleSemesterChange} />
             </Label>
             {grades.some(isKont) ? (
-              <Label label="Vis semester">
+              <Label label="Filter">
                 <Select
                   className={styles.semesterFilterSelect}
                   name="filter-semesters"

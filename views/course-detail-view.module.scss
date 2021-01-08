@@ -53,6 +53,7 @@
   gap: var(--spacing-2);
   margin: 0 calc(#{var(--main-page-padding-sides)} * -1);
   padding: var(--spacing-1) var(--main-page-padding-sides) var(--spacing-2);
+  min-width: 0;
 
   @media screen and (min-width: 480px) {
     margin: 0;
@@ -60,12 +61,13 @@
   }
 }
 
-.semesterRangeLabel {
-  width: 100%;
+.semesterSelectLabel {
+  display: grid; // I don't know why this works. And frankly, I'm too afraid to ask.
 }
 
 .semesterFilterSelect {
   min-width: 100px;
+  margin-top: var(--spacing-1);
 }
 
 .report {
