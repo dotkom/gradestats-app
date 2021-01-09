@@ -15,8 +15,8 @@ const TEXT = {
     Har du ris, ros, eller andre tilbakemeldinger?
     Vi ønsker gjerne å høre hva du mener!
   `,
-  CLOSE_MESSAGE: 'Lukk melding',
-  REPORT_BUTTON: 'Meld feil',
+  CLOSE_MESSAGE: 'Lukk',
+  REPORT_BUTTON: 'Gi tilbakemelding',
 };
 
 export const WelcomeMessage = () => {
