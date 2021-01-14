@@ -65,6 +65,12 @@ export const getTagListApiUrl = ({ limit = 50, offset = 0 } = {}) => {
 export const getTagDetailApiUrl = (tagName: string) => {
   return `${GRADES_API_URL}/api/v2/tags/${tagName}/`;
 };
+export const getUserTagListApiUrl = (userId: number, { limit = 50, offset = 0 } = {}) => {
+  return `${GRADES_API_URL}/api/v2/users/${userId}/tags/?limit=${limit}&offset=${offset}`;
+};
+export const getUserTagDetailApiUrl = (userId: number, tagName: string) => {
+  return `${GRADES_API_URL}/api/v2/users/${userId}/tags/${tagName}/`;
+};
 export const getFacultyListApiUrl = ({ limit = 200, offset = 0 }: ListParams = {}) => {
   return `${GRADES_API_URL}/api/v2/faculties/?limit=${limit}&offset=${offset}`;
 };

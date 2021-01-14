@@ -18,11 +18,11 @@ export const withUser = <Props extends AnyProps = AnyProps, Query extends Parsed
     const result = await wrappedGetServerSideProps(ctx, user);
     if (redirect && !user) {
       return {
-        ...result,
         redirect: {
           permanent: false,
           destination: '/',
         },
+        ...result,
       };
     }
     return result;
