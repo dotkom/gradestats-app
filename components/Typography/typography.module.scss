@@ -2,40 +2,53 @@
   font-size: var(--font-size-xxl);
   line-height: 1;
   font-weight: bold;
+  margin-bottom: var(--spacing-2);
+  margin-top: var(--spacing-1);
 }
 
 .heading2 {
   font-size: var(--font-size-xl);
   line-height: 1;
   font-weight: bold;
+  margin-bottom: var(--spacing-2);
+  margin-top: var(--spacing-1);
 }
 
 .heading3 {
   font-size: var(--font-size-lg);
   line-height: 1.2;
   font-weight: bold;
+  margin-bottom: var(--spacing-2);
+  margin-top: var(--spacing-1);
 }
 
 .heading4 {
   font-size: var(--font-size-md);
   line-height: 1.2;
   font-weight: bold;
+  margin-bottom: var(--spacing-2);
+  margin-top: var(--spacing-1);
 }
 
 .heading5 {
   font-size: var(--font-size-sm);
   line-height: 1.2;
   font-weight: bold;
+  margin-bottom: var(--spacing-2);
+  margin-top: var(--spacing-1);
 }
 
 .heading6 {
   font-size: var(--font-size-xs);
   line-height: 1.2;
   font-weight: bold;
+  margin-bottom: var(--spacing-2);
+  margin-top: var(--spacing-1);
 }
 
 .text {
   font-size: var(--font-size-sm);
   line-height: 1.5;
   font-weight: normal;
+  margin-bottom: var(--spacing-1);
 }
