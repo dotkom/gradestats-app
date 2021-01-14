@@ -16,7 +16,7 @@ export const Navbar: FC<Props> = ({ className }) => {
     <header className={cx(styles.navbar, className)}>
       <nav className={styles.content}>
         <Link href="/">
-          <a>
+          <a className={styles.pageNameLink}>
             <Heading className={styles.pageName} as="p" size="h1">
               Grades.no
             </Heading>

@@ -40,6 +40,14 @@
   justify-self: flex-end;
 }
 
-.pageName {
-  vertical-align: middle;
+.pageNameLink {
+  margin: auto 0;
+}
+
+/* Dirty hack to increase specificity */
+.pageName.pageName {
+  font-size: var(--font-size-md);
+  @media screen and (min-width: 480px) {
+    font-size: var(--font-size-lg);
+  }
 }
