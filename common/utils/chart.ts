@@ -38,7 +38,7 @@ const baseLabelStyles = {
   fontSize,
   letterSpacing,
   padding,
-  fill: blueGrey700,
+  fill: 'var(--text-color)',
   stroke: 'transparent',
   strokeWidth: 0,
 };
@@ -96,6 +96,7 @@ export const graphTheme: VictoryThemeDefinition = {
       grid: {
         fill: 'none',
         stroke: 'var(--text-color)',
+        opacity: 0.7,
         strokeDasharray,
         strokeLinecap,
         strokeLinejoin,
