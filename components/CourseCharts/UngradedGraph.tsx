@@ -1,7 +1,8 @@
+import { graphTheme } from 'common/utils/chart';
 import { getColorForGradeLetter } from 'common/utils/grades';
 import { Grade } from 'models/Grade';
 import React, { FC, memo } from 'react';
-import { VictoryBar, VictoryChart, VictoryAxis, VictoryTheme } from 'victory';
+import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 
 interface Props {
   grade: Grade;
@@ -10,22 +11,20 @@ interface Props {
 export const UngradedGraphComponent: FC<Props> = ({ grade }) => {
   return (
     <VictoryChart
-      height={220}
-      theme={VictoryTheme.material}
-      domainPadding={60}
-      padding={32}
-      style={{
-        parent: {
-          border: '1px solid #666666',
-          background: 'var(--background-color)',
-        },
+      theme={graphTheme}
+      domainPadding={48}
+      padding={{
+        top: 24,
+        left: 32,
+        bottom: 32,
+        right: 32,
       }}
     >
       <VictoryAxis
         tickFormat={['Bestått', 'Ikke bestått']}
-        style={{ parent: { marginTop: '2px' } }}
+        style={{ parent: { marginTop: '2px' }, grid: { stroke: 'none' } }}
         offsetY={28}
-        padding={{ top: 20, bottom: 60 }}
+        padding={{ top: 0, bottom: 60 }}
       />
       <VictoryBar
         barRatio={1.2}
