@@ -1,6 +1,6 @@
 {
   "name": "gradestats-app",
-  "version": "1.3.4",
+  "version": "1.3.5",
   "private": true,
   "engines": {
     "node": "^14 || ^12"
