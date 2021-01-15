@@ -20,6 +20,8 @@ import { Alert } from 'components/Alert';
 import { Footer } from 'components/Footer';
 import { WelcomeMessage } from 'components/Alert/WelcomeMessage';
 
+import 'intersection-observer';
+
 Sentry.init({
   dsn: SENTRY_DSN ?? undefined,
 });
