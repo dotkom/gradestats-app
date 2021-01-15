@@ -1,6 +1,5 @@
-import { useIntersection } from 'common/hooks/useIntersection';
 import { SearchInput } from 'components/forms/SearchInput';
-import { AnimatedGraphIcon } from 'components/Graphics/AnimatedGraphIcon';
+import { InifiniteLoading } from 'components/Loading/InfiniteLoading';
 import { Text } from 'components/Typography/Text';
 import { Course } from 'models/Course';
 import Head from 'next/head';
@@ -32,7 +31,6 @@ export const CourseListView: FC<Props> = ({
     resetPages();
     onSearchChange(event.target.value);
   };
-  const ref = useIntersection(nextPage);
 
   return (
     <>
@@ -70,13 +68,7 @@ export const CourseListView: FC<Props> = ({
             </tbody>
           </table>
         ) : null}
-        {isLoading && (
-          <div className={styles.loadingContainer}>
-            <AnimatedGraphIcon className={styles.loadingIcon} />
-            <Text>Laster...</Text>
-          </div>
-        )}
-        <span ref={ref} />
+        <InifiniteLoading isLoading={isLoading} triggerNextPage={nextPage} />
       </section>
     </>
   );
