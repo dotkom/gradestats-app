@@ -1,4 +1,5 @@
-.card {
+/* Dirty hack to increase specificity */
+.card.card {
   display: grid;
   gap: var(--spacing-2);
   grid-template-columns: 1fr min-content;
