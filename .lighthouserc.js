@@ -21,9 +21,9 @@ module.exports = {
         'first-contentful-paint': 'off', // Ouff performance
         'first-meaningful-paint': 'off', // Ouff performance
         'largest-contentful-paint': 'off', // Ouff performance
-        interactive: ['error', { minScore: 0.65 }], // Ouff performance
-        'max-potential-fid': ['error', { minScore: 0.5 }], // Ouff performance
-        'first-cpu-idle': ['error', { minScore: 0.7 }], // Ouff performance
+        interactive: ['warning', { minScore: 0.65 }], // Ouff performance
+        'max-potential-fid': ['warning', { minScore: 0.5 }], // Ouff performance
+        'first-cpu-idle': ['warning', { minScore: 0.7 }], // Ouff performance
         'legacy-javascript': 'off', // Maybe Google Analytics?
         'uses-rel-preload': 'off', // Maybe fixable?
         'unused-javascript': 'off', // Maybe fixable?
