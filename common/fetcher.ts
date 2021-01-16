@@ -1,5 +1,6 @@
 export const fetcher = async <T>(url: string) => {
-  const uri = encodeURI(url);
+  // hashtags will hopefully never be used in a server call
+  const uri = encodeURI(url).replace('#', '%23');
   const response = await fetch(uri);
   const data = await response.json();
   return data as T;
