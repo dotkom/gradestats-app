@@ -3,6 +3,8 @@ import DefaultDocument, { Head, Main, NextScript, Html } from 'next/document';
 
 import { GA_TRACKING_ID } from 'common/constants';
 
+import siteLinksSearch from './site-search.json';
+
 class Document extends DefaultDocument {
   render() {
     return (
@@ -20,6 +22,12 @@ class Document extends DefaultDocument {
               page_path: window.location.pathname,
             });
           `,
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(siteLinksSearch),
             }}
           />
         </Head>
