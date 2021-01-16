@@ -10,20 +10,24 @@ import { TextInput } from 'components/forms/TextInput';
 import { Alert } from 'components/Alert';
 import { Label } from 'components/forms/Label';
 import { DynamicDialog } from 'components/Dialog/DynamicDialog';
+import { Tag } from 'models/Tag';
 
 interface Props {
   isOpen: boolean;
   closeDialog: () => void;
   courseCode: string;
+  existingTags: Tag[];
 }
 
 type Status = 'IDLE' | 'PENDING' | 'ERROR' | 'COMPLETED';
 
-export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => {
+export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, existingTags }) => {
   const [user] = useUser();
   const [messages, setMessages] = useState<string[]>([]);
   const [submitStatus, setSubmitStatus] = useState<Status>('IDLE');
   const [name, setName] = useState('');
+
+  const doesNameAlreadyExist = existingTags.map((tag) => tag.name).includes(name);
 
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
@@ -47,6 +51,11 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
       <Heading as="h1" size="h3">
         Legg til tags
       </Heading>
+      {doesNameAlreadyExist && (
+        <Alert type="warning" title={`${name} finnes allerede`}>
+          En tag med dette navnet finnes allerede for dette emnet.
+        </Alert>
+      )}
       {submitStatus === 'ERROR' &&
         messages.map((message) => (
           <Alert key={message} type="error" title="Feil">
@@ -54,7 +63,7 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
           </Alert>
         ))}
       {submitStatus === 'COMPLETED' && (
-        <Alert type="success" title="Tilbakemelding mottatt">
+        <Alert type="success" title="Tag opprettet!">
           Taggen ble lagt til, takk for at du bidrar! Det kan ta opptil én time før den vises på siden.
         </Alert>
       )}
@@ -79,7 +88,9 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode }) => 
           <Button type="button" onClick={closeDialog}>
             Lukk
           </Button>
-          <Button type="submit">Legg til!</Button>
+          <Button type="submit" disabled={status === 'PENDING' || doesNameAlreadyExist}>
+            Legg til!
+          </Button>
         </div>
       </form>
     </DynamicDialog>
