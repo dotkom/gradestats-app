@@ -8,14 +8,16 @@ import { Button } from 'components/common/Button';
 
 import styles from './tags.module.scss';
 import { useDialog } from 'common/hooks/useDialog';
+import { Tag } from 'models/Tag';
 
 const DynamicAddTagDialog = dynamic(() => import('./AddTagDialog'), { ssr: false });
 
 interface Props {
   courseCode: string;
+  tags: Tag[];
 }
 
-export const Tags: FC<Props> = ({ courseCode }) => {
+export const Tags: FC<Props> = ({ courseCode, tags }) => {
   const [user] = useUser();
   const router = useRouter();
   const [showDialog, openDialog, closeDialog] = useDialog();
@@ -41,7 +43,7 @@ export const Tags: FC<Props> = ({ courseCode }) => {
           <small>Du må være logget inn for å kunne legge til tags.</small>
         </Text>
       )}
-      <DynamicAddTagDialog isOpen={showDialog} closeDialog={closeDialog} courseCode={courseCode} />
+      <DynamicAddTagDialog isOpen={showDialog} closeDialog={closeDialog} courseCode={courseCode} existingTags={tags} />
     </div>
   );
 };

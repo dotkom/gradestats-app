@@ -37,7 +37,7 @@ const filterGradesBySemesters = (grades: Grade[], semesterFilter: SemesterFilter
   }
 };
 
-export const CourseDetailView: FC<Props> = ({ course, grades }) => {
+export const CourseDetailView: FC<Props> = ({ course, grades, tags }) => {
   const hasGrades = grades.length !== 0;
   const [semesterFilter, setSemesterFilter] = useState<SemesterFilter>('all');
   const filteredGrades = filterGradesBySemesters(grades, semesterFilter);
@@ -89,7 +89,7 @@ export const CourseDetailView: FC<Props> = ({ course, grades }) => {
             />
           ) : null}
           <Facts course={course} />
-          <Tags courseCode={course.code} />
+          <Tags courseCode={course.code} tags={tags} />
         </aside>
         {hasGrades ? (
           <menu className={styles.controls}>
