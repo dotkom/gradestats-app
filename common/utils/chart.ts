@@ -78,6 +78,7 @@ export const graphTheme: VictoryThemeDefinition = {
       labels: baseLabelStyles,
     },
   },
+
   axis: {
     ...baseProps,
     style: {
@@ -105,7 +106,7 @@ export const graphTheme: VictoryThemeDefinition = {
       ticks: {
         fill: 'transparent',
         size: 5,
-        stroke: blueGrey300,
+        stroke: 'var(--text-color)',
         strokeWidth: 1,
         strokeLinecap,
         strokeLinejoin,
@@ -113,6 +114,7 @@ export const graphTheme: VictoryThemeDefinition = {
       tickLabels: { ...baseLabelStyles, fill: 'var(--text-color)' },
     },
   },
+
   polarDependentAxis: {
     style: {
       ticks: {
@@ -122,6 +124,7 @@ export const graphTheme: VictoryThemeDefinition = {
       },
     },
   },
+
   bar: {
     ...baseProps,
     style: {
@@ -133,6 +136,7 @@ export const graphTheme: VictoryThemeDefinition = {
       labels: baseLabelStyles,
     },
   },
+
   boxplot: {
     ...baseProps,
     style: {
@@ -165,6 +169,7 @@ export const graphTheme: VictoryThemeDefinition = {
   },
 
   chart: baseProps,
+
   errorbar: {
     ...baseProps,
     borderWidth: 8,
@@ -178,6 +183,7 @@ export const graphTheme: VictoryThemeDefinition = {
       labels: baseLabelStyles,
     },
   },
+
   group: { ...baseProps, colorScale: colors },
 
   legend: {
@@ -193,9 +199,12 @@ export const graphTheme: VictoryThemeDefinition = {
       title: { ...baseLabelStyles, padding: 5 },
     },
   },
+
   line: {
     ...baseProps,
+    domainPadding: 0,
     style: {
+      ...baseProps.style,
       data: {
         fill: 'transparent',
         opacity: 1,
@@ -205,6 +214,7 @@ export const graphTheme: VictoryThemeDefinition = {
       labels: baseLabelStyles,
     },
   },
+
   pie: {
     ...baseProps,
     colorScale: colors,
@@ -217,6 +227,7 @@ export const graphTheme: VictoryThemeDefinition = {
       labels: { ...baseLabelStyles, padding: 20 },
     },
   },
+
   scatter: {
     ...baseProps,
     style: {

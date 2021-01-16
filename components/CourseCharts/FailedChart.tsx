@@ -24,10 +24,16 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
       theme={graphTheme}
       domainPadding={0}
       padding={{
-        top: 5,
+        top: 10,
         left: 35,
-        bottom: 5,
-        right: -15,
+        bottom: 10,
+        right: 5,
+      }}
+      style={{
+        parent: {
+          border: '1px solid var(--middle-gray)',
+          background: 'var(--background-color)',
+        },
       }}
     >
       <VictoryAxis tickFormat={ticks} style={{ grid: { stroke: 'none' } }} />
