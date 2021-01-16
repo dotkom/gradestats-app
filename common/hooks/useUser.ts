@@ -1,12 +1,8 @@
 import { LoggedInUser } from 'models/User';
-import useSWR from 'swr';
-
-import { fetcher } from '../fetcher';
+import { useSession } from 'next-auth/client';
 
 export const useUser = () => {
-  const { data, mutate, revalidate } = useSWR<{ user: LoggedInUser }>('/api/auth/user', fetcher);
-  const loading = !data;
-  const user = data?.user;
-  const functions = { mutate, loading, revalidate };
-  return [user, functions] as [typeof user, typeof functions];
+  const [session, loading] = useSession();
+  const user = (session as any) as LoggedInUser | null;
+  return [user, loading] as [typeof user, typeof loading];
 };

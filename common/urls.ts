@@ -47,6 +47,12 @@ export const getCourseTagListApiUrl = (courseCode: string, { limit = 50, offset 
 export const getCourseTagDetailApiUrl = (courseCode: string, tagName: string) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/tags/${tagName}/`;
 };
+export const getUserListApiUrl = ({ limit = 50, offset = 0 }: ListParams = {}) => {
+  return `${GRADES_API_URL}/api/v2/users/?limit=${limit}&offset=${offset}`;
+};
+export const getUserDetailApiUrl = (username: string) => {
+  return `${GRADES_API_URL}/api/v2/users/${username}/`;
+};
 export const getReportListApiUrl = ({ limit = 50, offset = 0 }: ListParams = {}) => {
   return `${GRADES_API_URL}/api/v2/reports/?limit=${limit}&offset=${offset}`;
 };

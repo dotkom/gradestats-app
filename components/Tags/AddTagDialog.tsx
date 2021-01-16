@@ -1,17 +1,15 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { requestCreateCourseTag } from 'common/api/tags';
-import { useUser } from 'common/hooks/useUser';
 import { Button } from 'components/common/Button';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
-
-import styles from './add-tag-dialog.module.scss';
 import { TextInput } from 'components/forms/TextInput';
 import { Alert } from 'components/Alert';
 import { Label } from 'components/forms/Label';
 import { DynamicDialog } from 'components/Dialog/DynamicDialog';
 import { Tag } from 'models/Tag';
 
+import styles from './add-tag-dialog.module.scss';
 interface Props {
   isOpen: boolean;
   closeDialog: () => void;
@@ -22,7 +20,6 @@ interface Props {
 type Status = 'IDLE' | 'PENDING' | 'ERROR' | 'COMPLETED';
 
 export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, existingTags }) => {
-  const [user] = useUser();
   const [messages, setMessages] = useState<string[]>([]);
   const [submitStatus, setSubmitStatus] = useState<Status>('IDLE');
   const [name, setName] = useState('');
@@ -36,7 +33,7 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, exist
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitStatus('PENDING');
-    const response = await requestCreateCourseTag({ courseCode, name }, user?.token.accessToken as string);
+    const response = await requestCreateCourseTag({ courseCode, name });
     if (response.status === 201) {
       setSubmitStatus('COMPLETED');
       setName('');

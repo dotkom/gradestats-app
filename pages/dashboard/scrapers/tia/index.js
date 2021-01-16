@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { useUser } from 'common/hooks/useUser';
 import { requestTIAScrapeCourses } from 'common/api/tia';
 
 const TIAScraperPage = () => {
   const pageSize = 200;
-  const [user] = useUser();
   const [messages, setMessages] = useState([]);
   const [submitStatus, setSubmitStatus] = useState('IDLE'); // 'IDLE' | 'PENDING' | 'ERROR' | 'COMPLETED'
   const [requestCount, setRequestCount] = useState(0);
@@ -21,10 +19,7 @@ const TIAScraperPage = () => {
 
   const handleTIAScrapeCourses = async (skipAmount) => {
     setSubmitStatus('PENDING');
-    const response = await requestTIAScrapeCourses(
-      { username, password, limit: pageSize, skip: skipAmount },
-      user?.token.accessToken
-    );
+    const response = await requestTIAScrapeCourses({ username, password, limit: pageSize, skip: skipAmount });
     if (response.status === 200) {
       const isFinished = Array.isArray(response.data) && response.data.length === 0;
       setRequestCount((current) => current + 1);

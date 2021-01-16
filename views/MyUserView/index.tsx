@@ -1,4 +1,4 @@
-import { useUser } from 'common/hooks/useUser';
+import { logOut } from 'common/auth/utils';
 import { Button } from 'components/common/Button';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
@@ -14,11 +14,9 @@ interface Props {
 
 export const MyUserView: FC<Props> = ({ user }) => {
   const { push } = useRouter();
-  const [, { revalidate }] = useUser();
 
   const handleLogOut = async () => {
-    await fetch('/api/auth/logout');
-    revalidate();
+    await logOut();
     push('/');
   };
 

@@ -1,23 +1,35 @@
-export const fetcher = async <T>(url: string) => {
-  // hashtags will hopefully never be used in a server call
-  const uri = encodeURI(url).replace('#', '%23');
-  const response = await fetch(uri);
-  const data = await response.json();
-  return data as T;
-};
+import { getUserClient } from './auth/utils';
 
 export interface ListResponse<Data> {
   count: number;
   results: Data[];
 }
 
-export const poster = async <Data>(url: string, data: Data, accessToken?: string) => {
+const getHeaders = async () => {
+  const user = await getUserClient();
   const headers = new Headers({
     'Content-Type': 'application/json',
   });
-  if (accessToken) {
-    headers.set('Authorization', `Bearer ${accessToken}`);
+  if (user?.accessToken) {
+    headers.set('Authorization', `Bearer ${user.accessToken}`);
   }
+  return headers;
+};
+
+export const fetcher = async <T>(url: string) => {
+  // hashtags will hopefully never be used in a server call
+  const uri = encodeURI(url).replace('#', '%23');
+  const headers = await getHeaders();
+  const response = await fetch(uri, {
+    method: 'GET',
+    headers,
+  });
+  const data = await response.json();
+  return data as T;
+};
+
+export const poster = async <Data>(url: string, data: Data) => {
+  const headers = await getHeaders();
   const response = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(data),

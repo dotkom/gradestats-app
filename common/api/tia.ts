@@ -8,13 +8,13 @@ interface Data {
   skip: number;
 }
 
-export const requestTIAScrapeCourses = async ({ username, password, limit, skip }: Data, accessToken: string) => {
+export const requestTIAScrapeCourses = async ({ username, password, limit, skip }: Data) => {
   const data = {
     username,
     password,
     limit,
     skip,
   };
-  const response = await poster(getTIAScrapeCoursesUrl(), data, accessToken);
+  const response = await poster(getTIAScrapeCoursesUrl(), data);
   return response;
 };

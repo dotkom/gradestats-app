@@ -1,7 +1,7 @@
+import { getUserServer } from './utils';
 import type { LoggedInUser } from 'models/User';
 import type { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
-import { ssrAuthMiddleware } from 'common/auth/middleware';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyProps = { [key: string]: any };
@@ -14,9 +14,7 @@ export const withUser = <Props extends AnyProps = AnyProps, Query extends Parsed
   redirect = true
 ): GetServerSideProps<Props, Query> => {
   const wrapper: GetServerSideProps<Props, Query> = async (ctx) => {
-    await ssrAuthMiddleware(ctx);
-    const request = ctx.req as typeof ctx.req & { user?: LoggedInUser };
-    const user = request.user || null;
+    const user = await getUserServer(ctx);
     const result = await wrappedGetServerSideProps(ctx, user);
     if (redirect && !user) {
       return {

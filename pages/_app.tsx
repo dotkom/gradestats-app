@@ -3,6 +3,7 @@ import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
 import { FC } from 'react';
+import { Provider as SessionProvider } from 'next-auth/client';
 
 import { pageView, trackEvent } from 'common/analytics';
 import { SENTRY_DSN } from 'common/constants';
@@ -60,20 +61,22 @@ const App: FC<Props> = ({ Component, pageProps, err }) => {
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <div className={styles.app}>
-        <Navbar className={styles.header} />
-        <main className={styles.main}>
-          <noscript>
-            <Alert type="info">
-              Denne nettsiden bruker JavaScript for all interaktivitet, for å dra full nytte av nettsiden må du derfor
-              aktivere JavaScript.
-            </Alert>
-          </noscript>
-          <WelcomeMessage />
-          <Component {...modifiedPageProps} />
-        </main>
-        <Footer className={styles.footer} />
-      </div>
+      <SessionProvider session={pageProps.session}>
+        <div className={styles.app}>
+          <Navbar className={styles.header} />
+          <main className={styles.main}>
+            <noscript>
+              <Alert type="info">
+                Denne nettsiden bruker JavaScript for all interaktivitet, for å dra full nytte av nettsiden må du derfor
+                aktivere JavaScript.
+              </Alert>
+            </noscript>
+            <WelcomeMessage />
+            <Component {...modifiedPageProps} />
+          </main>
+          <Footer className={styles.footer} />
+        </div>
+      </SessionProvider>
     </>
   );
 };
