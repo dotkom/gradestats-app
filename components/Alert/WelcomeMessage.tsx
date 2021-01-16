@@ -26,7 +26,7 @@ export const WelcomeMessage = () => {
   const closeMessage = () => setShowMessage(false);
 
   return showMessage ? (
-    <div className={styles.container}>
+    <div className={styles.container} data-nosnippet>
       <Heading className={styles.title} as="p" size="h3">
         {TEXT.TITLE}
       </Heading>
