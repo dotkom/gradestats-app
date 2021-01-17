@@ -1,9 +1,11 @@
-import { LoggedInUser } from 'models/User';
+import { getUserDetailApiUrl } from './../../../common/urls';
+import { GradesUser, LoggedInUser } from 'models/User';
 import { FeideProfile } from './../../../common/auth/utils';
 import { FEIDE_AUTH_ENDPOINT, FEIDE_CLIENT_ID, FEIDE_CLIENT_SECRET } from 'common/constants';
 import NextAuth from 'next-auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { OIDC_CLIENT_NAME } from 'common/auth/utils';
+import { Requests } from 'common/requests';
 
 const FEIDE_SCOPES = 'profile userid-feide email groups userid openid';
 
@@ -51,17 +53,24 @@ const options = {
   callbacks: {
     session: async (session: FeideSession, data: UserData) => {
       const { accessToken, email_verified, picture, sub } = data;
+      const requests = new Requests(accessToken);
+      const username = session.user.email.split('@')[0];
+      const gradesUser = await requests.get<GradesUser>(getUserDetailApiUrl(username));
       const user: LoggedInUser = {
         fullName: session.user.name,
-        username: session.user.email.split('@')[0],
+        username,
         email: session.user.email,
         emailVerified: email_verified,
         id: sub,
         image: picture,
         accessToken,
         expiresAt: Date.parse(session.expires),
+        dateJoined: gradesUser.date_joined,
+        isActive: gradesUser.is_active,
+        isStaff: gradesUser.is_staff,
+        isSuperuser: gradesUser.is_superuser,
       };
-      return Promise.resolve(user);
+      return user;
     },
     jwt: async (token: Token, _: Token, account: Account, profile: FeideProfile) => {
       if (account && account.accessToken) {

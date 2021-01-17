@@ -1,5 +1,5 @@
 import { getReportListApiUrl } from '../urls';
-import { poster } from 'common/fetcher';
+import { requests } from 'common/requests';
 
 interface Data {
   description: string;
@@ -13,6 +13,6 @@ export const requestCreateReport = async ({ description, course, contactEmail }:
     course,
     contact_email: contactEmail,
   };
-  const response = await poster(getReportListApiUrl(), data);
+  const response = await requests.post(getReportListApiUrl(), data);
   return response;
 };

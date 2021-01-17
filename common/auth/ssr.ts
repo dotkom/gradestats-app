@@ -1,4 +1,4 @@
-import { getUserServer } from './utils';
+import { getUser } from './utils';
 import type { LoggedInUser } from 'models/User';
 import type { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
@@ -14,7 +14,7 @@ export const withUser = <Props extends AnyProps = AnyProps, Query extends Parsed
   redirect = true
 ): GetServerSideProps<Props, Query> => {
   const wrapper: GetServerSideProps<Props, Query> = async (ctx) => {
-    const user = await getUserServer(ctx);
+    const user = await getUser(ctx);
     const result = await wrappedGetServerSideProps(ctx, user);
     if (redirect && !user) {
       return {

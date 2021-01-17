@@ -1,5 +1,5 @@
 import { getCourseTagListApiUrl } from '../urls';
-import { poster } from 'common/fetcher';
+import { requests } from 'common/requests';
 
 interface Data {
   name: string;
@@ -11,6 +11,6 @@ export const requestCreateCourseTag = async ({ name, courseCode }: Data) => {
     name,
     course: courseCode,
   };
-  const response = await poster(getCourseTagListApiUrl(courseCode), data);
+  const response = await requests.post(getCourseTagListApiUrl(courseCode), data);
   return response;
 };

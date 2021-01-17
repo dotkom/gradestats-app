@@ -1,4 +1,4 @@
-import { fetcher, ListResponse } from 'common/fetcher';
+import { ListResponse } from 'common/requests';
 import { getCourseGradeListApiUrl } from 'common/urls';
 import {
   calculateAverageGrade,
@@ -24,7 +24,7 @@ interface Props {
 
 export const CourseItem: FC<Props> = ({ course }) => {
   const courseGradeUrl = getCourseGradeListApiUrl(course.code, { limit: 10, offset: 0 });
-  const { data: gradesResponse } = useSWR<ListResponse<Grade>>(courseGradeUrl, fetcher, {
+  const { data: gradesResponse } = useSWR<ListResponse<Grade>>(courseGradeUrl, {
     refreshWhenHidden: false,
     refreshInterval: 0,
     revalidateOnReconnect: false,

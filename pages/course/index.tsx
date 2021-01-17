@@ -1,7 +1,7 @@
 import { FC, useCallback, useMemo, useRef, useState } from 'react';
 import { useSWRInfinite } from 'swr';
 
-import { fetcher, ListResponse } from 'common/fetcher';
+import { ListResponse } from 'common/requests';
 import { getCourseListApiUrl, getDepartmentListApiUrl, getFacultyListApiUrl } from 'common/urls';
 import { useQueryParam } from 'common/hooks/useQueryParam';
 import { useIsomorphicLayoutEffect } from 'common/hooks/useIsomorphicLayoutEffect';
@@ -50,7 +50,7 @@ const CourseListPage: FC<StaticProps> = ({ departments, faculties }) => {
     departmentId,
     facultyId,
   ]);
-  const { data, isValidating, setSize } = useSWRInfinite<ListResponse<Course>>(getSearchUrl, fetcher);
+  const { data, isValidating, setSize } = useSWRInfinite<ListResponse<Course>>(getSearchUrl);
 
   const nextPage = useCallback(() => setSize((currentSize) => currentSize + 1), []);
   const resetPages = useCallback(() => setSize(1), []);

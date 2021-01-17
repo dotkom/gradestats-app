@@ -22,14 +22,12 @@ export const logOut = async () => {
   await signOut();
 };
 
-export const getUserClient = async () => {
-  const session = await getSession();
-  const user = (session as any) as LoggedInUser | null;
-  return user;
-};
-
-export const getUserServer = async (ctx: GetServerSidePropsContext) => {
+export const getUser = async (ctx?: GetServerSidePropsContext) => {
+  if (!process.browser && !ctx) {
+    return null;
+  }
   const session = await getSession(ctx);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = (session as any) as LoggedInUser | null;
   return user;
 };
