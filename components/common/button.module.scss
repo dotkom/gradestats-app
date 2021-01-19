@@ -9,8 +9,13 @@
 .buttonVariant {
   padding: var(--spacing-2);
   border-radius: var(--spacing-1);
-  border: solid 1px var(--text-color);
+  border: solid 1px var(--background-color-offset);
+  background-color: var(--background-color-offset);
   margin-top: var(--spacing-1);
+
+  &:hover {
+    border: solid 1px var(--text-color);
+  }
 }
 
 .linkVariant {

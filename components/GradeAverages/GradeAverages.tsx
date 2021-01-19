@@ -12,6 +12,7 @@ import {
   calculatePassingRate,
   calculateAveragePassingRate,
 } from 'common/utils/grades';
+import { BasicCard } from 'components/Card/BasicCard';
 
 interface Props {
   selectedGrade: Grade;
@@ -30,7 +31,7 @@ export const GradeAverages: FC<Props> = ({ selectedGrade, allGrades, rollingYear
       <Heading className={s.heading} as="h2">
         Karakterer
       </Heading>
-      <dl className={s.stats}>
+      <BasicCard as="dl" className={s.stats}>
         {isSelectedGradeGraded ? (
           <GradedStat
             label={`${selectedGrade.year} ${selectedGrade.semester_display}`}
@@ -60,7 +61,7 @@ export const GradeAverages: FC<Props> = ({ selectedGrade, allGrades, rollingYear
         ) : (
           <UngradedStat label="Alle år" percentage={calculateAveragePassingRate(allGrades)} mode="passing" />
         )}
-      </dl>
+      </BasicCard>
     </div>
   );
 };

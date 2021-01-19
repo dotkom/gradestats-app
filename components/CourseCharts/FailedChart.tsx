@@ -31,7 +31,7 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
       }}
       style={{
         parent: {
-          border: '1px solid var(--middle-gray)',
+          border: '1px solid var(--background-color-offset)',
           background: 'var(--background-color)',
         },
       }}

@@ -6,6 +6,7 @@
   &::-webkit-scrollbar {
     display: none;
   }
+  padding-bottom: 2px; // Let overflowing focus display at the bottom
 }
 
 .scrollInner {
@@ -16,4 +17,5 @@
 .scrollButton {
   width: 100px;
   text-align: center;
+  height: 45px; // Height of the select field
 }

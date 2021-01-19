@@ -30,8 +30,11 @@
     --font-size-xs: 14px;
   }
 
-  --text-dark: #1a202c;
-  --text-light: #ffffff;
+  --black-base: #141821;
+  --black-base-offset: #272d3b;
+  --white-base: #ffffff;
+  --white-offset: #e5e9f1;
+  --black-text: #1a202c;
 
   --blue: #08b2e3;
   --blue-muted: #98dff3;
@@ -44,7 +47,6 @@
   --yellow-muted: #ffe8b9;
   --dark-gray: #484d6d;
   --very-dark-gray: #1a202c;
-  --middle-gray: #888888;
   --feide-blue: #1f4698;
 
   --test-yellow: #ffc857;
@@ -72,18 +74,21 @@
   --grade-not-passed-old: #cc0000;
 
   @media (prefers-color-scheme: dark) {
-    --text-color: var(--text-light);
-    --background-color: var(--text-dark);
+    --text-color: var(--white-base);
+    --background-color: var(--black-base);
+    --background-color-offset: var(--black-base-offset);
   }
 
   @media (prefers-color-scheme: light) {
-    --background-color: var(--text-light);
-    --text-color: var(--text-dark);
+    --background-color: var(--white-base);
+    --text-color: var(--black-text);
+    --background-color-offset: var(--white-offset);
   }
 
   [data-reach-dialog-content] {
-    --background-color: var(--text-light);
-    --text-color: var(--text-dark);
+    --background-color: var(--white-base);
+    --text-color: var(--black-text);
+    --background-color-offset: var(--white-offset);
   }
 }
 
