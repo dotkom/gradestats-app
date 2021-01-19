@@ -1,5 +1,5 @@
 import { getTIAScrapeCoursesUrl } from '../urls';
-import { requests } from 'common/requests';
+import { requestsWithAuth } from 'common/requests';
 
 interface Data {
   username: string;
@@ -15,6 +15,6 @@ export const requestTIAScrapeCourses = async ({ username, password, limit, skip 
     limit,
     skip,
   };
-  const response = await requests.post(getTIAScrapeCoursesUrl(), data);
+  const response = await requestsWithAuth.post(getTIAScrapeCoursesUrl(), data);
   return response;
 };

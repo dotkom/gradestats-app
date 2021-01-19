@@ -1,5 +1,5 @@
 import { getReportListApiUrl } from '../urls';
-import { requests } from 'common/requests';
+import { requestsWithAuth } from 'common/requests';
 
 interface Data {
   description: string;
@@ -13,6 +13,6 @@ export const requestCreateReport = async ({ description, course, contactEmail }:
     course,
     contact_email: contactEmail,
   };
-  const response = await requests.post(getReportListApiUrl(), data);
+  const response = await requestsWithAuth.post(getReportListApiUrl(), data);
   return response;
 };

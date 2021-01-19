@@ -53,7 +53,7 @@ const options = {
   callbacks: {
     session: async (session: FeideSession, data: UserData) => {
       const { accessToken, email_verified, picture, sub } = data;
-      const requests = new Requests(accessToken);
+      const requests = new Requests({ accessToken, useAuthentication: true });
       const username = session.user.email.split('@')[0];
       const gradesUser = await requests.get<GradesUser>(getUserDetailApiUrl(username));
       const user: LoggedInUser = {

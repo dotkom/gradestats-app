@@ -7,20 +7,29 @@ export interface ListResponse<Data> {
   results: Data[];
 }
 
+interface RequestsConstructor {
+  accessToken?: string;
+  useAuthentication?: boolean;
+}
 export class Requests {
   private accessToken?: string;
   private tokenExpiresAt?: number;
+  private useAuthentication: boolean;
 
-  constructor(accessToken?: string) {
+  constructor({ accessToken, useAuthentication = true }: RequestsConstructor) {
     this.accessToken = accessToken;
+    this.useAuthentication = useAuthentication;
   }
 
   fromSession = async (context: GetServerSidePropsContext) => {
     const user = await getUser(context);
-    return new Requests(user?.accessToken);
+    return new Requests({ accessToken: user?.accessToken });
   };
 
   getAccessToken = async () => {
+    if (!this.useAuthentication) {
+      return;
+    }
     if (this.accessToken && (!this.tokenExpiresAt || this.tokenExpiresAt >= Date.now())) {
       return this.accessToken;
     }
@@ -125,4 +134,6 @@ export class Requests {
   };
 }
 
-export const requests = new Requests();
+// TODO: enable authentication when server authentication delay has been fixed
+export const requests = new Requests({ useAuthentication: false });
+export const requestsWithAuth = new Requests({ useAuthentication: true });

@@ -1,5 +1,5 @@
 import { getKarstatScrapeGradeReportUrl } from '../urls';
-import { requests } from 'common/requests';
+import { requestsWithAuth } from 'common/requests';
 
 interface Data {
   username: string;
@@ -17,6 +17,6 @@ export const requestKarstatScrapeGradeReport = async ({ username, password, depa
     year,
     semester,
   };
-  const response = await requests.post(getKarstatScrapeGradeReportUrl(), data);
+  const response = await requestsWithAuth.post(getKarstatScrapeGradeReportUrl(), data);
   return response;
 };
