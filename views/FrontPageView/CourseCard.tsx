@@ -11,7 +11,7 @@ import { Text } from 'components/Typography/Text';
 import cx from 'classnames';
 
 import styles from './course-card.module.scss';
-import { OutlinedCard } from 'components/Card/OutlinedCard';
+import { LinkCard } from 'components/Card/LinkCard';
 import { Grade } from 'models/Grade';
 import { formatPercentage } from 'common/utils/math';
 
@@ -43,7 +43,7 @@ export const CourseCard: FC<Props> = ({ className, code, name, grades }) => {
   const gradeLetter = averageGrade ? mapGradeAverageToLetter(averageGrade) : undefined;
   return (
     <Link href="/course/[courseCode]" as={`/course/${code}`}>
-      <OutlinedCard as="a" className={cx(className, styles.card)}>
+      <LinkCard className={cx(className, styles.card)}>
         <Heading className={styles.code} as="h3">
           {code}
         </Heading>
@@ -51,7 +51,7 @@ export const CourseCard: FC<Props> = ({ className, code, name, grades }) => {
         <Text className={cx(styles.grade, GRADE_COLORS[gradeLetter ?? 'PASSED'])}>
           {showGradeLetter ? gradeLetter || '-' : averageGrade ? formatPercentage(averageGrade) : '-'}
         </Text>
-      </OutlinedCard>
+      </LinkCard>
     </Link>
   );
 };

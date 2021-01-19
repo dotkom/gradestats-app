@@ -12,7 +12,8 @@
   padding: var(--spacing-2);
 
   border-radius: var(--spacing-1);
-  border: solid 1px var(--middle-gray);
+  border: solid 1px var(--background-color-offset);
+  background-color: var(--background-color-offset);
 
   &:hover {
     border: solid 1px var(--text-color);

@@ -21,7 +21,7 @@ export const GradedGraphComponent: FC<Props> = ({ grade }) => {
       }}
       style={{
         parent: {
-          border: '1px solid var(--middle-gray)',
+          border: '1px solid var(--background-color-offset)',
           background: 'var(--background-color)',
         },
       }}

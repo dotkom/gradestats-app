@@ -24,7 +24,7 @@
 .featuredCourses {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-2);
+  gap: var(--spacing-3);
   margin-top: var(--spacing-4);
 
   @media screen and (min-width: 480px) {

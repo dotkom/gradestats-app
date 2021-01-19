@@ -1,7 +1,7 @@
 import React, { forwardRef, HTMLProps } from 'react';
 import cx from 'classnames';
 
-import styles from './outlined-card.module.scss';
+import styles from './basic-card.module.scss';
 
 type ElementProps = HTMLProps<HTMLElement>;
 
@@ -9,7 +9,7 @@ type Props = ElementProps & {
   as?: string;
 };
 
-export const OutlinedCard = forwardRef<HTMLElement, Props>(
+export const BasicCard = forwardRef<HTMLElement, Props>(
   ({ className, as: Element = 'div', children, ...rest }, ref) => {
     // just a hack to not trip of typescript with the props of the `as` element.
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -22,4 +22,4 @@ export const OutlinedCard = forwardRef<HTMLElement, Props>(
   }
 );
 
-OutlinedCard.displayName = 'OutlinedCard';
+BasicCard.displayName = 'BasicCard';

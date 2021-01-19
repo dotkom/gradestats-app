@@ -1,0 +1,16 @@
+import React, { forwardRef, HTMLProps } from 'react';
+import cx from 'classnames';
+
+import styles from './link-card.module.scss';
+
+type Props = HTMLProps<HTMLAnchorElement>;
+
+export const LinkCard = forwardRef<HTMLAnchorElement, Props>(({ className, children, ...props }, ref) => {
+  return (
+    <a ref={ref} className={cx(className, styles.card)} {...props}>
+      {children}
+    </a>
+  );
+});
+
+LinkCard.displayName = 'LinkCard';

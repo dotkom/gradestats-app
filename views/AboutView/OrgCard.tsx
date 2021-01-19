@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { GithubOrg } from 'common/api/github/repo';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
-import { OutlinedCard } from 'components/Card/OutlinedCard';
+import { LinkCard } from 'components/Card/LinkCard';
 
 import styles from './org-card.module.scss';
 
@@ -15,13 +15,7 @@ interface Props {
 
 export const OrgCard: FC<Props> = ({ org, className }) => {
   return (
-    <OutlinedCard
-      as="a"
-      className={cx(styles.card, className)}
-      href={org.url}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <LinkCard className={cx(styles.card, className)} href={org.url} target="_blank" rel="noopener noreferrer">
       <div className={styles.imageContainer}>
         <Image className={styles.image} src={org.avatarUrl} alt={`${org.name} logo`} width={100} height={100} />
       </div>
@@ -34,6 +28,6 @@ export const OrgCard: FC<Props> = ({ org, className }) => {
         <Text>{org.publicReposCount}</Text>
       </div>
       <Text className={styles.description}>{org.description}</Text>
-    </OutlinedCard>
+    </LinkCard>
   );
 };
