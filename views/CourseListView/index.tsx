@@ -6,7 +6,7 @@ import Head from 'next/head';
 import React, { ChangeEvent, FC, MutableRefObject } from 'react';
 
 import styles from './course-list-view.module.scss';
-import { CourseItem } from './CourseItem';
+import { CourseItem, CourseListHeader } from './CourseItem';
 
 interface Props {
   searchBarRef: MutableRefObject<HTMLInputElement | null>;
@@ -54,19 +54,13 @@ export const CourseListView: FC<Props> = ({
           value={query}
         />
         {!isLoading && !courses.length && <Text>Ingen resultater</Text>}
+        <CourseListHeader />
         {courses.length ? (
-          <table className={styles.courseList}>
-            <tbody>
-              <tr className={styles.listItem}>
-                <th>Fagkode</th>
-                <th>Navn</th>
-                <th>Snitt</th>
-              </tr>
-              {courses.map((course) => (
-                <CourseItem key={course.code} course={course} />
-              ))}
-            </tbody>
-          </table>
+          <ol className={styles.courseList}>
+            {courses.map((course) => (
+              <CourseItem key={course.code} course={course} />
+            ))}
+          </ol>
         ) : null}
         <InifiniteLoading isLoading={isLoading} triggerNextPage={nextPage} />
       </section>

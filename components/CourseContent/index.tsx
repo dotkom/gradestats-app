@@ -24,7 +24,7 @@ export const CourseContent: FC<Props> = ({ className, course }) => {
       <Text className={styles.text}>{course.learning_goal || 'Ingen info.'}</Text>
       <div className={styles.externalLinks}>
         <a className={styles.link} href={ntnuUrl} target="_blank" rel="noopener noreferrer">
-          {ntnuUrl}
+          Emnesider for {course.code} (NTNU)
         </a>
       </div>
     </article>
