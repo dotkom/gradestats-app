@@ -85,3 +85,15 @@ export const GRADE_COLORS: Record<string, string> = {
 export const getColorForGradeLetter = (gradeLetter: string) => {
   return GRADE_COLORS[gradeLetter];
 };
+
+export type SemesterFilter = 'regular' | 'kont' | 'all';
+
+export const filterGradesBySemesters = (grades: Grade[], semesterFilter: SemesterFilter) => {
+  if (semesterFilter === 'all') {
+    return grades;
+  } else if (semesterFilter == 'regular') {
+    return grades.filter(isNotKont);
+  } else {
+    return grades.filter(isKont);
+  }
+};

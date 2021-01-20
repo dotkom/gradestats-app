@@ -1,21 +1,19 @@
 import Head from 'next/head';
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Tags } from 'components/Tags';
 import { Facts } from 'components/Facts';
 import { CourseContent } from 'components/CourseContent';
 import { CourseCharts } from 'components/CourseCharts';
-import { isKont, isNotKont } from 'common/utils/grades';
+import { filterGradesBySemesters, isKont, SemesterFilter } from 'common/utils/grades';
 import { GradeAverages } from 'components/GradeAverages/GradeAverages';
 import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
 import { Tag } from 'models/Tag';
 import { Heading } from 'components/Typography/Heading';
 import { ReportDialogButton } from 'components/Report/ReportDialogButton';
+import { SemesterMenu } from './SemesterMenu';
 
 import styles from './course-detail-view.module.scss';
-import { Label } from 'components/forms/Label';
-import { Select } from 'components/forms/Select';
-import { Scrolly } from 'components/forms/Scrolly';
 
 interface Props {
   course: Course;
@@ -25,27 +23,14 @@ interface Props {
 
 const ROLLING_AVERAGE_YEARS = 3;
 
-type SemesterFilter = 'regular' | 'kont' | 'all';
-
-const filterGradesBySemesters = (grades: Grade[], semesterFilter: SemesterFilter) => {
-  if (semesterFilter === 'all') {
-    return grades;
-  } else if (semesterFilter == 'regular') {
-    return grades.filter(isNotKont);
-  } else {
-    return grades.filter(isKont);
-  }
-};
-
 export const CourseDetailView: FC<Props> = ({ course, grades, tags }) => {
   const hasGrades = grades.length !== 0;
   const [semesterFilter, setSemesterFilter] = useState<SemesterFilter>('all');
   const filteredGrades = filterGradesBySemesters(grades, semesterFilter);
   const [currentGrade, setCurrentGrade] = useState([...filteredGrades].reverse()[0]);
 
-  const handleSemesterFilterChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value as SemesterFilter;
-    setSemesterFilter(value);
+  const handleSemesterFilterChange = (semesterFilter: SemesterFilter) => {
+    setSemesterFilter(semesterFilter);
   };
 
   const handleSemesterChange = (semesterCode: string) => {
@@ -92,24 +77,13 @@ export const CourseDetailView: FC<Props> = ({ course, grades, tags }) => {
           <Tags courseCode={course.code} tags={tags} />
         </aside>
         {hasGrades ? (
-          <menu className={styles.controls}>
-            <Label className={styles.semesterSelectLabel} label="Semester">
-              <Scrolly values={filteredGrades.map((grade) => grade.semester_code)} onClick={handleSemesterChange} />
-            </Label>
-            {grades.some(isKont) ? (
-              <Label label="Filter">
-                <Select
-                  className={styles.semesterFilterSelect}
-                  name="filter-semesters"
-                  onChange={handleSemesterFilterChange}
-                >
-                  <option value="all">Alle</option>
-                  <option value="regular">Vår/Høst</option>
-                  <option value="kont">Kont</option>
-                </Select>
-              </Label>
-            ) : null}
-          </menu>
+          <SemesterMenu
+            className={styles.controls}
+            hasKont={grades.some(isKont)}
+            grades={filteredGrades}
+            onSemesterChange={handleSemesterChange}
+            onSemesterFilterChange={handleSemesterFilterChange}
+          />
         ) : null}
         <CourseContent course={course} className={styles.content} />
         <ReportDialogButton className={styles.report} courseCode={course.code}>
