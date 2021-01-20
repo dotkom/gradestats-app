@@ -11,6 +11,7 @@ import GradedGraph from './GradedGraph';
 import UngradedGraph from './UngradedGraph';
 import { EventObject } from 'react-alice-carousel/lib/types';
 import { Heading } from 'components/Typography/Heading';
+import { BasicCard } from 'components/Card/BasicCard';
 
 const DynamicAverageChart = dynamic(() => import('./AverageChart'), { ssr: false });
 const DynamicFailedChart = dynamic(() => import('./FailedChart'), { ssr: false });
@@ -75,12 +76,20 @@ export const CourseCharts: FC<Props> = ({ className, grades, currentGrade }) => 
         disableButtonsControls
         items={[
           currentGrade.passed === 0 ? (
-            <GradedGraph key="graded" grade={currentGrade} />
+            <BasicCard key="graded">
+              <GradedGraph grade={currentGrade} />
+            </BasicCard>
           ) : (
-            <UngradedGraph key="ungraded" grade={currentGrade} />
+            <BasicCard key="ungraded">
+              <UngradedGraph grade={currentGrade} />
+            </BasicCard>
           ),
-          <DynamicAverageChart key="averages" grades={grades} currentSemesterCode={currentGrade.semester_code} />,
-          <DynamicFailedChart key="failed" grades={grades} />,
+          <BasicCard key="averages">
+            <DynamicAverageChart grades={grades} currentSemesterCode={currentGrade.semester_code} />
+          </BasicCard>,
+          <BasicCard key="failed">
+            <DynamicFailedChart grades={grades} />
+          </BasicCard>,
         ]}
       />
     </div>
