@@ -7,7 +7,7 @@ type Props = HTMLProps<HTMLAnchorElement>;
 
 export const LinkCard = forwardRef<HTMLAnchorElement, Props>(({ className, children, ...props }, ref) => {
   return (
-    <a ref={ref} className={cx(className, styles.card)} {...props}>
+    <a ref={ref} className={cx(className, styles.card)} {...props} tabIndex={0}>
       {children}
     </a>
   );
