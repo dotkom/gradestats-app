@@ -1,11 +1,6 @@
 .controls {
   position: sticky;
   bottom: -2px;
-
-  @media screen and (min-width: 480px) {
-    margin: 0;
-    padding: var(--spacing-1) 0;
-  }
 }
 
 .controlsContent {
@@ -16,6 +11,12 @@
   padding: var(--spacing-1) var(--main-page-padding-sides) var(--spacing-2);
   background-color: var(--background-color);
   border-top: 1px solid var(--background-color);
+
+  @media screen and (min-width: 800px) {
+    margin: 0;
+    padding: 0;
+    margin-top: calc(#{var(--spacing-2)} * -1);
+  }
 
   &.sticky {
     border-top: 1px solid var(--text-color);
