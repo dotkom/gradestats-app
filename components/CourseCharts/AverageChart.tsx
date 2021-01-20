@@ -2,7 +2,7 @@ import { graphTheme } from 'common/utils/chart';
 import { isKont, isNotKont } from 'common/utils/grades';
 import { Grade } from 'models/Grade';
 import React, { FC, memo } from 'react';
-import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel } from 'victory';
+import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel, VictoryLegend } from 'victory';
 
 interface Props {
   grades: Grade[];
@@ -68,6 +68,20 @@ export const AverageChartComponent: FC<Props> = ({ grades }) => {
           }
         />
       ) : null}
+      <VictoryLegend
+        x={100}
+        y={0}
+        orientation="horizontal"
+        gutter={20}
+        style={{
+          border: { stroke: 'none', fill: 'var(--background-color-offset)' },
+          labels: { borderRadius: 'var(--spacing-1)', fill: 'var(--text-color)', fontSize: 10, padding: 0 },
+        }}
+        data={[
+          { name: 'Vår/Høst', symbol: { fill: 'var(--green)', type: 'diamond' } },
+          { name: 'Kont', symbol: { fill: 'var(--blue)' } },
+        ]}
+      />
     </VictoryChart>
   );
 };
