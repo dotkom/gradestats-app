@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react';
-import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel } from 'victory';
+import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel, VictoryLegend } from 'victory';
 
 import { calculateFailureRate, isKont, isNotKont } from 'common/utils/grades';
 import { Grade } from 'models/Grade';
@@ -41,7 +41,7 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
       />
       <VictoryLine
         data={regularGradesData}
-        style={{ data: { stroke: 'var(--red)', strokeWidth: 2 } }}
+        style={{ data: { stroke: 'var(--green)', strokeWidth: 2 } }}
         interpolation="linear"
         labels={({ datum }) => `${datum.y.toFixed(0)} %`}
         domain={{ y: [0, 100] }}
@@ -55,7 +55,7 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
       />
       <VictoryLine
         data={kontGradesData}
-        style={{ data: { stroke: 'var(--red)', strokeWidth: 2 } }}
+        style={{ data: { stroke: 'var(--blue)', strokeWidth: 2 } }}
         interpolation="linear"
         labels={({ datum }) => `${datum.y.toFixed(0)} %`}
         domain={{ y: [0, 100] }}
@@ -66,6 +66,20 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
             dy={-10}
           />
         }
+      />
+      <VictoryLegend
+        x={100}
+        y={0}
+        orientation="horizontal"
+        gutter={20}
+        style={{
+          border: { stroke: 'none', fill: 'var(--background-color-offset)' },
+          labels: { borderRadius: 'var(--spacing-1)', fill: 'var(--text-color)', fontSize: 10, padding: 0 },
+        }}
+        data={[
+          { name: 'Vår/Høst', symbol: { fill: 'var(--green)', type: 'diamond' } },
+          { name: 'Kont', symbol: { fill: 'var(--blue)' } },
+        ]}
       />
     </VictoryChart>
   );
