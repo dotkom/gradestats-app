@@ -19,12 +19,6 @@ export const GradedGraphComponent: FC<Props> = ({ grade }) => {
         bottom: 32,
         right: 32,
       }}
-      style={{
-        parent: {
-          border: '1px solid var(--background-color-offset)',
-          background: 'var(--background-color)',
-        },
-      }}
     >
       <VictoryAxis
         tickFormat={['A', 'B', 'C', 'D', 'E', 'F']}

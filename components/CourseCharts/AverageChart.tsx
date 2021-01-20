@@ -29,12 +29,6 @@ export const AverageChartComponent: FC<Props> = ({ grades }) => {
         bottom: 10,
         right: 5,
       }}
-      style={{
-        parent: {
-          border: '1px solid var(--background-color-offset)',
-          background: 'var(--background-color)',
-        },
-      }}
     >
       <VictoryAxis tickFormat={ticks} style={{ grid: { stroke: 'none' } }} />
 

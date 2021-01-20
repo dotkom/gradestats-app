@@ -8,7 +8,6 @@ import {
 } from 'common/utils/grades';
 import { formatPercentage } from 'common/utils/math';
 import { LinkCard } from 'components/Card/LinkCard';
-import { StatValue } from 'components/Stat/Stat';
 import { Text } from 'components/Typography/Text';
 import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
