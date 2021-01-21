@@ -80,6 +80,7 @@ export const CourseDetailView: FC<Props> = ({ course, grades, tags }) => {
           <SemesterMenu
             className={styles.controls}
             hasKont={grades.some(isKont)}
+            currentSemester={currentGrade.semester_code}
             grades={filteredGrades}
             onSemesterChange={handleSemesterChange}
             onSemesterFilterChange={handleSemesterFilterChange}

@@ -1,6 +1,5 @@
 .scrollOuter {
   overflow-x: scroll;
-  direction: rtl;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
@@ -11,7 +10,10 @@
 
 .scrollInner {
   display: flex;
-  gap: var(--spacing-2);
+
+  .scrollButton:not(:last-child) {
+    margin-right: var(--spacing-2);
+  }
 }
 
 .scrollButton {

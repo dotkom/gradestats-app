@@ -16,6 +16,32 @@
   &:hover {
     border: solid 1px var(--text-color);
   }
+
+  &:disabled,
+  &.disabled {
+    cursor: auto;
+  }
+
+  &:focus,
+  &:focus-visible,
+  &:active,
+  &.active {
+    border: solid 1px var(--text-color);
+  }
+
+  &.active,
+  &:active {
+    &.inverted {
+      color: var(--inverted-text-color);
+      background-color: var(--inverted-background-color-offset);
+      outline: 0;
+    }
+  }
+
+  &:not(:focus, :focus-visible, :active, .active) {
+    border: none;
+    outline: 0;
+  }
 }
 
 .linkVariant {
