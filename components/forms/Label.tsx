@@ -4,15 +4,18 @@ import cx from 'classnames';
 import styles from './label.module.scss';
 import { Text } from 'components/Typography/Text';
 
-interface OwnProps {
+type ElementProps = HTMLProps<HTMLLIElement>;
+
+type Props = ElementProps & {
   label: string;
   description?: string;
-  as?: keyof JSX.IntrinsicElements;
-}
+  as?: string;
+};
 
-type Props = HTMLProps<HTMLLabelElement> & OwnProps;
-
-export const Label: FC<Props> = ({ as: Element = 'label', className, label, description, children, ...props }) => {
+export const Label: FC<Props> = ({ as: Element = 'label', className, label, description, children, ...rest }) => {
+  // just a hack to not trip of typescript with the props of the `as` element.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const props = rest as any;
   return (
     <Element className={cx(styles.label, className)} {...props}>
       <Text>{label}</Text>
