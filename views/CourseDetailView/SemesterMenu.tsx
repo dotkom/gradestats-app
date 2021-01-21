@@ -13,11 +13,19 @@ interface Props {
   className?: string;
   hasKont: boolean;
   grades: Grade[];
+  currentSemester: string;
   onSemesterChange: (semesterCode: string) => void;
   onSemesterFilterChange: (semesterFilter: SemesterFilter) => void;
 }
 
-export const SemesterMenu: FC<Props> = ({ className, grades, onSemesterChange, onSemesterFilterChange, hasKont }) => {
+export const SemesterMenu: FC<Props> = ({
+  className,
+  currentSemester,
+  grades,
+  onSemesterChange,
+  onSemesterFilterChange,
+  hasKont,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isStickied, setIsStickied] = useState(false);
 
@@ -45,8 +53,12 @@ export const SemesterMenu: FC<Props> = ({ className, grades, onSemesterChange, o
           [styles.sticky]: isStickied,
         })}
       >
-        <Label className={styles.semesterSelectLabel} label="Semester">
-          <Scrolly values={grades.map((grade) => grade.semester_code)} onClick={onSemesterChange} />
+        <Label as="div" className={styles.semesterSelectLabel} label="Semester">
+          <Scrolly
+            selectedValue={currentSemester}
+            values={grades.map((grade) => grade.semester_code)}
+            onClick={onSemesterChange}
+          />
         </Label>
         {hasKont ? (
           <Label label="Filter">
