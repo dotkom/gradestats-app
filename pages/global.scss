@@ -73,6 +73,14 @@
   --grade-passed-old: #00cc00;
   --grade-not-passed-old: #cc0000;
 
+  // Colors for browsers without prefers-color-scheme support
+  --text-color: var(--white-base);
+  --background-color: var(--black-base);
+  --background-color-offset: var(--black-base-offset);
+  --inverted-text-color: var(--black-text);
+  --inverted-background-color: var(--white-base);
+  --inverted-background-color-offset: var(--white-offset);
+
   @media (prefers-color-scheme: dark) {
     --text-color: var(--white-base);
     --background-color: var(--black-base);
