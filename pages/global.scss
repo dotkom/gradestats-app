@@ -77,18 +77,27 @@
     --text-color: var(--white-base);
     --background-color: var(--black-base);
     --background-color-offset: var(--black-base-offset);
+    --inverted-text-color: var(--black-text);
+    --inverted-background-color: var(--white-base);
+    --inverted-background-color-offset: var(--white-offset);
   }
 
   @media (prefers-color-scheme: light) {
-    --background-color: var(--white-base);
     --text-color: var(--black-text);
+    --background-color: var(--white-base);
     --background-color-offset: var(--white-offset);
+    --inverted-text-color: var(--white-base);
+    --inverted-background-color: var(--black-base);
+    --inverted-background-color-offset: var(--black-base-offset);
   }
 
   [data-reach-dialog-content] {
-    --background-color: var(--white-base);
     --text-color: var(--black-text);
+    --background-color: var(--white-base);
     --background-color-offset: var(--white-offset);
+    --inverted-text-color: var(--white-base);
+    --inverted-background-color: var(--black-base);
+    --inverted-background-color-offset: var(--black-base-offset);
   }
 }
 
