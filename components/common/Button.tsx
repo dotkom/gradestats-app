@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, FC } from 'react';
+import React, { ButtonHTMLAttributes, forwardRef } from 'react';
 
 import cx from 'classnames';
 
@@ -17,41 +17,49 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   invertedActive?: boolean;
 }
 
-export const Button: FC<Props> = ({
-  className,
-  disableTracking = false,
-  type = 'button',
-  variant = 'button',
-  onClick,
-  children,
-  disabled = false,
-  active = false,
-  invertedActive = false,
-  ...props
-}) => {
-  const handleClick: typeof onClick = (...params) => {
-    onClick?.(...params);
-    if (!disableTracking) {
-      const value = extractTextFromElement(children);
-      trackEvent({ action: 'click', category: 'button', value });
-    }
-  };
+export const Button = forwardRef<HTMLButtonElement, Props>(
+  (
+    {
+      className,
+      disableTracking = false,
+      type = 'button',
+      variant = 'button',
+      onClick,
+      children,
+      disabled = false,
+      active = false,
+      invertedActive = false,
+      ...props
+    },
+    ref
+  ) => {
+    const handleClick: typeof onClick = (...params) => {
+      onClick?.(...params);
+      if (!disableTracking) {
+        const value = extractTextFromElement(children);
+        trackEvent({ action: 'click', category: 'button', value });
+      }
+    };
 
-  return (
-    <button
-      className={cx(className, styles.base, {
-        [styles.buttonVariant]: variant === 'button',
-        [styles.linkVariant]: variant === 'link',
-        [styles.disabled]: disabled,
-        [styles.active]: active,
-        [styles.inverted]: invertedActive,
-      })}
-      type={type}
-      onClick={handleClick}
-      disabled={disabled}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+    return (
+      <button
+        className={cx(className, styles.base, {
+          [styles.buttonVariant]: variant === 'button',
+          [styles.linkVariant]: variant === 'link',
+          [styles.disabled]: disabled,
+          [styles.active]: active,
+          [styles.inverted]: invertedActive,
+        })}
+        ref={ref}
+        type={type}
+        onClick={handleClick}
+        disabled={disabled}
+        {...props}
+      >
+        {children}
+      </button>
+    );
+  }
+);
+
+Button.displayName = 'Button';
