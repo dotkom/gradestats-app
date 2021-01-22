@@ -1,0 +1,11 @@
+.menu {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: var(--spacing-4);
+  row-gap: var(--spacing-1);
+  margin-bottom: var(--spacing-4);
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

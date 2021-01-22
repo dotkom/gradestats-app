@@ -4,6 +4,11 @@
   grid-template-columns: 1fr;
 }
 
+.searchContainer {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
 .searchBar {
   margin: var(--spacing-2) 0;
 }
@@ -25,4 +30,15 @@
 .loadingContainer {
   margin: var(--spacing-4) auto;
   text-align: center;
+}
+
+.toggleFiltersButton {
+  height: fit-content;
+  margin: auto 0;
+  padding: var(--spacing-2);
+}
+
+.filtersIcon {
+  height: 20px;
+  width: 20px;
 }

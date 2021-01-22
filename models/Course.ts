@@ -1,4 +1,5 @@
 import { Grade } from 'models/Grade';
+
 export interface Course {
   id: number;
   norwegian_name: string;
@@ -30,3 +31,50 @@ export interface Course {
 export interface CourseWithGrades extends Course {
   grades: Grade[];
 }
+
+export type CourseSort =
+  | 'ranking'
+  | 'nameDesc'
+  | 'nameAsc'
+  | 'courseCodeDesc'
+  | 'courseCodeAsc'
+  | 'averageDesc'
+  | 'averageAsc'
+  | 'attendeeCountDesc'
+  | 'attendeeCountAsc';
+
+export const COURSE_SORT_VALUES: CourseSort[] = [
+  'ranking',
+  'nameDesc',
+  'nameAsc',
+  'courseCodeDesc',
+  'courseCodeAsc',
+  'averageDesc',
+  'averageAsc',
+  'attendeeCountDesc',
+  'attendeeCountAsc',
+];
+
+export const COURSE_ORDERING: { [Order in CourseSort]: string } = {
+  ranking: '-watson_rank,-attendee_count',
+  nameDesc: '-norwegian_name,-watson_rank,-attendee_count',
+  nameAsc: 'norwegian_name,-watson_rank,-attendee_count',
+  courseCodeDesc: '-code,-watson_rank,-attendee_count',
+  courseCodeAsc: 'code,-watson_rank,-attendee_count',
+  averageDesc: '-average,-watson_rank,-attendee_count',
+  averageAsc: 'average,-watson_rank,-attendee_count',
+  attendeeCountDesc: '-attendee_count,-watson_rank,-attendee_count',
+  attendeeCountAsc: 'attendee_count,-watson_rank,-attendee_count',
+};
+
+export const COURSE_SORT_NAMES: { [Order in CourseSort]: string } = {
+  ranking: 'Relevans',
+  nameDesc: 'Emnenavn (synkende)',
+  nameAsc: 'Emnenavn (stigende)',
+  courseCodeDesc: 'Emnekode (synkende)',
+  courseCodeAsc: 'Emnekode (stigende)',
+  averageDesc: 'Snitt (synkende)',
+  averageAsc: 'Snitt (stigende)',
+  attendeeCountDesc: 'Antall studenter (synkende)',
+  attendeeCountAsc: 'Antall studenter (stigende)',
+};

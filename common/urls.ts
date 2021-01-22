@@ -8,10 +8,21 @@ interface ListParams {
 interface CourseListParams extends ListParams {
   query?: string;
   ordering?: string;
+  facultyId?: number;
+  departmentId?: number;
 }
 
-export const getCourseListApiUrl = ({ limit, offset = 0, query = '', ordering = '-watson_rank' }: CourseListParams) => {
-  return `${GRADES_API_URL}/api/v2/courses/?limit=${limit}&offset=${offset}&query=${query}&ordering=${ordering}`;
+export const getCourseListApiUrl = ({
+  limit,
+  offset = 0,
+  query = '',
+  ordering = '-watson_rank',
+  departmentId,
+  facultyId,
+}: CourseListParams) => {
+  return `${GRADES_API_URL}/api/v2/courses/?limit=${limit}&offset=${offset}&query=${query}&ordering=${ordering}${
+    departmentId ? `&department=${departmentId}` : ''
+  }${facultyId ? `&faculty_code=${facultyId}` : ''}`;
 };
 export const getCourseDetailApiUrl = (courseCode: string) => {
   return `${GRADES_API_URL}/api/v2/courses/${courseCode}/`;
