@@ -7,20 +7,22 @@ import React, { FC } from 'react';
 import { pageView, trackEvent } from 'common/analytics';
 import { SENTRY_DSN } from 'common/constants';
 import { Navbar } from 'components/Navbar';
+import { Alert } from 'components/Alert';
+import { Footer } from 'components/Footer';
+import { WelcomeMessage } from 'components/Alert/WelcomeMessage';
+
+import 'intersection-observer';
 
 import '@reach/dialog/styles.css';
 import 'react-alice-carousel/lib/scss/alice-carousel.scss';
 import 'cssremedy/css/remedy.css';
 import 'cssremedy/css/reminders.css';
 import 'cssremedy/css/quotes.css';
-import './global.scss';
+import 'common/styles/global.scss';
+import 'common/styles/resets.scss';
+import 'common/styles/carousel.scss';
 
 import styles from './_app.module.scss';
-import { Alert } from 'components/Alert';
-import { Footer } from 'components/Footer';
-import { WelcomeMessage } from 'components/Alert/WelcomeMessage';
-
-import 'intersection-observer';
 
 Sentry.init({
   dsn: SENTRY_DSN ?? undefined,
