@@ -41,7 +41,7 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
       />
       <VictoryLine
         data={regularGradesData}
-        style={{ data: { stroke: 'var(--green)', strokeWidth: 2 } }}
+        style={{ data: { stroke: 'var(--red)', strokeWidth: 2 } }}
         interpolation="linear"
         labels={({ datum }) => `${datum.y.toFixed(0)} %`}
         domain={{ y: [0, 100] }}
@@ -55,7 +55,7 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
       />
       <VictoryLine
         data={kontGradesData}
-        style={{ data: { stroke: 'var(--blue)', strokeWidth: 2 } }}
+        style={{ data: { stroke: 'var(--purple)', strokeWidth: 2 } }}
         interpolation="linear"
         labels={({ datum }) => `${datum.y.toFixed(0)} %`}
         domain={{ y: [0, 100] }}
@@ -77,8 +77,8 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
           labels: { borderRadius: 'var(--spacing-1)', fill: 'var(--text-color)', fontSize: 10, padding: 0 },
         }}
         data={[
-          { name: 'Vår/Høst', symbol: { fill: 'var(--green)', type: 'diamond' } },
-          { name: 'Kont', symbol: { fill: 'var(--blue)' } },
+          { name: 'Vår/Høst', symbol: { fill: 'var(--red)', type: 'diamond' } },
+          { name: 'Kont', symbol: { fill: 'var(--purple)' } },
         ]}
       />
     </VictoryChart>
