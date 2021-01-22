@@ -12,6 +12,7 @@ import UngradedGraph from './UngradedGraph';
 import { EventObject } from 'react-alice-carousel/lib/types';
 import { Heading } from 'components/Typography/Heading';
 import { BasicCard } from 'components/Card/BasicCard';
+import { CarouselDot } from './CarouselDot';
 
 const DynamicAverageChart = dynamic(() => import('./AverageChart'), { ssr: false });
 const DynamicFailedChart = dynamic(() => import('./FailedChart'), { ssr: false });
@@ -74,6 +75,7 @@ export const CourseCharts: FC<Props> = ({ className, grades, currentGrade }) => 
         activeIndex={TAB_INDEX[tab]}
         onSlideChanged={handleSlideChange}
         disableButtonsControls
+        renderDotsItem={CarouselDot}
         items={[
           currentGrade.passed === 0 ? (
             <BasicCard key="graded">

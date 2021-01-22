@@ -1,0 +1,26 @@
+.alice-carousel__dots {
+  margin: 0;
+}
+
+.alice-carousel__dots-item {
+  padding: 9px 12px 4px;
+  cursor: pointer;
+
+  &:hover {
+    .alice-carousel__dots-item-circle {
+      background-color: var(--purple);
+    }
+  }
+}
+
+.alice-carousel__stage {
+  margin-left: calc(#{var(--spacing-2)} * -1);
+  margin-right: calc(#{var(--spacing-2)} * -1);
+  width: calc(100% + #{var(--spacing-4)});
+}
+
+.alice-carousel__stage-item {
+  overflow: hidden;
+  padding-left: var(--spacing-2);
+  padding-right: var(--spacing-2);
+}
