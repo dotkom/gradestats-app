@@ -1,5 +1,7 @@
 .base {
   background-color: unset;
+  color: var(--text-color);
+  fill: var(--text-color);
 
   &:hover {
     cursor: pointer;
@@ -32,6 +34,7 @@
   &.active,
   &:active {
     &.inverted {
+      fill: var(--inverted-text-color);
       color: var(--inverted-text-color);
       background-color: var(--inverted-background-color-offset);
       outline: 0;
