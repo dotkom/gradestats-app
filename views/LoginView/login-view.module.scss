@@ -4,7 +4,8 @@
 }
 
 .title {
-  margin-bottom: var(--spacing-4);
+  margin: var(--spacing-8) 0 var(--spacing-4);
+  text-align: center;
 }
 
 .paragraphTitle {
@@ -24,10 +25,11 @@
   height: var(--spacing-8);
   width: min-content;
   padding: var(--spacing-2) var(--spacing-4);
-  margin: var(--spacing-2) 0;
+  margin: var(--spacing-6) auto;
   border: none;
   white-space: nowrap;
   font-size: var(--font-size-sm);
   font-weight: 600;
   font-style: normal;
+  border-radius: var(--spacing-1);
 }
