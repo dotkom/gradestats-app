@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import s from './grade-averages.module.scss';
 import { GradedStat } from 'components/Stat/GradedStat';

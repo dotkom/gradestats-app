@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { AnimatedGraphIcon } from 'components/Graphics/AnimatedGraphIcon';
 import { Heading } from 'components/Typography/Heading';

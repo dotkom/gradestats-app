@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useUser } from 'common/hooks/useUser';
 import { requestTIAScrapeCourses } from 'common/api/tia';
 

@@ -1,4 +1,4 @@
-import React, { ComponentProps, FC } from 'react';
+import { ComponentProps, FC } from 'react';
 import dynamic from 'next/dynamic';
 import cx from 'classnames';
 

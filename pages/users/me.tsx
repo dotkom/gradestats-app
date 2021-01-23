@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import type { LoggedInUser } from 'models/User';
 import { MyUserView } from 'views/MyUserView';

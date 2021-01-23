@@ -1,7 +1,7 @@
 import { graphTheme } from 'common/utils/chart';
 import { getColorForGradeLetter } from 'common/utils/grades';
 import { Grade } from 'models/Grade';
-import React, { FC, memo } from 'react';
+import { FC, memo } from 'react';
 import { VictoryBar, VictoryChart, VictoryAxis } from 'victory';
 
 interface Props {

@@ -3,7 +3,7 @@ import { useDialog } from 'common/hooks/useDialog';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import styles from './welcome-message.module.scss';
 

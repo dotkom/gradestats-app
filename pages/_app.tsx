@@ -2,7 +2,7 @@ import * as Sentry from '@sentry/node';
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { pageView, trackEvent } from 'common/analytics';
 import { SENTRY_DSN } from 'common/constants';

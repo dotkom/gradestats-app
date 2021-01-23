@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { requestCreateCourseTag } from 'common/api/tags';
 import { useUser } from 'common/hooks/useUser';
 import { Button } from 'components/common/Button';

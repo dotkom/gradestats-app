@@ -1,7 +1,7 @@
 import { useDialog } from 'common/hooks/useDialog';
 import { Button } from 'components/common/Button';
 import dynamic from 'next/dynamic';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 const DynamicReportDialog = dynamic(() => import('./ReportDialog'), { ssr: false });
 

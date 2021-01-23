@@ -5,7 +5,7 @@ import { Course, CourseSort } from 'models/Course';
 import { Department } from 'models/Department';
 import { Faculty } from 'models/Faculty';
 import Head from 'next/head';
-import React, { ChangeEvent, FC, MutableRefObject, useState } from 'react';
+import { ChangeEvent, FC, MutableRefObject, useState } from 'react';
 import { CourseItem, CourseListHeader } from './CourseItem';
 
 import styles from './course-list-view.module.scss';

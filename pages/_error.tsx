@@ -1,5 +1,5 @@
 // https://github.com/zeit/next.js/blob/b9c71d373c50f2cb7ba7830fdb2c202f9ad200c4/examples/with-sentry-simple/pages/_error.js
-import React, { FC } from 'react';
+import { FC } from 'react';
 import type { NextPageContext } from 'next';
 import DefaultErrorPage, { ErrorProps } from 'next/error';
 import * as Sentry from '@sentry/node';

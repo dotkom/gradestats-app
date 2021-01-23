@@ -5,7 +5,7 @@ import {
   mapGradeAverageToLetter,
 } from 'common/utils/grades';
 import Link from 'next/link';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import cx from 'classnames';

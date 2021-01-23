@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import Carousel from 'react-alice-carousel';
 import cx from 'classnames';
 
