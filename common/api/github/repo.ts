@@ -7,6 +7,7 @@ const api = new Octokit({ auth: GITHUB_TOKEN });
 const ORG = 'dotkom';
 type GradestatsRepo = 'gradestats' | 'gradestats-app';
 const REPOS: GradestatsRepo[] = ['gradestats', 'gradestats-app'];
+const EXCLUDED_USERS = ['dotkom-build'];
 
 const getGithubRepoByName = async (name: GradestatsRepo) => {
   const response = await api.repos.get({ owner: ORG, repo: name });
@@ -51,7 +52,7 @@ export const getGithubRepos = async () => {
 const getContributorsForRepo = async (name: GradestatsRepo) => {
   const response = await api.repos.listContributors({ owner: ORG, repo: name });
   if (response.status === 200) {
-    return response.data;
+    return response.data.filter((user) => !EXCLUDED_USERS.includes(user.login as string));
   }
   throw new Error(`Could not fetch contributors from Github`);
 };
