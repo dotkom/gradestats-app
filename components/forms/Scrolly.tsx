@@ -1,5 +1,5 @@
 import { Button } from 'components/common/Button';
-import React, { createRef, FC, MouseEvent, useMemo, useRef } from 'react';
+import { createRef, FC, MouseEvent, useMemo, useRef } from 'react';
 import cx from 'classnames';
 
 import styles from './scrolly.module.scss';

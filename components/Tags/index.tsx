@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useUser } from 'common/hooks/useUser';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';

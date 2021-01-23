@@ -12,7 +12,7 @@ import { Text } from 'components/Typography/Text';
 import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
 import Link from 'next/link';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import useSWR from 'swr';
 import cx from 'classnames';
 

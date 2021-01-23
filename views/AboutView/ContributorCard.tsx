@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import cx from 'classnames';
 import { GithubUser } from 'common/api/github/repo';
 import { Heading } from 'components/Typography/Heading';

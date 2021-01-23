@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { Button } from 'components/common/Button';
 import { Tag } from 'models/Tag';

@@ -7,7 +7,7 @@ import {
   GithubRepo,
 } from 'common/api/github/repo';
 import { GetStaticProps } from 'next';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { AboutView } from 'views/AboutView';
 
 interface StaticProps {

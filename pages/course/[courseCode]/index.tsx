@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { BUILD_TIME_COURSE_LIMIT } from 'common/constants';
 import {

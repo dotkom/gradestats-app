@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { getCourseGradeListApiUrl, getCourseListApiUrl } from 'common/urls';
 import { fetcher, ListResponse } from 'common/fetcher';

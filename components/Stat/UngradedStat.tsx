@@ -1,6 +1,6 @@
 import { formatPercentage } from 'common/utils/math';
 import { Stat } from 'components/Stat/Stat';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 interface Props {
   label: string;

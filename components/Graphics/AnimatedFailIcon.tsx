@@ -1,4 +1,4 @@
-import React, { FC, SVGProps } from 'react';
+import { FC, SVGProps } from 'react';
 import cx from 'classnames';
 
 import styles from './animated-fail-icon.module.scss';

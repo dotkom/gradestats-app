@@ -1,7 +1,7 @@
 import { useIntersection } from 'common/hooks/useIntersection';
 import { AnimatedGraphIcon } from 'components/Graphics/AnimatedGraphIcon';
 import { Text } from 'components/Typography/Text';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import styles from './infinite-loading.module.scss';
 

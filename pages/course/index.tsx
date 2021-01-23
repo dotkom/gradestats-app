@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo, useRef, useState } from 'react';
+import { FC, useCallback, useMemo, useRef, useState } from 'react';
 import { useSWRInfinite } from 'swr';
 
 import { fetcher, ListResponse } from 'common/fetcher';

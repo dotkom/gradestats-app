@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 import { getDepartmentListApiUrl } from 'common/urls';
 import { fetcher } from 'common/fetcher';

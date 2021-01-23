@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 
 import { Grade } from 'models/Grade';

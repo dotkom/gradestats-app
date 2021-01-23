@@ -1,4 +1,4 @@
-import React, { forwardRef, HTMLProps } from 'react';
+import { forwardRef, HTMLProps } from 'react';
 import cx from 'classnames';
 
 import styles from './select.module.scss';

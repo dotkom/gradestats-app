@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Tags } from 'components/Tags';
 import { Facts } from 'components/Facts';
 import { CourseContent } from 'components/CourseContent';

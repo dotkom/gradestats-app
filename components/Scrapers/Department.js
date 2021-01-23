@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const Department = ({ name, disabled, loading, onClick, isDone }) => {
   return (
     <>

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useEffect, useMemo } from 'react';
+import { ChangeEvent, FC, useEffect, useMemo } from 'react';
 
 import { Label } from 'components/forms/Label';
 import { Select } from 'components/forms/Select';
