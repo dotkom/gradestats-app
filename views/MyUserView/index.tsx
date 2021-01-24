@@ -3,6 +3,7 @@ import { Button } from 'components/common/Button';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import { LoggedInUser } from 'models/User';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 
@@ -25,6 +26,11 @@ export const MyUserView: FC<Props> = ({ user }) => {
       <Heading as="h1">Min side</Heading>
       <Heading as="h2">Logget inn som: {user.fullName}</Heading>
       <Text>E-post: {user.email}</Text>
+      {user?.isStaff && (
+        <Link href="/dashboard">
+          <a>Dashboard</a>
+        </Link>
+      )}
       <Button className={styles.logout} onClick={handleLogOut}>
         Logg ut
       </Button>

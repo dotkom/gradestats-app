@@ -21,7 +21,7 @@ export class Requests {
     this.useAuthentication = useAuthentication;
   }
 
-  fromSession = async (context: GetServerSidePropsContext) => {
+  static fromSession = async (context: GetServerSidePropsContext) => {
     const user = await getUser(context);
     return new Requests({ accessToken: user?.accessToken });
   };
