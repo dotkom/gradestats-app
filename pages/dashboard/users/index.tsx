@@ -42,7 +42,7 @@ export const getServerSideProps = withUser<ServerProps>(async (ctx, user) => {
   const props = {
     initialUsersResponse,
   };
-  if (user?.email !== 'oleast@stud.ntnu.no') {
+  if (user?.isStaff) {
     return {
       redirect: {
         permanent: false,
