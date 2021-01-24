@@ -14,8 +14,7 @@ import { Alert } from 'components/Alert';
 import { Footer } from 'components/Footer';
 import { WelcomeMessage } from 'components/Alert/WelcomeMessage';
 
-import 'intersection-observer';
-import 'core-js/features/object/from-entries';
+import 'common/polyfills';
 
 import '@reach/dialog/styles.css';
 import 'react-alice-carousel/lib/scss/alice-carousel.scss';
