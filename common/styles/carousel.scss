@@ -3,6 +3,8 @@
 }
 
 .alice-carousel__dots-item {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
   padding: 9px 12px 4px;
   cursor: pointer;
 
