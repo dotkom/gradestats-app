@@ -1,7 +1,7 @@
 import { FC, useCallback, useMemo, useRef, useState } from 'react';
 import { useSWRInfinite } from 'swr';
 
-import { ListResponse } from 'common/requests';
+import { ListResponse, requests } from 'common/requests';
 import { getCourseListApiUrl, getDepartmentListApiUrl, getFacultyListApiUrl } from 'common/urls';
 import { useQueryParam } from 'common/hooks/useQueryParam';
 import { useIsomorphicLayoutEffect } from 'common/hooks/useIsomorphicLayoutEffect';
@@ -86,8 +86,8 @@ const CourseListPage: FC<StaticProps> = ({ departments, faculties }) => {
 
 export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   const [departmentsResponse, facultiesResponse] = await Promise.all([
-    fetcher<ListResponse<Department>>(getDepartmentListApiUrl()),
-    fetcher<ListResponse<Faculty>>(getFacultyListApiUrl()),
+    requests.get<ListResponse<Department>>(getDepartmentListApiUrl()),
+    requests.get<ListResponse<Faculty>>(getFacultyListApiUrl()),
   ]);
   const departments = departmentsResponse.results;
   const faculties = facultiesResponse.results;
