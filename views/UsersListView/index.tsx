@@ -1,7 +1,8 @@
+import Head from 'next/head';
+import { FC } from 'react';
+
 import { InifiniteLoading } from 'components/Loading/InfiniteLoading';
 import { GradesUser } from 'models/User';
-import Head from 'next/head';
-import React, { FC } from 'react';
 import { UserItem, UsersListHeader } from './UserItem';
 
 import styles from './users-list-view.module.scss';

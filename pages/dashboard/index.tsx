@@ -1,9 +1,10 @@
+import { FC } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+
 import { withUser } from 'common/auth/ssr';
 import { Heading } from 'components/Typography/Heading';
 import { LoggedInUser } from 'models/User';
-import Head from 'next/head';
-import Link from 'next/link';
-import React, { FC } from 'react';
 
 interface ServerProps {
   user: LoggedInUser | null;

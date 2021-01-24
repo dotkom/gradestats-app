@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 
 import type { GradesUser } from 'models/User';
 import { withUser } from 'common/auth/ssr';
