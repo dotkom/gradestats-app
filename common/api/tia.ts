@@ -1,5 +1,5 @@
 import { getTIAScrapeCoursesUrl } from '../urls';
-import { poster } from 'common/fetcher';
+import { requestsWithAuth } from 'common/requests';
 
 interface Data {
   username: string;
@@ -8,13 +8,13 @@ interface Data {
   skip: number;
 }
 
-export const requestTIAScrapeCourses = async ({ username, password, limit, skip }: Data, accessToken: string) => {
+export const requestTIAScrapeCourses = async ({ username, password, limit, skip }: Data) => {
   const data = {
     username,
     password,
     limit,
     skip,
   };
-  const response = await poster(getTIAScrapeCoursesUrl(), data, accessToken);
+  const response = await requestsWithAuth.post(getTIAScrapeCoursesUrl(), data);
   return response;
 };

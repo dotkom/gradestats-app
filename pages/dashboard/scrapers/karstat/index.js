@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import useSWR from 'swr';
 import { getDepartmentListApiUrl } from 'common/urls';
-import { fetcher } from 'common/fetcher';
-import { useUser } from 'common/hooks/useUser';
 import { requestKarstatScrapeGradeReport } from 'common/api/karstat';
 import { Department } from 'components/Scrapers/Department';
 
 const KarstatScraperPage = () => {
-  const [user] = useUser();
-  const { data: departmentsResponse } = useSWR(getDepartmentListApiUrl(), fetcher);
+  const { data: departmentsResponse } = useSWR(getDepartmentListApiUrl());
   const [messages, setMessages] = useState([]);
   const [currentDepartmentId, setCurrentDepartmentId] = useState(null);
   const [completedIds, setCompletedIds] = useState([]);
@@ -45,10 +42,7 @@ const KarstatScraperPage = () => {
 
   const scrapeGradeReportForDepartment = async (departmentId) => {
     setCurrentDepartmentId(departmentId);
-    const response = await requestKarstatScrapeGradeReport(
-      { username, password, departmentId, year, semester },
-      user?.token.accessToken
-    );
+    const response = await requestKarstatScrapeGradeReport({ username, password, departmentId, year, semester });
     if (response.status === 200) {
       addToCompletedIds(departmentId);
     } else if (response.status === 400) {

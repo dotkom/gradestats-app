@@ -8,7 +8,7 @@ import {
   getCourseTagListApiUrl,
   getCourseGradeListApiUrl,
 } from 'common/urls';
-import { fetcher, ListResponse } from 'common/fetcher';
+import { ListResponse, requests } from 'common/requests';
 import { sortSemesters } from 'common/utils/semester';
 
 import { CourseDetailView } from 'views/CourseDetailView';
@@ -55,7 +55,7 @@ const CourseDetailPage: FC<StaticProps> = ({ courseResponse, gradesResponse, tag
 export const getStaticPaths: GetStaticPaths<QueryParams> = async () => {
   const limit = BUILD_TIME_COURSE_LIMIT;
   const ordering = '-attendee_count';
-  const response = await fetcher<ListResponse<Course>>(getCourseListApiUrl({ limit, ordering }));
+  const response = await requests.get<ListResponse<Course>>(getCourseListApiUrl({ limit, ordering }));
   const courseCodes = response.results.map((course) => course.code);
   const paths = courseCodes.map((courseCode) => ({ params: { courseCode } }));
   return {
@@ -67,9 +67,9 @@ export const getStaticPaths: GetStaticPaths<QueryParams> = async () => {
 export const getStaticProps: GetStaticProps<StaticProps, QueryParams> = async ({ params }) => {
   const { courseCode } = params as QueryParams;
   const [courseResponse, gradesResponse, tagsResponse] = await Promise.all([
-    fetcher<Course>(getCourseDetailApiUrl(courseCode)),
-    fetcher<ListResponse<Grade>>(getCourseGradeListApiUrl(courseCode)),
-    fetcher<ListResponse<Tag>>(getCourseTagListApiUrl(courseCode)),
+    requests.get<Course>(getCourseDetailApiUrl(courseCode)),
+    requests.get<ListResponse<Grade>>(getCourseGradeListApiUrl(courseCode)),
+    requests.get<ListResponse<Tag>>(getCourseTagListApiUrl(courseCode)),
   ]);
   return {
     revalidate: 60 * 60, // Revalidate once each hour.

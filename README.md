@@ -34,7 +34,6 @@ Variables have to be added in a lot of places to make everything work correctly!
 
 Private variables have to be set in the runtime environment to be kept private.
 
-
 ### List of variables
 
 ```bash
@@ -47,13 +46,13 @@ NEXT_PUBLIC_SENTRY_DSN # Default = undefined
 # Google analytics tracking ID
 NEXT_PUBLIC_GA_TRACKING_ID # Default = __REPLACE_ME__
 # Actual URL of the hosted project. Important for linking. for prod it should be https://grades.no
-NEXT_PRIVATE_CANONICAL_URL # Default = http://localhost:3000
+NEXT_PUBLIC_CANONICAL_URL # Default = http://localhost:3000
+# Redirect url for next auth
+NEXTAUTH_URL #
 # Client ID for dataporten/FEIDE client for OIDC
 NEXT_PUBLIC_FEIDE_CLIENT_ID # Default = undefined
 # Client Secret for dataporten/FEIDE client for OIDC. HAS TO BE KEPT SECRET
 NEXT_PRIVATE_FEIDE_CLIENT_SECRET # Default = undefined
 # Base url for OIDC authentication (for auto discovery)
 NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT # Default = https://auth.dataporten.no
-# Secret for encryting cookie for session. HAS TO BE KEPT SECRET
-NEXT_PRIVATE_SESSION_SECRET # Default = "some_random_string"
 ```

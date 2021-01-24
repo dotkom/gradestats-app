@@ -1,6 +1,5 @@
 import { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 import { useUser } from 'common/hooks/useUser';
 import { useQueryParam } from 'common/hooks/useQueryParam';
@@ -9,6 +8,7 @@ import styles from './login-view.module.scss';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import Head from 'next/head';
+import { logIn } from 'common/auth/utils';
 
 const TEXT = {
   TITLE: 'grades.no - logg inn',
@@ -56,13 +56,9 @@ export const LoginView: FC = () => {
         <Heading className={styles.title} as="h1" size="h3">
           {TEXT.HEADING}
         </Heading>
-        <Link href={{ pathname: '/api/auth/login', query: { returnToPath } }}>
-          <a>
-            <button className={styles.feideButton} type="button">
-              Logg inn
-            </button>
-          </a>
-        </Link>
+        <button className={styles.feideButton} onClick={logIn} type="button">
+          Logg inn
+        </button>
         <div>
           <Heading className={styles.paragraphTitle} as="h2" size="h4">
             {TEXT.CONTENT.WHY_LOGIN.HEADING}
