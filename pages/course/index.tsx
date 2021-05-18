@@ -45,14 +45,9 @@ const CourseListPage: FC<StaticProps> = ({ departments, faculties }) => {
   const [departmentId, setDepartmentId] = useState<number | null>(null);
   const [facultyId, setFacultyId] = useState<number | null>(null);
   const query = Array.isArray(queryParam) ? queryParam.join(',') : queryParam;
-  const getSearchUrl = useDebounce(
-    useMemo(() => getSearchUrlPaginatedGetter(query, sortOrder, departmentId, facultyId), [
-      query,
-      sortOrder,
-      departmentId,
-      facultyId,
-    ]),
-    1500
+  const getSearchUrl = useMemo(
+    () => useDebounce(getSearchUrlPaginatedGetter(query, sortOrder, departmentId, facultyId), 1000),
+    [query, sortOrder, departmentId, facultyId]
   );
   const { data, isValidating, setSize } = useSWRInfinite<ListResponse<Course>>(getSearchUrl);
 
