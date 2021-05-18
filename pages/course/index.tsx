@@ -45,7 +45,7 @@ const CourseListPage: FC<StaticProps> = ({ departments, faculties }) => {
   const [departmentId, setDepartmentId] = useState<number | null>(null);
   const [facultyId, setFacultyId] = useState<number | null>(null);
   const query = Array.isArray(queryParam) ? queryParam.join(',') : queryParam;
-  const debouncedQuery = useDebounce(query, 1000);
+  const debouncedQuery = useDebounce(query, 1500);
   const getSearchUrl = useMemo(() => getSearchUrlPaginatedGetter(debouncedQuery, sortOrder, departmentId, facultyId), [
     debouncedQuery,
     sortOrder,
