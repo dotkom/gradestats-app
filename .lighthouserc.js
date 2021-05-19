@@ -26,6 +26,9 @@ module.exports = {
         'first-cpu-idle': ['warning', { minScore: 0.7 }], // Ouff performance
         'legacy-javascript': 'off', // Maybe Google Analytics?
         'uses-rel-preload': 'off', // Maybe fixable?
+        'uses-rel-preconnect': 'off',
+        'mainthread-work-breakdown': 'off',
+        'max-potential-fid': 'off',
         'unused-javascript': 'off', // Maybe fixable?
         'works-offline': 'off', // Enable for PWA
         'offline-start-url': 'off', // Enable for PWA

@@ -10,6 +10,7 @@ import { Course, CourseSort, COURSE_ORDERING } from 'models/Course';
 import { GetStaticProps } from 'next';
 import { Department } from 'models/Department';
 import { Faculty } from 'models/Faculty';
+import useDebounce from 'common/hooks/useDebounce';
 
 interface StaticProps {
   departments: Department[];
@@ -44,8 +45,9 @@ const CourseListPage: FC<StaticProps> = ({ departments, faculties }) => {
   const [departmentId, setDepartmentId] = useState<number | null>(null);
   const [facultyId, setFacultyId] = useState<number | null>(null);
   const query = Array.isArray(queryParam) ? queryParam.join(',') : queryParam;
-  const getSearchUrl = useMemo(() => getSearchUrlPaginatedGetter(query, sortOrder, departmentId, facultyId), [
-    query,
+  const debouncedQuery = useDebounce(query, 200);
+  const getSearchUrl = useMemo(() => getSearchUrlPaginatedGetter(debouncedQuery, sortOrder, departmentId, facultyId), [
+    debouncedQuery,
     sortOrder,
     departmentId,
     facultyId,
