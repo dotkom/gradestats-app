@@ -86,6 +86,9 @@ export const getDepartmentDetailApiUrl = (departmentId: number) => {
 export const getKarstatScrapeGradeReportUrl = () => {
   return `${GRADES_API_URL}/api/v2/scrapers/karstat/grade-report/`;
 };
+export const getNSDScrapeGradeReportUrl = () => {
+  return `${GRADES_API_URL}/api/v2/scrapers/nsd/grade-report/`;
+};
 export const getTIAScrapeCoursesUrl = () => {
   return `${GRADES_API_URL}/api/v2/scrapers/tia/refresh-courses/`;
 };
