@@ -53,7 +53,6 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
         <label className={styles.searchLabel} htmlFor="search">
           Søk i emner
         </label>
-
         <SearchInput
           id="search"
           placeholder="Søk i emner..."
@@ -61,7 +60,6 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
           onChange={handleSearch}
           aria-label="Søk i emner"
         />
-
         <Heading className={styles.featuredHeadline} as="h2">
           Mest populære emner
         </Heading>
