@@ -45,6 +45,11 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
           <Heading as="h1">Grades.no</Heading>
           <Text className={styles.byline}>Karakterstatistikk for alle emner ved NTNU</Text>
         </div>
+        <Text className={styles.infoText}>
+          ⚠️ Grunnet at vår tidligere datakilde (NTNU Karstat) har blitt avviklet, så mangler vi en datakilde som
+          oppdateres ofte. Vi er klare over at grades.no mangler data på noen fag etter 2020 og jobber med saken! Fag
+          som har oppdatert statstikken sin etter 2020 kan også vise feil tall.
+        </Text>
         <label className={styles.searchLabel} htmlFor="search">
           Søk i emner
         </label>
