@@ -14,6 +14,7 @@ interface Props {
 const getOmEmnetUrl = (courseCode: string) => `http://www.ntnu.no/studier/emner/${courseCode}`;
 const getStudiekvalitetsportalenUrl = (courseCode: string) =>
   `https://innsida.ntnu.no/studiekvalitetsportalen/emner/${courseCode}`;
+const getEmnrUrl = (courseCode: string) => `https://emnr.no/course/${courseCode}`;
 
 export const CourseContent: FC<Props> = ({ className, course }) => {
   return (
@@ -44,6 +45,11 @@ export const CourseContent: FC<Props> = ({ className, course }) => {
               rel="noopener noreferrer"
             >
               Studiekvalitetsportalen
+            </a>
+          </li>
+          <li className={styles.linkWrapper}>
+            <a className={styles.link} href={getEmnrUrl(course.code)} target="_blank" rel="noopener noreferrer">
+              Vurderinger av {course.code} fra studenter
             </a>
           </li>
         </ul>
