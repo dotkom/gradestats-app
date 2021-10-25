@@ -23,7 +23,7 @@ export const Scrolly: FC<Props> = ({ className, selectedValue, values, onClick }
     if (scrolly) {
       const { width: scrollyWidth } = scrolly.getBoundingClientRect();
       const { width: buttonWidth } = button.getBoundingClientRect();
-      const middlePosition = button.offsetLeft - scrollyWidth / 2 + buttonWidth / 2;
+      const middlePosition = button.offsetLeft - scrolly.offsetLeft - scrollyWidth / 2 + buttonWidth / 2;
       scrolly.scrollTo({ behavior: 'smooth', left: middlePosition });
     }
   };
