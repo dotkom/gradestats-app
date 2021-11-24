@@ -1,4 +1,4 @@
-import { requestsWithAuth } from 'common/requests';
+import { requests } from 'common/requests';
 
 interface Data {
   description: string;
@@ -12,6 +12,6 @@ export const requestCreateReport = async ({ description, course, contactEmail }:
     course,
     contact_email: contactEmail,
   };
-  const response = await requestsWithAuth.post('https://m9z5uzxy1i.execute-api.eu-west-1.amazonaws.com/mail', data);
+  const response = await requests.post('https://o6iyf82ksl.execute-api.eu-west-1.amazonaws.com/mail', data);
   return response;
 };
