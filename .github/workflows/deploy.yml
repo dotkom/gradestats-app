@@ -48,12 +48,12 @@ jobs:
             tags: registry.online.ntnu.no/gradestats-app:latest'
             cache-from: type=local,src=/tmp/.buildx-cache
             cache-to: type=local,dest=/tmp/.buildx-cache
-            env:
-              NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT: ${{ secrets.NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT }}
-              NEXT_PUBLIC_GRADES_API_URL: ${{ secrets.NEXT_PUBLIC_GRADES_API_URL }}
-              NEXT_PUBLIC_CANONICAL_URL: ${{ secrets.NEXT_PUBLIC_CANONICAL_URL }}
-              NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
-              NEXT_PUBLIC_GA_TRACKING_ID: ${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}
-              NEXT_PUBLIC_FEIDE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_FEIDE_CLIENT_ID }}
-              NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT }}
             build-args: NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT,NEXT_PUBLIC_GRADES_API_URL,NEXT_PUBLIC_CANONICAL_URL,NEXT_PUBLIC_SENTRY_DSN,NEXT_PUBLIC_GA_TRACKING_ID,NEXT_PUBLIC_FEIDE_CLIENT_ID,NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT
+        env:
+            NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT: ${{ secrets.NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT }}
+            NEXT_PUBLIC_GRADES_API_URL: ${{ secrets.NEXT_PUBLIC_GRADES_API_URL }}
+            NEXT_PUBLIC_CANONICAL_URL: ${{ secrets.NEXT_PUBLIC_CANONICAL_URL }}
+            NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+            NEXT_PUBLIC_GA_TRACKING_ID: ${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}
+            NEXT_PUBLIC_FEIDE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_FEIDE_CLIENT_ID }}
+            NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT }}
