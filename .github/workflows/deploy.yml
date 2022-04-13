@@ -37,7 +37,7 @@ jobs:
         with:
             registry: registry.online.ntnu.no
             username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWROD }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push Image to Github Container Registry
         id: docker_build
         uses: docker/build-push-action@v2
