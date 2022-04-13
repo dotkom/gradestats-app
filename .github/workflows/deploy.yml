@@ -11,14 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      # Set branch and tag variables for use in the app. Sent in as env variables to the build
-      - name: Get branch and tag
-        id: version
-        run: |
-          echo ::set-output name=branch::${GITHUB_REF#refs/heads/}
-          echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
-
       - name: Install dependencies
         run: npm ci
 
@@ -27,22 +19,41 @@ jobs:
 
       - name: Lint (eslint)
         run: npm run lint-check
-
-      - name: Publish docker image
-        uses: elgohr/Publish-Docker-Github-Action@master
-        env:
-          NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT: ${{ secrets.NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT }}
-          NEXT_PUBLIC_GRADES_API_URL: ${{ secrets.NEXT_PUBLIC_GRADES_API_URL }}
-          NEXT_PUBLIC_CANONICAL_URL: ${{ secrets.NEXT_PUBLIC_CANONICAL_URL }}
-          NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
-          NEXT_PUBLIC_GA_TRACKING_ID: ${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}
-          NEXT_PUBLIC_FEIDE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_FEIDE_CLIENT_ID }}
-          NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      # Build docker image
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Cache Docker layers
+        uses: actions/cache@v2
         with:
-          name: gradestats-app
-          dockerfile: Dockerfile
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          registry: registry.online.ntnu.no
-          tags: 'latest,${{ steps.version.outputs.tag }}'
-          buildargs: NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT,NEXT_PUBLIC_GRADES_API_URL,NEXT_PUBLIC_CANONICAL_URL,NEXT_PUBLIC_SENTRY_DSN,NEXT_PUBLIC_GA_TRACKING_ID,NEXT_PUBLIC_FEIDE_CLIENT_ID,NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT
+            path: /tmp/.buildx-cache
+            key: ${{ runner.os }}-buildx-${{ github.sha }}
+            restore-keys: |
+                ${{ runner.os }}-buildx-
+      # Login
+      - name: Login to Docker registry
+        uses: docker/login-action@v1
+        with:
+            registry: registry.online.ntnu.no
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWROD }}
+      - name: Build and push Image to Github Container Registry
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+            context: .
+            file: ./Dockerfile
+            push: true
+            tags: registry.online.ntnu.no/gradestats-app:latest'
+            cache-from: type=local,src=/tmp/.buildx-cache
+            cache-to: type=local,dest=/tmp/.buildx-cache
+            env:
+              NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT: ${{ secrets.NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT }}
+              NEXT_PUBLIC_GRADES_API_URL: ${{ secrets.NEXT_PUBLIC_GRADES_API_URL }}
+              NEXT_PUBLIC_CANONICAL_URL: ${{ secrets.NEXT_PUBLIC_CANONICAL_URL }}
+              NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+              NEXT_PUBLIC_GA_TRACKING_ID: ${{ secrets.NEXT_PUBLIC_GA_TRACKING_ID }}
+              NEXT_PUBLIC_FEIDE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_FEIDE_CLIENT_ID }}
+              NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT: ${{ secrets.NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT }}
+            build-args: NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT,NEXT_PUBLIC_GRADES_API_URL,NEXT_PUBLIC_CANONICAL_URL,NEXT_PUBLIC_SENTRY_DSN,NEXT_PUBLIC_GA_TRACKING_ID,NEXT_PUBLIC_FEIDE_CLIENT_ID,NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT
