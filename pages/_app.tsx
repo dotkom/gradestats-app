@@ -61,6 +61,7 @@ const App: FC<Props> = ({ Component, pageProps, err }) => {
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#ffffff" />
+        <script defer data-domain="grades.no" src="https://plausible.io/js/script.js"></script>
       </Head>
       <SessionProvider session={pageProps.session}>
         <SWRConfig value={{ fetcher: requests.get }}>
