@@ -17,8 +17,8 @@ jobs:
       - name: Login to Docker registry
         uses: docker/login-action@v1
         with:
-            registry: 891459268445.dkr.ecr.eu-north-1.amazonaws.com/gradestats-web-prd
-            username: ${{ secrets.DOCKER_USERNAME }}
+            registry: 891459268445.dkr.ecr.eu-north-1.amazonaws.com
+            username: AWS
             password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and push Image to ECR
         id: docker_build
