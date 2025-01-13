@@ -12,7 +12,6 @@ import { requests } from 'common/requests';
 import { Navbar } from 'components/Navbar';
 import { Alert } from 'components/Alert';
 import { Footer } from 'components/Footer';
-import { WelcomeMessage } from 'components/Alert/WelcomeMessage';
 
 import 'common/polyfills';
 
@@ -74,7 +73,6 @@ const App: FC<Props> = ({ Component, pageProps, err }) => {
                   derfor aktivere JavaScript.
                 </Alert>
               </noscript>
-              <WelcomeMessage />
               <Component {...modifiedPageProps} />
             </main>
             <Footer className={styles.footer} />
