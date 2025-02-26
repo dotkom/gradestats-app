@@ -52,7 +52,7 @@ export const GradeAverages: FC<Props> = ({ selectedGrade, allGrades, rollingYear
         ) : (
           <UngradedStat
             label={`Siste ${rollingYearCount === 1 ? `år` : `${rollingYearCount} år`}`}
-            percentage={calculateAveragePassingRate(rollingGrades)}
+            percentage={calculatePassRate(rollingGrades)}
             mode="passing"
           />
         )}
