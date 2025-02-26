@@ -4,15 +4,10 @@ import { Grade } from 'models/Grade';
 export const isKont = (grade: Grade): boolean =>
   grade.semester_code.startsWith('S') || grade.semester_code.startsWith('K');
 export const isNotKont = (grade: Grade): boolean => !isKont(grade);
-export const isGraded = (grade: Grade): boolean => grade.passed === 0;
+export const isGraded = (grade: Grade): boolean => grade.average_grade !== 0;
 
 export const calculateFailureRate = (grade: Grade): number => {
-  let total = 0;
-  if (isGraded(grade)) {
-    total = grade.a + grade.b + grade.c + grade.d + grade.e + grade.f;
-  } else {
-    total = grade.passed + grade.f;
-  }
+  const total = grade.passed + grade.a + grade.b + grade.c + grade.d + grade.e + grade.f;
 
   const failureRate = (grade.f / total) * 100;
   return failureRate;
@@ -22,12 +17,19 @@ export const calculateAverageFailureRate = (grades: Grade[]): number => {
   return average(grades.map(calculateFailureRate));
 };
 
-export const calculatePassingRate = (grade: Grade): number => {
-  return 100 - calculateFailureRate(grade);
-};
+export const calculatePassRate = (grades: Grade[]): number => {
+  let total = 0;
+  let totalF = 0;
+  for (const grade of grades) {
+    total += grade.a + grade.b + grade.c + grade.d + grade.e + grade.f + grade.passed;
+    totalF += grade.f;
+  }
 
-export const calculateAveragePassingRate = (grades: Grade[]): number => {
-  return average(grades.map(calculatePassingRate));
+  if (total == 0) {
+    return 0.0;
+  } else {
+    return ((total - totalF) * 100) / total;
+  }
 };
 
 export const calculateAverageGrade = (grades: Grade[]): number => {

@@ -1,19 +1,10 @@
-import { ListResponse } from 'common/requests';
-import { getCourseGradeListApiUrl } from 'common/urls';
-import {
-  calculateAverageGrade,
-  calculateAveragePassingRate,
-  isGraded,
-  mapGradeAverageToLetter,
-} from 'common/utils/grades';
+import { mapGradeAverageToLetter } from 'common/utils/grades';
 import { formatPercentage } from 'common/utils/math';
 import { LinkCard } from 'components/Card/LinkCard';
 import { Text } from 'components/Typography/Text';
 import { Course } from 'models/Course';
-import { Grade } from 'models/Grade';
 import Link from 'next/link';
 import { FC } from 'react';
-import useSWR from 'swr';
 import cx from 'classnames';
 
 import styles from './course-item.module.scss';
@@ -23,22 +14,10 @@ interface Props {
 }
 
 export const CourseItem: FC<Props> = ({ course }) => {
-  const courseGradeUrl = getCourseGradeListApiUrl(course.code, { limit: 10, offset: 0 });
-  const { data: gradesResponse } = useSWR<ListResponse<Grade>>(courseGradeUrl, {
-    refreshWhenHidden: false,
-    refreshInterval: 0,
-    revalidateOnReconnect: false,
-    revalidateOnMount: true,
-    revalidateOnFocus: false,
-  });
-  const grades = gradesResponse?.results;
-  const showGradeLetter = grades?.some(isGraded);
-  const averageGrade = grades
-    ? showGradeLetter
-      ? calculateAverageGrade(grades)
-      : calculateAveragePassingRate(grades)
-    : undefined;
-  const gradeLetter = averageGrade ? mapGradeAverageToLetter(averageGrade) : undefined;
+  const showGradeLetter = course.average !== 0;
+  const has_grades = course.average !== 0 || course.pass_rate !== 0;
+  const averageGrade = showGradeLetter ? course.average : course.pass_rate;
+
   return (
     <li className={styles.item}>
       <Link href="/course/[courseCode]" as={`/course/${course.code}`}>
@@ -46,13 +25,15 @@ export const CourseItem: FC<Props> = ({ course }) => {
           <Text>{course.code}</Text>
           <Text>{course.norwegian_name}</Text>
           <Text>
-            {grades ? (
+            {has_grades ? (
               showGradeLetter ? (
-                <Text size="h4">{gradeLetter || '-'}</Text>
+                <Text size="h4">{mapGradeAverageToLetter(averageGrade)}</Text>
               ) : (
-                <Text>{averageGrade ? formatPercentage(averageGrade) : '-'}</Text>
+                <Text>{averageGrade > 0 ? formatPercentage(averageGrade) : '-'}</Text>
               )
-            ) : null}
+            ) : (
+              '-'
+            )}
           </Text>
         </LinkCard>
       </Link>

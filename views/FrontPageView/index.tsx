@@ -65,7 +65,7 @@ export const FrontPageView: FC<Props> = ({ courses, totalCourseCount }) => {
               className={styles.courseCard}
               code={course.code}
               name={course.norwegian_name}
-              grades={course.grades}
+              course={course}
             />
           ))}
         </div>

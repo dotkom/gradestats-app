@@ -26,6 +26,7 @@ export interface Course {
   watson_rank: string;
   attendee_count: number;
   department: number;
+  pass_rate: number;
 }
 
 export interface CourseWithGrades extends Course {
@@ -40,6 +41,8 @@ export type CourseSort =
   | 'courseCodeAsc'
   | 'averageDesc'
   | 'averageAsc'
+  | 'passRateDesc'
+  | 'passRateAsc'
   | 'attendeeCountDesc'
   | 'attendeeCountAsc';
 
@@ -51,6 +54,8 @@ export const COURSE_SORT_VALUES: CourseSort[] = [
   'courseCodeAsc',
   'averageDesc',
   'averageAsc',
+  'passRateDesc',
+  'passRateAsc',
   'attendeeCountDesc',
   'attendeeCountAsc',
 ];
@@ -63,6 +68,8 @@ export const COURSE_ORDERING: { [Order in CourseSort]: string } = {
   courseCodeAsc: 'code,-watson_rank,-attendee_count',
   averageDesc: '-average,-watson_rank,-attendee_count',
   averageAsc: 'average,-watson_rank,-attendee_count',
+  passRateDesc: '-pass_rate,-watson_rank,-attendee_count',
+  passRateAsc: 'pass_rate,-watson_rank,-attendee_count',
   attendeeCountDesc: '-attendee_count,-watson_rank,-attendee_count',
   attendeeCountAsc: 'attendee_count,-watson_rank,-attendee_count',
 };
@@ -75,6 +82,8 @@ export const COURSE_SORT_NAMES: { [Order in CourseSort]: string } = {
   courseCodeAsc: 'Emnekode (stigende)',
   averageDesc: 'Snitt (synkende)',
   averageAsc: 'Snitt (stigende)',
+  passRateDesc: 'Ståprosent (synkende)',
+  passRateAsc: 'Ståprosent (stigende)',
   attendeeCountDesc: 'Antall studenter (synkende)',
   attendeeCountAsc: 'Antall studenter (stigende)',
 };
