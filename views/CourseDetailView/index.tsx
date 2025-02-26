@@ -69,6 +69,7 @@ export const CourseDetailView: FC<Props> = ({ course, grades, tags }) => {
           {hasGrades ? (
             <GradeAverages
               allGrades={filteredGrades}
+              course={course}
               selectedGrade={currentGrade}
               rollingYearCount={ROLLING_AVERAGE_YEARS}
             />

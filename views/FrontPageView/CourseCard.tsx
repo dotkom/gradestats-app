@@ -1,9 +1,4 @@
-import {
-  calculateAverageGrade,
-  calculateAveragePassingRate,
-  isGraded,
-  mapGradeAverageToLetter,
-} from 'common/utils/grades';
+import { mapGradeAverageToLetter } from 'common/utils/grades';
 import Link from 'next/link';
 import { FC } from 'react';
 import { Heading } from 'components/Typography/Heading';
@@ -12,8 +7,8 @@ import cx from 'classnames';
 
 import styles from './course-card.module.scss';
 import { LinkCard } from 'components/Card/LinkCard';
-import { Grade } from 'models/Grade';
 import { formatPercentage } from 'common/utils/math';
+import { Course } from 'models/Course';
 
 export const GRADE_COLORS: Record<string, string> = {
   A: styles.gradeA,
@@ -30,16 +25,13 @@ interface Props {
   className?: string;
   code: string;
   name: string;
-  grades: Grade[];
+  course: Course;
 }
 
-export const CourseCard: FC<Props> = ({ className, code, name, grades }) => {
-  const showGradeLetter = grades.some(isGraded);
-  const averageGrade = grades
-    ? showGradeLetter
-      ? calculateAverageGrade(grades)
-      : calculateAveragePassingRate(grades)
-    : undefined;
+export const CourseCard: FC<Props> = ({ className, code, name, course }) => {
+  const showGradeLetter = course.average !== 0;
+  const averageGrade = showGradeLetter ? course.average : course.pass_rate;
+
   const gradeLetter = averageGrade ? mapGradeAverageToLetter(averageGrade) : undefined;
   return (
     <Link href="/course/[courseCode]" as={`/course/${code}`}>
