@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, MouseEventHandler, useEffect, useRef, useState } from 'react';
 import { requestCreateCourseTag } from 'common/api/tags';
 import { Button } from 'components/common/Button';
 import { Heading } from 'components/Typography/Heading';
@@ -6,7 +6,6 @@ import { Text } from 'components/Typography/Text';
 import { TextInput } from 'components/forms/TextInput';
 import { Alert } from 'components/Alert';
 import { Label } from 'components/forms/Label';
-import { DynamicDialog } from 'components/Dialog/DynamicDialog';
 import { Tag } from 'models/Tag';
 
 import styles from './add-tag-dialog.module.scss';
@@ -43,8 +42,25 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, exist
     }
   };
 
+  const ref = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      ref.current?.showModal();
+    } else {
+      ref.current?.close();
+    }
+  }, [isOpen]);
+
+  const clickBackdrop: MouseEventHandler = (event) => {  
+    if (event.target === ref.current) {
+      closeDialog();
+    }
+  }
+
   return (
-    <DynamicDialog className={styles.container} isOpen={isOpen} onDismiss={closeDialog} aria-label="Legg til tags">
+    <dialog ref={ref} className={styles.container} aria-label="Legg til tags" onCancel={closeDialog} onClick={clickBackdrop}>
+      <form onSubmit={handleSubmit}>
       <Heading as="h1" size="h3">
         Legg til tags
       </Heading>
@@ -70,7 +86,7 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, exist
         ikke legge til useriøse forslag. Grunnet tidligere misbruk vil ikke tags modereres før bruk, og ikke lenger være
         synlig offentlig.
       </Text>
-      <form onSubmit={handleSubmit}>
+      
         <Label label="Navn">
           <TextInput
             name="tag-name"
@@ -82,7 +98,10 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, exist
           />
         </Label>
         <div className={styles.buttons}>
-          <Button type="button" onClick={closeDialog}>
+          <Button
+            type="button"
+            onClick={closeDialog}
+          >
             Lukk
           </Button>
           <Button type="submit" disabled={status === 'PENDING' || doesNameAlreadyExist}>
@@ -90,7 +109,7 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, exist
           </Button>
         </div>
       </form>
-    </DynamicDialog>
+    </dialog>
   );
 };
 

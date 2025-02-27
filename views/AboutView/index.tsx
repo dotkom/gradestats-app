@@ -2,7 +2,7 @@ import { GithubOrg, GithubRepo, GithubUser } from 'common/api/github/repo';
 import { GRADES_API_URL } from 'common/constants';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
-import { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import cx from 'classnames';
 
 import styles from './about-view.module.scss';
@@ -26,8 +26,7 @@ const TEXT = {
   },
   UA_ARTICLE: {
     NAME: 'Denne tjenesten gjør at du kan sjekke karakterene i alle emner',
-    LINK:
-      'https://www.universitetsavisa.no/student/denne-tjenesten-gjor-at-du-kan-sjekke-karakterene-i-alle-emner/101265',
+    LINK: 'https://www.universitetsavisa.no/student/denne-tjenesten-gjor-at-du-kan-sjekke-karakterene-i-alle-emner/101265',
   },
 };
 
@@ -135,7 +134,7 @@ interface ExternalLinkProps {
   href: string;
 }
 
-const ExternalLink: FC<ExternalLinkProps> = ({ className, href, children }) => {
+const ExternalLink: FC<PropsWithChildren<ExternalLinkProps>> = ({ className, href, children }) => {
   return (
     <a className={cx(className, styles.externalLink)} href={href} target="_blank" rel="noopener noreferrer">
       {children}

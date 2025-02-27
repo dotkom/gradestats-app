@@ -34,19 +34,13 @@ const DashboardPage: FC<ServerProps> = ({ user }) => {
         </Heading>
         <ul>
           <li>
-            <Link href="/dashboard/users">
-              <a>Brukere</a>
-            </Link>
+            <Link href="/dashboard/users">Brukere</Link>
           </li>
           <li>
-            <Link href="/dashboard/scrapers/karstat">
-              <a>Karstat</a>
-            </Link>
+            <Link href="/dashboard/scrapers/karstat">Karstat</Link>
           </li>
           <li>
-            <Link href="/dashboard/scrapers/tia">
-              <a>TIA</a>
-            </Link>
+            <Link href="/dashboard/scrapers/tia">TIA</Link>
           </li>
         </ul>
       </div>

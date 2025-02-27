@@ -2,7 +2,7 @@
 import { FC } from 'react';
 import type { NextPageContext } from 'next';
 import DefaultErrorPage, { ErrorProps } from 'next/error';
-import * as Sentry from '@sentry/node';
+// import * as Sentry from '@sentry/node';
 import { ErrorView } from 'views/ErrorView';
 
 type Props = ErrorProps & {
@@ -19,7 +19,7 @@ const CustomErrorPage: ErrorFC = ({ statusCode, hasGetInitialPropsRun, err }) =>
     // getInitialProps is not called in case of
     // https://github.com/zeit/next.js/issues/8592. As a workaround, we pass
     // err via _app.tsx so it can be captured
-    Sentry.captureException(err);
+    // Sentry.captureException(err);
   }
 
   return <ErrorView statusCode={statusCode} />;
@@ -39,14 +39,14 @@ CustomErrorPage.getInitialProps = async (ctx) => {
   }
 
   if (err) {
-    Sentry.captureException(err);
+    // Sentry.captureException(err);
     return errorInitialProps;
   }
 
   // If this point is reached, getInitialProps was called without any
   // information about what the error might be. This is unexpected and may
   // indicate a bug introduced in Next.js, so record it in Sentry
-  Sentry.captureException(new Error(`_error.tsx getInitialProps missing data at path: ${asPath}`));
+  // Sentry.captureException(new Error(`_error.tsx getInitialProps missing data at path: ${asPath}`));
 
   return errorInitialProps;
 };

@@ -35,7 +35,7 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
         dependentAxis
         domain={[0, 100]}
         tickValues={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
-        tickFormat={(tick) => `${tick} %`}
+        tickFormat={(tick: number) => `${tick} %`}
         style={{ tickLabels: { fontSize: 10, padding: 0 } }}
         fixLabelOverlap
       />

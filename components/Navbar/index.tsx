@@ -15,35 +15,25 @@ export const Navbar: FC<Props> = ({ className }) => {
   return (
     <header className={cx(styles.navbar, className)}>
       <nav className={styles.content}>
-        <Link href="/">
-          <a className={styles.pageNameLink}>
-            <Heading className={styles.pageName} as="p" size="h1">
-              Grades.no
-            </Heading>
-          </a>
+        <Link href="/" className={styles.pageNameLink}>
+          <Heading className={styles.pageName} as="p" size="h1">
+            Grades.no
+          </Heading>
         </Link>
         <ul className={styles.linksList}>
           <li className={styles.courses}>
-            <Link href="/">
-              <a>Emner</a>
-            </Link>
+            <Link href="/">Emner</Link>
           </li>
           <li className={styles.about}>
-            <Link href="/about">
-              <a>Om siden</a>
-            </Link>
+            <Link href="/about">Om siden</Link>
           </li>
           {!user ? (
             <li className={styles.login}>
-              <Link href="/login">
-                <a>Logg inn</a>
-              </Link>
+              <Link href="/login">Logg inn</Link>
             </li>
           ) : (
             <li className={styles.login}>
-              <Link href="/users/me">
-                <a>Bruker</a>
-              </Link>
+              <Link href="/users/me">Bruker</Link>
             </li>
           )}
         </ul>

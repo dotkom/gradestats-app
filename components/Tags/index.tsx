@@ -20,7 +20,7 @@ interface Props {
 export const Tags: FC<Props> = ({ courseCode, tags }) => {
   const [user] = useUser();
   const router = useRouter();
-  const [showDialog, openDialog, closeDialog] = useDialog();
+  const [showDialog, openDialog, closeDialog] = useDialog(false);
 
   const handleClick = () => {
     if (!user) {

@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from 'react';
 import { requestCreateReport } from 'common/api/reports';
 import { Button } from 'components/common/Button';
 
@@ -9,7 +9,6 @@ import { TextInput } from 'components/forms/TextInput';
 import { Textarea } from 'components/forms/Textarea';
 import { Alert } from 'components/Alert';
 import { useUser } from 'common/hooks/useUser';
-import { DynamicDialog } from 'components/Dialog/DynamicDialog';
 
 interface Props {
   isOpen: boolean;
@@ -66,8 +65,18 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
     }
   }, [user?.email]);
 
+  const ref = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      ref.current?.showModal();
+    } else {
+      ref.current?.close();
+    }
+  }, [isOpen]);
+
   return (
-    <DynamicDialog isOpen={isOpen} onDismiss={closeDialog} aria-label="Send tilbakemelding">
+    <dialog ref={ref} onCancel={closeDialog} aria-label="Send tilbakemelding">
       <form className={styles.form} onSubmit={handleSubmit}>
         <Heading className={styles.heading} as="h1" size="h3">
           Send tilbakemelding
@@ -130,7 +139,7 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
           </Button>
         </div>
       </form>
-    </DynamicDialog>
+    </dialog>
   );
 };
 

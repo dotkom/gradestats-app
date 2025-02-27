@@ -29,7 +29,7 @@ const TEXT = {
 export const UserItem: FC<Props> = ({ user: initialUser }) => {
   const userUrl = getUserDetailApiUrl(initialUser.username);
   const { data, mutate } = useSWR<GradesUser>(userUrl, requestsWithAuth.get, {
-    initialData: initialUser,
+    fallbackData: initialUser,
   });
   const user = data as GradesUser;
 

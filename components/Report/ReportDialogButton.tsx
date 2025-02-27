@@ -9,6 +9,7 @@ interface Props {
   className?: string;
   text?: string;
   courseCode?: string;
+  children?: React.ReactNode;
 }
 
 export const ReportDialogButton: FC<Props> = ({ className, courseCode, text, children }) => {

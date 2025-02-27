@@ -3,23 +3,24 @@
   Require statements are needed for imports to work for now.
 */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const withSourceMaps = require('@zeit/next-source-maps');
+// const withSourceMaps = require('@zeit/next-source-maps');
 
 nextConfig = {
-  webpack: (config, options) => {
-    if (!options.isServer) {
-      config.resolve.alias['@sentry/node'] = '@sentry/browser';
-    }
-    return config;
-  },
+  // webpack: (config, options) => {
+  //   if (!options.isServer) {
+  //     config.resolve.alias['@sentry/node'] = '@sentry/browser';
+  //   }
+  //   return config;
+  // },
   images: {
-    domains: [
-      'avatars.githubusercontent.com',
-      'avatars0.githubusercontent.com',
-      'avatars1.githubusercontent.com',
-      'avatars2.githubusercontent.com',
-      'avatars3.githubusercontent.com',
-      'avatars4.githubusercontent.com',
+    remotePatterns: [
+      ...['avatars', 'avatars0', 'avatars1', 'avatars2', 'avatars3', 'avatars4'].map((host) => ({
+        protocol: 'https',
+        hostname: `${host}.githubusercontent.com`,
+        port: '',
+        pathname: '**',
+        search: '',
+      })),
     ],
   },
   async redirects() {
@@ -36,10 +37,6 @@ nextConfig = {
       },
     ];
   },
-  experimental: {
-    workerThreads: false,
-    cpus: 1,
-  }
 };
 
-module.exports = withSourceMaps(nextConfig);
+module.exports = nextConfig;

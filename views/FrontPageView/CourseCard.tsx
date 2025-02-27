@@ -34,7 +34,7 @@ export const CourseCard: FC<Props> = ({ className, code, name, course }) => {
 
   const gradeLetter = averageGrade ? mapGradeAverageToLetter(averageGrade) : undefined;
   return (
-    <Link href="/course/[courseCode]" as={`/course/${code}`}>
+    <Link href="/course/[courseCode]" as={`/course/${code}`} legacyBehavior>
       <LinkCard className={cx(className, styles.card)}>
         <Heading className={styles.code} as="h3">
           {code}

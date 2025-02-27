@@ -1,5 +1,5 @@
 import DefaultDocument, { Head, Main, NextScript, Html } from 'next/document';
-
+import Script from 'next/script';
 import { GA_TRACKING_ID } from 'common/constants';
 
 import siteLinksSearch from './site-search.json';
@@ -10,8 +10,8 @@ class Document extends DefaultDocument {
       <Html lang="no">
         <Head>
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
-          <script
+          <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+          <Script
             dangerouslySetInnerHTML={{
               __html: `
             window.dataLayer = window.dataLayer || [];
@@ -23,7 +23,7 @@ class Document extends DefaultDocument {
           `,
             }}
           />
-          <script
+          <Script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
               __html: JSON.stringify(siteLinksSearch),

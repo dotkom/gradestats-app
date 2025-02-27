@@ -11,9 +11,7 @@ interface Props {
 export const TagButton: FC<Props> = ({ tag }) => {
   return (
     <Link href={{ pathname: '/course', query: { query: tag.name } }}>
-      <a>
-        <Button role="button">{tag.name}</Button>
-      </a>
+      <Button role="button">{tag.name}</Button>
     </Link>
   );
 };

@@ -26,11 +26,7 @@ export const MyUserView: FC<Props> = ({ user }) => {
       <Heading as="h1">Min side</Heading>
       <Heading as="h2">Logget inn som: {user.fullName}</Heading>
       <Text>E-post: {user.email}</Text>
-      {user?.isStaff && (
-        <Link href="/dashboard">
-          <a>Dashboard</a>
-        </Link>
-      )}
+      {user?.isStaff && <Link href="/dashboard">Dashboard</Link>}
       <Button className={styles.logout} onClick={handleLogOut}>
         Logg ut
       </Button>

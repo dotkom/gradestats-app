@@ -3,8 +3,7 @@ export interface LoggedInUser {
   fullName: string;
   username: string;
   email: string;
-  emailVerified: boolean;
-  image: string;
+  // image: string;
   accessToken: string;
   expiresAt: number;
   isSuperuser: boolean;

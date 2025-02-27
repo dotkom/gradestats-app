@@ -1,21 +1,19 @@
-import * as Sentry from '@sentry/node';
+// import * as Sentry from '@sentry/node';
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Head from 'next/head';
 import Router from 'next/router';
+import Script from 'next/script';
 import { FC } from 'react';
-import { Provider as SessionProvider } from 'next-auth/client';
+import { SessionProvider } from 'next-auth/react';
 import { SWRConfig } from 'swr';
 
 import { pageView, trackEvent } from 'common/analytics';
-import { SENTRY_DSN } from 'common/constants';
+// import { SENTRY_DSN } from 'common/constants';
 import { requests } from 'common/requests';
 import { Navbar } from 'components/Navbar';
 import { Alert } from 'components/Alert';
 import { Footer } from 'components/Footer';
 
-import 'common/polyfills';
-
-import '@reach/dialog/styles.css';
 import 'react-alice-carousel/lib/scss/alice-carousel.scss';
 import 'cssremedy/css/remedy.css';
 import 'cssremedy/css/reminders.css';
@@ -26,9 +24,9 @@ import 'common/styles/carousel.scss';
 
 import styles from './_app.module.scss';
 
-Sentry.init({
-  dsn: SENTRY_DSN ?? undefined,
-});
+// Sentry.init({
+//   dsn: SENTRY_DSN ?? undefined,
+// });
 
 const getPathFromUrl = (url: string) => {
   return url.split(/[?#]/)[0];
@@ -60,7 +58,7 @@ const App: FC<Props> = ({ Component, pageProps, err }) => {
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#ffffff" />
-        <script defer data-domain="grades.no" src="https://plausible.io/js/script.js"></script>
+        <Script defer data-domain="grades.no" src="https://plausible.io/js/script.js"></Script>
       </Head>
       <SessionProvider session={pageProps.session}>
         <SWRConfig value={{ fetcher: requests.get }}>

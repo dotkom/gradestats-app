@@ -56,11 +56,11 @@ export class Requests {
     const responseData = (await response.json()) as Data;
     if (response.status === 400) {
       const messages: string[] = [];
-      Object.values(responseData).forEach((message) => {
+      Object.values(responseData as Record<string, string | string[]>).forEach((message) => {
         if (Array.isArray(message)) {
           messages.push(...message);
         } else {
-          messages.push(message as string);
+          messages.push(message);
         }
       });
       return {

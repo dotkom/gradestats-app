@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import cx from 'classnames';
 
 import styles from './alert.module.scss';
@@ -21,7 +21,7 @@ const COLOR_CLASSES: Record<AlertType, string> = {
   error: styles.errorColors,
 };
 
-export const Alert: FC<Props> = ({ className, title, type, isClosable = false, onClose, children }) => {
+export const Alert: FC<PropsWithChildren<Props>> = ({ className, title, type, isClosable = false, onClose, children }) => {
   const handleClose = () => {
     onClose?.();
   };

@@ -1,7 +1,14 @@
 .container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-2);
+  &[open] {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2);
+
+    > form {
+      padding: 1em;
+    }
+  }
 }
 
 .buttons {

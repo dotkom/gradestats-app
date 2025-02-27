@@ -2,7 +2,7 @@ import { getUserDetailApiUrl } from './../../../common/urls';
 import { GradesUser, LoggedInUser } from 'models/User';
 import { FeideProfile } from './../../../common/auth/utils';
 import { FEIDE_AUTH_ENDPOINT, FEIDE_CLIENT_ID, FEIDE_CLIENT_SECRET } from 'common/constants';
-import NextAuth from 'next-auth';
+import NextAuth, { AuthOptions } from 'next-auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { OIDC_CLIENT_NAME } from 'common/auth/utils';
 import { Requests } from 'common/requests';
@@ -51,28 +51,33 @@ interface Account {
 
 const options = {
   callbacks: {
-    session: async (session: FeideSession, data: UserData) => {
-      const { accessToken, email_verified, picture, sub } = data;
-      const requests = new Requests({ accessToken, useAuthentication: true });
-      const username = session.user.email.split('@')[0];
-      const gradesUser = await requests.get<GradesUser>(getUserDetailApiUrl(username));
-      const user: LoggedInUser = {
-        fullName: session.user.name,
-        username,
-        email: session.user.email,
-        emailVerified: email_verified,
-        id: sub,
-        image: picture,
-        accessToken,
-        expiresAt: Date.parse(session.expires),
-        dateJoined: gradesUser.date_joined,
-        isActive: gradesUser.is_active,
-        isStaff: gradesUser.is_staff,
-        isSuperuser: gradesUser.is_superuser,
-      };
-      return user;
+    session: async ({ session, token, user } ) => {
+      
+      // const { accessToken, email_verified, picture, sub } = data;
+      // console.log(session)
+      // const picture = token.profile?.picture;
+      
+      // const sub = token.user.sub;
+
+      // const requests = new Requests({ accessToken, useAuthentication: true });
+      // const username = session.user.email.split('@')[0];
+      // const gradesUser = await requests.get<GradesUser>(getUserDetailApiUrl(username));
+      // const newUser: LoggedInUser = {
+      //   fullName: session.user.name,
+      //   username,
+      //   email: session.user.email,
+      //   id: token.sub!,
+      //   // image: picture,
+      //   accessToken,
+      //   expiresAt: Date.parse(session.expires),
+      //   dateJoined: gradesUser.date_joined,
+      //   isActive: gradesUser.is_active,
+      //   isStaff: gradesUser.is_staff,
+      //   isSuperuser: gradesUser.is_superuser,
+      // };
+      return session;
     },
-    jwt: async (token: Token, _: Token, account: Account, profile: FeideProfile) => {
+    jwt: async ({ token, user, account, profile }) => {
       if (account && account.accessToken) {
         token.accessToken = account.accessToken;
       }
@@ -85,13 +90,18 @@ const options = {
       name: 'Feide',
       type: 'oauth',
       version: '2.0',
-      scope: FEIDE_SCOPES,
-      params: {
-        grant_type: 'authorization_code',
+      authorization: {
+        params: {
+          scope: FEIDE_SCOPES,
+          grant_type: 'authorization_code',
+        }
       },
-      accessTokenUrl: `${FEIDE_AUTH_ENDPOINT}/oauth/token`,
-      requestTokenUrl: `"${FEIDE_AUTH_ENDPOINT}/oauth/authorization`,
-      authorizationUrl: `${FEIDE_AUTH_ENDPOINT}/oauth/authorization?response_type=code`,
+      wellKnown: `${FEIDE_AUTH_ENDPOINT}/.well-known/openid-configuration`,
+      checks: ["pkce", "state"],
+      // responseType: 'code',
+      // accessTokenUrl: `${FEIDE_AUTH_ENDPOINT}/oauth/token`,
+      // requestTokenUrl: `"${FEIDE_AUTH_ENDPOINT}/oauth/authorization`,
+      // authorizationUrl: `${FEIDE_AUTH_ENDPOINT}/oauth/authorization?response_type=code`,
       profileUrl: `${FEIDE_AUTH_ENDPOINT}/openid/userinfo`,
       profile: (profile: FeideProfile) => {
         return {
@@ -103,10 +113,9 @@ const options = {
       },
       clientId: FEIDE_CLIENT_ID,
       clientSecret: FEIDE_CLIENT_SECRET,
-      debug: true,
-      idToken: false,
+      idToken: true,
     },
   ],
-};
+} satisfies AuthOptions;
 
 export default (req: NextApiRequest, res: NextApiResponse) => NextAuth(req, res, options);

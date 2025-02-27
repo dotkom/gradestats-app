@@ -75,7 +75,7 @@ export const CourseCharts: FC<Props> = ({ className, grades, currentGrade }) => 
         activeIndex={TAB_INDEX[tab]}
         onSlideChanged={handleSlideChange}
         disableButtonsControls
-        renderDotsItem={CarouselDot}
+        renderDotsItem={(props) => <CarouselDot {...props} />}
         items={[
           currentGrade.passed === 0 ? (
             <BasicCard key="graded">

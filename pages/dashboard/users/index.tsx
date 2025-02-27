@@ -3,7 +3,7 @@ import { FC, useCallback } from 'react';
 import type { GradesUser } from 'models/User';
 import { withUser } from 'common/auth/ssr';
 import { getUserListApiUrl } from 'common/urls';
-import { useSWRInfinite } from 'swr';
+import useSWRInfinite from 'swr/infinite';
 import { UsersListView } from 'views/UsersListView';
 import { requestsWithAuth, Requests, ListResponse } from 'common/requests';
 
@@ -25,7 +25,7 @@ const UsersPage: FC<ServerProps> = ({ initialUsersResponse }) => {
     getUsersUrlPaginated,
     requestsWithAuth.get,
     {
-      initialData: [initialUsersResponse],
+      fallbackData: [initialUsersResponse],
     }
   );
 

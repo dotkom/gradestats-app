@@ -20,7 +20,7 @@ export const CourseItem: FC<Props> = ({ course }) => {
 
   return (
     <li className={styles.item}>
-      <Link href="/course/[courseCode]" as={`/course/${course.code}`}>
+      <Link href="/course/[courseCode]" as={`/course/${course.code}`} legacyBehavior>
         <LinkCard className={styles.content}>
           <Text>{course.code}</Text>
           <Text>{course.norwegian_name}</Text>

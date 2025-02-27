@@ -1,5 +1,5 @@
 import { FC, useCallback, useMemo, useRef, useState } from 'react';
-import { useSWRInfinite } from 'swr';
+import useSWRInfinite from 'swr/infinite';
 
 import { ListResponse, requests } from 'common/requests';
 import { getCourseListApiUrl, getDepartmentListApiUrl, getFacultyListApiUrl } from 'common/urls';
@@ -19,24 +19,21 @@ interface StaticProps {
 
 const PAGE_SIZE = 20;
 
-const getSearchUrlPaginatedGetter = (
-  query: string,
-  sortOrder: CourseSort,
-  departmentFilter: number | null,
-  facultyFilter: number | null
-) => (pageNumber: number, previousPageData: ListResponse<Course> | null) => {
-  if (previousPageData && !previousPageData?.results.length) return null;
-  const offset = pageNumber * PAGE_SIZE;
-  const ordering = COURSE_ORDERING[sortOrder] ?? COURSE_ORDERING['ranking'];
-  return getCourseListApiUrl({
-    limit: PAGE_SIZE,
-    offset,
-    query,
-    ordering,
-    facultyId: facultyFilter ?? undefined,
-    departmentId: departmentFilter ?? undefined,
-  });
-};
+const getSearchUrlPaginatedGetter =
+  (query: string, sortOrder: CourseSort, departmentFilter: number | null, facultyFilter: number | null) =>
+  (pageNumber: number, previousPageData: ListResponse<Course> | null) => {
+    if (previousPageData && !previousPageData?.results.length) return null;
+    const offset = pageNumber * PAGE_SIZE;
+    const ordering = COURSE_ORDERING[sortOrder] ?? COURSE_ORDERING['ranking'];
+    return getCourseListApiUrl({
+      limit: PAGE_SIZE,
+      offset,
+      query,
+      ordering,
+      facultyId: facultyFilter ?? undefined,
+      departmentId: departmentFilter ?? undefined,
+    });
+  };
 
 const CourseListPage: FC<StaticProps> = ({ departments, faculties }) => {
   const searchBarRef = useRef<HTMLInputElement | null>(null);
@@ -46,12 +43,10 @@ const CourseListPage: FC<StaticProps> = ({ departments, faculties }) => {
   const [facultyId, setFacultyId] = useState<number | null>(null);
   const query = Array.isArray(queryParam) ? queryParam.join(',') : queryParam;
   const debouncedQuery = useDebounce(query, 200);
-  const getSearchUrl = useMemo(() => getSearchUrlPaginatedGetter(debouncedQuery, sortOrder, departmentId, facultyId), [
-    debouncedQuery,
-    sortOrder,
-    departmentId,
-    facultyId,
-  ]);
+  const getSearchUrl = useMemo(
+    () => getSearchUrlPaginatedGetter(debouncedQuery, sortOrder, departmentId, facultyId),
+    [debouncedQuery, sortOrder, departmentId, facultyId]
+  );
   const { data, isValidating, setSize } = useSWRInfinite<ListResponse<Course>>(getSearchUrl);
 
   const nextPage = useCallback(() => setSize((currentSize) => currentSize + 1), []);
