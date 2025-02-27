@@ -19,7 +19,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: GradesProdWebCIRole
+          role-to-assume: arn:aws:iam::891459268445:role/GradesProdWebCIRole
           aws-region: eu-north-1
       - name: Login to Amazon ECR Private
         id: login-ecr
