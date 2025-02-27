@@ -24,7 +24,7 @@
     "classnames": "^2.5.1",
     "cssremedy": "^0.1.0-beta.2",
     "intersection-observer": "^0.12.2",
-    "next": "^15.1.7",
+    "next": "^15.2.0",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-alice-carousel": "^2.9.1",
