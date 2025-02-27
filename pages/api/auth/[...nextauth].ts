@@ -1,62 +1,58 @@
-import { getUserDetailApiUrl } from './../../../common/urls';
-import { GradesUser, LoggedInUser } from 'models/User';
 import { FeideProfile } from './../../../common/auth/utils';
 import { FEIDE_AUTH_ENDPOINT, FEIDE_CLIENT_ID, FEIDE_CLIENT_SECRET } from 'common/constants';
 import NextAuth, { AuthOptions } from 'next-auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { OIDC_CLIENT_NAME } from 'common/auth/utils';
-import { Requests } from 'common/requests';
 
 const FEIDE_SCOPES = 'profile userid-feide email groups userid openid';
 
-interface Token {
-  name?: string;
-  email?: string;
-  picture?: string; // url to image
-  accessToken?: string;
-  iat: number;
-  exp: number;
-}
+// interface Token {
+//   name?: string;
+//   email?: string;
+//   picture?: string; // url to image
+//   accessToken?: string;
+//   iat: number;
+//   exp: number;
+// }
 
-interface UserData {
-  name: string;
-  email: string;
-  picture: string;
-  accessToken: string;
-  sub: string;
-  'connect-userid_sec': string[];
-  'dataporten-userid_sec': string[];
-  email_verified: boolean;
-  iat: number;
-  exp: number;
-}
+// interface UserData {
+//   name: string;
+//   email: string;
+//   picture: string;
+//   accessToken: string;
+//   sub: string;
+//   'connect-userid_sec': string[];
+//   'dataporten-userid_sec': string[];
+//   email_verified: boolean;
+//   iat: number;
+//   exp: number;
+// }
 
-interface FeideSession {
-  user: {
-    name: string;
-    email: string;
-    image: string;
-  };
-  expires: string;
-}
+// interface FeideSession {
+//   user: {
+//     name: string;
+//     email: string;
+//     image: string;
+//   };
+//   expires: string;
+// }
 
-interface Account {
-  provider: string | null;
-  type: string | null;
-  id: number | null;
-  refreshToken: string | null;
-  accessToken: string | null;
-  accessTokenExpires: null;
-}
+// interface Account {
+//   provider: string | null;
+//   type: string | null;
+//   id: number | null;
+//   refreshToken: string | null;
+//   accessToken: string | null;
+//   accessTokenExpires: null;
+// }
 
 const options = {
   callbacks: {
-    session: async ({ session, token, user } ) => {
-      
+    session: async ({ session }) => {
       // const { accessToken, email_verified, picture, sub } = data;
       // console.log(session)
       // const picture = token.profile?.picture;
-      
+
       // const sub = token.user.sub;
 
       // const requests = new Requests({ accessToken, useAuthentication: true });
@@ -77,7 +73,7 @@ const options = {
       // };
       return session;
     },
-    jwt: async ({ token, user, account, profile }) => {
+    jwt: async ({ token, account, profile }) => {
       if (account && account.accessToken) {
         token.accessToken = account.accessToken;
       }
@@ -94,10 +90,10 @@ const options = {
         params: {
           scope: FEIDE_SCOPES,
           grant_type: 'authorization_code',
-        }
+        },
       },
       wellKnown: `${FEIDE_AUTH_ENDPOINT}/.well-known/openid-configuration`,
-      checks: ["pkce", "state"],
+      checks: ['pkce', 'state'],
       // responseType: 'code',
       // accessTokenUrl: `${FEIDE_AUTH_ENDPOINT}/oauth/token`,
       // requestTokenUrl: `"${FEIDE_AUTH_ENDPOINT}/oauth/authorization`,

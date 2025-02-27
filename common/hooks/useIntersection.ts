@@ -3,7 +3,10 @@ import { RefObject, useEffect, useRef, useState } from 'react';
 export type Ref = RefObject<HTMLDivElement>;
 export type Entry = IntersectionObserverEntry;
 
-export const useIntersection = (callback?: () => void, options?: IntersectionObserverInit): RefObject<HTMLDivElement | null> => {
+export const useIntersection = (
+  callback?: () => void,
+  options?: IntersectionObserverInit
+): RefObject<HTMLDivElement | null> => {
   const targetRef = useRef<HTMLDivElement>(null);
   const [observerEntry, setEntry] = useState<Entry | null>(null);
   const [count, setCount] = useState(0);

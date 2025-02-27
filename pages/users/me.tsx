@@ -12,7 +12,7 @@ interface ServerProps {
   tags: Tag[];
 }
 
-const MyUserPage: FC<ServerProps> = ({ user, tags }) => {
+const MyUserPage: FC<ServerProps> = ({ user }) => {
   if (!user) {
     return null;
   }

@@ -21,7 +21,14 @@ const COLOR_CLASSES: Record<AlertType, string> = {
   error: styles.errorColors,
 };
 
-export const Alert: FC<PropsWithChildren<Props>> = ({ className, title, type, isClosable = false, onClose, children }) => {
+export const Alert: FC<PropsWithChildren<Props>> = ({
+  className,
+  title,
+  type,
+  isClosable = false,
+  onClose,
+  children,
+}) => {
   const handleClose = () => {
     onClose?.();
   };

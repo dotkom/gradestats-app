@@ -12,8 +12,6 @@ type QueryParams = {
   a: string;
 };
 
-const FILE_FORMAT = 'png';
-
 const handler = async (req: NextApiRequest, res: NextApiResponse<string>) => {
   try {
     const { courseCode } = req.query as QueryParams;
@@ -27,6 +25,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<string>) => {
     res.setHeader('Content-Type', 'text/raw');
     res.status(200).send(previewSvg);
   } catch (error) {
+    console.log(error);
     res.status(404).end();
   }
 };

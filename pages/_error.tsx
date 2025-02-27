@@ -26,7 +26,7 @@ const CustomErrorPage: ErrorFC = ({ statusCode, hasGetInitialPropsRun, err }) =>
 };
 
 CustomErrorPage.getInitialProps = async (ctx) => {
-  const { res, err, asPath } = ctx;
+  const { res, err } = ctx;
   const errorInitialProps: Props = await DefaultErrorPage.getInitialProps(ctx);
 
   // Workaround for https://github.com/zeit/next.js/issues/8592, mark when

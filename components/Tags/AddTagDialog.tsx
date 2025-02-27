@@ -52,41 +52,47 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, exist
     }
   }, [isOpen]);
 
-  const clickBackdrop: MouseEventHandler = (event) => {  
+  const clickBackdrop: MouseEventHandler = (event) => {
     if (event.target === ref.current) {
       closeDialog();
     }
-  }
+  };
 
   return (
-    <dialog ref={ref} className={styles.container} aria-label="Legg til tags" onCancel={closeDialog} onClick={clickBackdrop}>
+    <dialog
+      ref={ref}
+      className={styles.container}
+      aria-label="Legg til tags"
+      onCancel={closeDialog}
+      onClick={clickBackdrop}
+    >
       <form onSubmit={handleSubmit}>
-      <Heading as="h1" size="h3">
-        Legg til tags
-      </Heading>
-      {doesNameAlreadyExist && (
-        <Alert type="warning" title={`${name} finnes allerede`}>
-          En tag med dette navnet finnes allerede for dette emnet.
-        </Alert>
-      )}
-      {submitStatus === 'ERROR' &&
-        messages.map((message) => (
-          <Alert key={message} type="error" title="Feil">
-            {message}
+        <Heading as="h1" size="h3">
+          Legg til tags
+        </Heading>
+        {doesNameAlreadyExist && (
+          <Alert type="warning" title={`${name} finnes allerede`}>
+            En tag med dette navnet finnes allerede for dette emnet.
           </Alert>
-        ))}
-      {submitStatus === 'COMPLETED' && (
-        <Alert type="success" title="Tag opprettet!">
-          Taggen ble lagt til, takk for at du bidrar! Det kan ta opptil én time før den vises på siden.
-        </Alert>
-      )}
-      <Text>Gjør det lettere å søke i emner ved å legge til tags!</Text>
-      <Text>
-        Vi setter veldig stor pris på at du bidrar til å gjøre det lettere å søke i emner. Vennligst vis hensyn ved å
-        ikke legge til useriøse forslag. Grunnet tidligere misbruk vil ikke tags modereres før bruk, og ikke lenger være
-        synlig offentlig.
-      </Text>
-      
+        )}
+        {submitStatus === 'ERROR' &&
+          messages.map((message) => (
+            <Alert key={message} type="error" title="Feil">
+              {message}
+            </Alert>
+          ))}
+        {submitStatus === 'COMPLETED' && (
+          <Alert type="success" title="Tag opprettet!">
+            Taggen ble lagt til, takk for at du bidrar! Det kan ta opptil én time før den vises på siden.
+          </Alert>
+        )}
+        <Text>Gjør det lettere å søke i emner ved å legge til tags!</Text>
+        <Text>
+          Vi setter veldig stor pris på at du bidrar til å gjøre det lettere å søke i emner. Vennligst vis hensyn ved å
+          ikke legge til useriøse forslag. Grunnet tidligere misbruk vil ikke tags modereres før bruk, og ikke lenger
+          være synlig offentlig.
+        </Text>
+
         <Label label="Navn">
           <TextInput
             name="tag-name"
@@ -98,10 +104,7 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, exist
           />
         </Label>
         <div className={styles.buttons}>
-          <Button
-            type="button"
-            onClick={closeDialog}
-          >
+          <Button type="button" onClick={closeDialog}>
             Lukk
           </Button>
           <Button type="submit" disabled={status === 'PENDING' || doesNameAlreadyExist}>

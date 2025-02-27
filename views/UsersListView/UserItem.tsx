@@ -5,7 +5,6 @@ import cx from 'classnames';
 import { requestsWithAuth } from 'common/requests';
 import { getUserDetailApiUrl } from 'common/urls';
 import { formatDateString } from 'common/utils/date';
-import { LinkCard } from 'components/Card/LinkCard';
 import { Text } from 'components/Typography/Text';
 import { GradesUser } from 'models/User';
 

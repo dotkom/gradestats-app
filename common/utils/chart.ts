@@ -24,7 +24,6 @@ const baseProps = {
   height: 220,
   padding: 0,
   domainPadding: 25,
-
 };
 
 const baseStyleProps = {
@@ -54,21 +53,6 @@ const centeredLabelStyles = {
 const strokeDasharray = '5,10';
 const strokeLinecap = 'round';
 const strokeLinejoin = 'round';
-
-const a = {
-  histogram: {
-    ...baseProps,
-    style: {
-      ...baseStyleProps,
-      data: {
-        fill: blueGrey700,
-        stroke: grey900,
-        strokeWidth: 2,
-      },
-      labels: baseLabelStyles,
-    },
-  },
-};
 
 // Put it all together...
 export const graphTheme: VictoryThemeDefinition = {

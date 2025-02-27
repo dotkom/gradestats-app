@@ -2,7 +2,6 @@ import { FC, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 import { useUser } from 'common/hooks/useUser';
-import { useQueryParam } from 'common/hooks/useQueryParam';
 
 import styles from './login-view.module.scss';
 import { Heading } from 'components/Typography/Heading';
@@ -37,7 +36,6 @@ const TEXT = {
 export const LoginView: FC = () => {
   const router = useRouter();
   const [user] = useUser();
-  const [returnToPath] = useQueryParam('returnToPath', '/');
 
   useEffect(() => {
     // redirect to home if user is authenticated
