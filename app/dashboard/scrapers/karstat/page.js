@@ -3,7 +3,7 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import { getDepartmentListApiUrl } from 'common/urls';
 import { requestKarstatScrapeGradeReport } from 'common/api/karstat';
-import Department from 'components/Scrapers/Department';
+import { Department } from 'components/Scrapers/Department';
 
 const KarstatScraperPage = () => {
   const { data: departmentsResponse } = useSWR(getDepartmentListApiUrl());
