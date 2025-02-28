@@ -1,0 +1,64 @@
+import { FC, useCallback } from 'react';
+
+import type { GradesUser } from 'models/User';
+import { getUserListApiUrl } from 'common/urls';
+import useSWRInfinite from 'swr/infinite';
+import { UsersListView } from 'views/UsersListView';
+import { requestsWithAuth, ListResponse } from 'common/requests';
+import { Metadata } from 'next';
+
+const PAGE_SIZE = 20;
+
+const getUsersUrlPaginated = (pageNumber: number, previousPageData: ListResponse<GradesUser> | null) => {
+  if (previousPageData && !previousPageData?.results.length) return null;
+  const offset = pageNumber * PAGE_SIZE;
+  const usersListUrl = getUserListApiUrl({ limit: PAGE_SIZE, offset });
+  return usersListUrl;
+};
+
+interface ServerProps {
+  initialUsersResponse: ListResponse<GradesUser>;
+}
+
+const getInitialUsersResponse = async () => {
+  const usersListUrl = getUserListApiUrl({ limit: PAGE_SIZE, offset: 0 });
+  const initialUsersResponse = await fetch(usersListUrl);
+  const data: ListResponse<GradesUser> = await initialUsersResponse.json();
+
+  // if (user?.isStaff) {
+  //   return {
+  //     redirect: {
+  //       permanent: false,
+  //       destination: '/',
+  //     },
+  //     props,
+  //   };
+  // }
+  return {
+    initialUsersResponse: data,
+  };
+};
+
+export const metadata: Metadata = {
+  title: 'Admin - brukere',
+  description: 'Administrer brukere',
+};
+
+const UsersPage: FC<ServerProps> = async ({}) => {
+  const initialUsersResponse = await getInitialUsersResponse();
+
+  const { data, isValidating, setSize } = useSWRInfinite<ListResponse<GradesUser>>(
+    getUsersUrlPaginated,
+    requestsWithAuth.get,
+    {
+      fallbackData: [initialUsersResponse],
+    }
+  );
+
+  const nextPage = useCallback(() => setSize((currentSize) => currentSize + 1), []);
+
+  const users = data?.flatMap((coursesResponse) => coursesResponse.results) || [];
+  return <UsersListView isLoading={isValidating} users={users} nextPage={nextPage} />;
+};
+
+export default UsersPage;

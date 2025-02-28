@@ -2,11 +2,12 @@
   "name": "gradestats-app",
   "version": "1.12.2",
   "private": true,
+  "type": "module",
   "engines": {
     "node": "22.x"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,scss}'",
@@ -40,6 +41,7 @@
     "@eslint/eslintrc": "^3.3.0",
     "@eslint/js": "^9.21.0",
     "@lhci/cli": "^0.14.0",
+    "@next/eslint-plugin-next": "^15.2.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.1",
@@ -53,8 +55,11 @@
     "eslint-config-prettier": "^10.0.2",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-compiler": "^19.0.0-beta-e1e972c-20250221",
+    "eslint-plugin-react-hooks": "^5.1.0",
     "husky": "^9.1.7",
     "prettier": "^3.5.2",
-    "semantic-release": "^24.2.3"
+    "semantic-release": "^24.2.3",
+    "typescript-eslint": "^8.25.0"
   }
 }

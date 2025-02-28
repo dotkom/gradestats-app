@@ -24,17 +24,15 @@ export const CourseItem: FC<Props> = ({ course }) => {
         <LinkCard className={styles.content}>
           <Text>{course.code}</Text>
           <Text>{course.norwegian_name}</Text>
-          <Text>
-            {has_grades ? (
-              showGradeLetter ? (
-                <Text size="h4">{mapGradeAverageToLetter(averageGrade)}</Text>
-              ) : (
-                <Text>{averageGrade > 0 ? formatPercentage(averageGrade) : '-'}</Text>
-              )
+          {has_grades ? (
+            showGradeLetter ? (
+              <Text size="h4">{mapGradeAverageToLetter(averageGrade)}</Text>
             ) : (
-              '-'
-            )}
-          </Text>
+              <Text>{averageGrade > 0 ? formatPercentage(averageGrade) : '-'}</Text>
+            )
+          ) : (
+            <Text>&apos;-&apos;</Text>
+          )}
         </LinkCard>
       </Link>
     </li>

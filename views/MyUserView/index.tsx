@@ -1,10 +1,12 @@
+'use client';
+// FIXME: server only
 import { logOut } from 'common/auth/utils';
 import { Button } from 'components/common/Button';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import { LoggedInUser } from 'models/User';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { FC } from 'react';
 
 import styles from './my-user-view.module.scss';
@@ -14,11 +16,11 @@ interface Props {
 }
 
 export const MyUserView: FC<Props> = ({ user }) => {
-  const { push } = useRouter();
+  const router = useRouter();
 
   const handleLogOut = async () => {
     await logOut();
-    push('/');
+    router.push('/');
   };
 
   return (

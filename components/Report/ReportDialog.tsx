@@ -8,7 +8,7 @@ import { Label } from 'components/forms/Label';
 import { TextInput } from 'components/forms/TextInput';
 import { Textarea } from 'components/forms/Textarea';
 import { Alert } from 'components/Alert';
-import { useUser } from 'common/hooks/useUser';
+import { useSession } from 'next-auth/react';
 
 interface Props {
   isOpen: boolean;
@@ -19,7 +19,7 @@ interface Props {
 type Status = 'IDLE' | 'PENDING' | 'ERROR' | 'COMPLETED';
 
 export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode }) => {
-  const [user] = useUser();
+  const { data: session } = useSession();
   const [messages, setMessages] = useState<string[]>([]);
   const [submitStatus, setSubmitStatus] = useState<Status>('IDLE');
   const [course, setCourse] = useState<string>(prefillCourseCode ?? '');
@@ -60,10 +60,10 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
   }, [prefillCourseCode]);
 
   useEffect(() => {
-    if (user?.email) {
-      setContactEmail(user?.email);
+    if (session?.user?.email) {
+      setContactEmail(session?.user?.email);
     }
-  }, [user?.email]);
+  }, [session?.user?.email]);
 
   const ref = useRef<HTMLDialogElement>(null);
 

@@ -16,6 +16,7 @@ export const Scrolly: FC<Props> = ({ className, selectedValue, values, onClick }
   const scrollRef = useRef<HTMLDivElement>(null);
   const refs = useMemo(() => {
     return Object.fromEntries(values.map((value) => [value, createRef<HTMLButtonElement>()]));
+    // eslint-disable-next-line react-compiler/react-compiler
   }, [String(values)]);
 
   const scrollButtonToMiddle = (button: HTMLButtonElement) => {

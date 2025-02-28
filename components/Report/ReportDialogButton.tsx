@@ -1,3 +1,4 @@
+'use client';
 import { useDialog } from 'common/hooks/useDialog';
 import { Button } from 'components/common/Button';
 import dynamic from 'next/dynamic';

@@ -4,14 +4,19 @@ import { Heading } from 'components/Typography/Heading';
 import cx from 'classnames';
 
 import styles from './navbar.module.scss';
-import { useUser } from 'common/hooks/useUser';
+import { getServerSession } from 'next-auth';
 
 interface Props {
   className?: string;
 }
 
-export const Navbar: FC<Props> = ({ className }) => {
-  const [user] = useUser();
+const getUser = async () => {
+  const session = await getServerSession();
+  return session?.user;
+};
+
+export const Navbar: FC<Props> = async ({ className }) => {
+  const user = await getUser();
   return (
     <header className={cx(styles.navbar, className)}>
       <nav className={styles.content}>

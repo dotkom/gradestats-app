@@ -47,6 +47,7 @@ export const CourseFilters: FC<Props> = ({
       return departments.filter((department) => department.faculty === faculty.id);
     }
     return departments;
+    // eslint-disable-next-line react-compiler/react-compiler
   }, [currentFacultyId, String(faculties.map((f) => f.id))]);
 
   useEffect(() => {

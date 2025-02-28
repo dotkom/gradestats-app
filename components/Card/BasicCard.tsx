@@ -12,7 +12,7 @@ type Props = ElementProps & {
 export const BasicCard = forwardRef<HTMLElement, Props>(
   ({ className, as: Element = 'div', children, ...rest }, ref) => {
     // just a hack to not trip of typescript with the props of the `as` element.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     const props = rest as any;
     return (
       <Element ref={ref} className={cx(className, styles.card)} {...props}>

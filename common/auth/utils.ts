@@ -27,7 +27,7 @@ export const getUser = async (ctx?: GetServerSidePropsContext) => {
     return null;
   }
   const session = await getSession(ctx);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const user = session as any as LoggedInUser | null;
   return user;
 };

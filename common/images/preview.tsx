@@ -1,3 +1,4 @@
+'use client';
 import { renderToString } from 'react-dom/server';
 
 import { Grade } from 'models/Grade';

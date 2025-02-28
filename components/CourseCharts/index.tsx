@@ -1,3 +1,4 @@
+'use client';
 import dynamic from 'next/dynamic';
 import { FC, useState } from 'react';
 import Carousel from 'react-alice-carousel';

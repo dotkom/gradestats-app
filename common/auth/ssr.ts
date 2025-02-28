@@ -3,7 +3,6 @@ import type { LoggedInUser } from 'models/User';
 import type { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyProps = { [key: string]: any };
 
 export const withUser = <Props extends AnyProps = AnyProps, Query extends ParsedUrlQuery = ParsedUrlQuery>(
