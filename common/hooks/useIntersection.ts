@@ -25,7 +25,7 @@ export const useIntersection = (
     }
     setCount((oldCount) => oldCount + 1);
     return;
-  }, [targetRef.current]);
+  }, [targetRef]);
 
   useEffect(() => {
     if (observerEntry?.isIntersecting && count !== 0) {

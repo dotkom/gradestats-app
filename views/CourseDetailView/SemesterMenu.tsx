@@ -44,7 +44,7 @@ export const SemesterMenu: FC<Props> = ({
     }
 
     return () => observer.disconnect();
-  }, [ref.current]);
+  }, [ref]);
 
   return (
     <menu className={cx(styles.controls, className)}>

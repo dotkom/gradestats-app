@@ -21,7 +21,7 @@ import 'common/styles/carousel.scss';
 
 import styles from './_app.module.scss';
 import { SWRProvider } from './swr-provider';
-import { SessionProvider } from './session-provider';
+import SessionProvider from './session-provider';
 import { getSession } from 'next-auth/react';
 
 // Sentry.init({
