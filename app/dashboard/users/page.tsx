@@ -9,9 +9,9 @@ import { Metadata } from 'next';
 
 const PAGE_SIZE = 20;
 
-const getUsersUrlPaginated = (pageNumber: number, previousPageData: ListResponse<GradesUser> | null) => {
+const getUsersUrlPaginated = (index: number, previousPageData: ListResponse<GradesUser>) => {
   if (previousPageData && !previousPageData?.results.length) return null;
-  const offset = pageNumber * PAGE_SIZE;
+  const offset = index * PAGE_SIZE;
   const usersListUrl = getUserListApiUrl({ limit: PAGE_SIZE, offset });
   return usersListUrl;
 };
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 };
 
 const UsersPage: FC<ServerProps> = async ({}) => {
-  const initialUsersResponse = await getInitialUsersResponse();
+  const { initialUsersResponse } = await getInitialUsersResponse();
 
   const { data, isValidating, setSize } = useSWRInfinite<ListResponse<GradesUser>>(
     getUsersUrlPaginated,
