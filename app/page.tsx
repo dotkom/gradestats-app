@@ -4,14 +4,9 @@ import { getCourseGradeListApiUrl, getCourseListApiUrl } from 'common/urls';
 import { requests, ListResponse } from 'common/requests';
 
 import { FrontPageView } from 'views/FrontPageView';
-import { Course, CourseWithGrades } from 'models/Course';
+import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
 import { Metadata } from 'next';
-
-interface StaticProps {
-  courses: CourseWithGrades[];
-  courseCount: number;
-}
 
 const getProps = async () => {
   const limit = 21;
@@ -56,7 +51,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
   };
 };
 
-const IndexPage: FC<StaticProps> = async () => {
+const IndexPage: FC = async () => {
   const { courses, courseCount } = await getProps();
 
   return <FrontPageView courses={courses} totalCourseCount={courseCount} />;

@@ -2,6 +2,10 @@ import { FeideProfile } from '../../../../common/auth/utils';
 import { FEIDE_AUTH_ENDPOINT, FEIDE_CLIENT_ID, FEIDE_CLIENT_SECRET } from 'common/constants';
 import NextAuth, { AuthOptions } from 'next-auth';
 import { OIDC_CLIENT_NAME } from 'common/auth/utils';
+import { Requests } from 'common/requests';
+import { getUserDetailApiUrl } from 'common/urls';
+import { GradesUser, LoggedInUser } from 'models/User';
+import { UserData } from 'types/next-auth';
 
 const FEIDE_SCOPES = 'profile userid-feide email groups userid openid';
 
@@ -10,19 +14,6 @@ const FEIDE_SCOPES = 'profile userid-feide email groups userid openid';
 //   email?: string;
 //   picture?: string; // url to image
 //   accessToken?: string;
-//   iat: number;
-//   exp: number;
-// }
-
-// interface UserData {
-//   name: string;
-//   email: string;
-//   picture: string;
-//   accessToken: string;
-//   sub: string;
-//   'connect-userid_sec': string[];
-//   'dataporten-userid_sec': string[];
-//   email_verified: boolean;
 //   iat: number;
 //   exp: number;
 // }
@@ -47,29 +38,31 @@ const FEIDE_SCOPES = 'profile userid-feide email groups userid openid';
 
 const authOptions = {
   callbacks: {
-    session: async ({ session }) => {
-      // const { accessToken, email_verified, picture, sub } = data;
-      // console.log(session)
-      // const picture = token.profile?.picture;
+    session: async ({ session, token }) => {
+      if (!session.user?.email || !session.user?.name) {
+        return session;
+      }
+      const data = token as unknown as UserData;
+      const { accessToken, email_verified, picture, sub } = data;
 
-      // const sub = token.user.sub;
-
-      // const requests = new Requests({ accessToken, useAuthentication: true });
-      // const username = session.user.email.split('@')[0];
-      // const gradesUser = await requests.get<GradesUser>(getUserDetailApiUrl(username));
-      // const newUser: LoggedInUser = {
-      //   fullName: session.user.name,
-      //   username,
-      //   email: session.user.email,
-      //   id: token.sub!,
-      //   // image: picture,
-      //   accessToken,
-      //   expiresAt: Date.parse(session.expires),
-      //   dateJoined: gradesUser.date_joined,
-      //   isActive: gradesUser.is_active,
-      //   isStaff: gradesUser.is_staff,
-      //   isSuperuser: gradesUser.is_superuser,
-      // };
+      const requests = new Requests({ accessToken, useAuthentication: true });
+      const username = session.user?.email?.split('@')[0];
+      const gradesUser = await requests.get<GradesUser>(getUserDetailApiUrl(username!));
+      const user: LoggedInUser = {
+        fullName: session.user.name,
+        username,
+        email: session.user.email,
+        emailVerified: email_verified,
+        id: sub,
+        image: picture,
+        accessToken,
+        expiresAt: Date.parse(session.expires),
+        dateJoined: gradesUser.date_joined,
+        isActive: gradesUser.is_active,
+        isStaff: gradesUser.is_staff,
+        isSuperuser: gradesUser.is_superuser,
+      };
+      session.user = user;
       return session;
     },
     jwt: async ({ token, account, profile }) => {

@@ -1,6 +1,4 @@
-'use client';
-import { useRouter } from 'next/navigation';
-import { ChangeEvent, FC } from 'react';
+import { FC, Suspense } from 'react';
 
 import { CourseWithGrades } from 'models/Course';
 import { Heading } from 'components/Typography/Heading';
@@ -8,6 +6,7 @@ import { Text } from 'components/Typography/Text';
 
 import styles from './front-page-view.module.scss';
 import { CourseCard } from './CourseCard';
+import FrontPageSearch from './FrontPageSearch';
 import { SearchInput } from 'components/forms/SearchInput';
 
 interface Props {
@@ -16,13 +15,6 @@ interface Props {
 }
 
 export const FrontPageView: FC<Props> = ({ courses }) => {
-  const router = useRouter();
-
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    const query = event.target.value;
-    router.push(`/course/?query=${query}`);
-  };
-
   return (
     <section className={styles.container}>
       <div className={styles.headlineContainer}>
@@ -32,13 +24,9 @@ export const FrontPageView: FC<Props> = ({ courses }) => {
       <label className={styles.searchLabel} htmlFor="search">
         Søk i emner
       </label>
-      <SearchInput
-        id="search"
-        placeholder="Søk i emner..."
-        type="search"
-        onChange={handleSearch}
-        aria-label="Søk i emner"
-      />
+      <Suspense fallback={<SearchInput />}>
+        <FrontPageSearch />
+      </Suspense>
       <Heading className={styles.featuredHeadline} as="h2">
         Mest populære emner
       </Heading>

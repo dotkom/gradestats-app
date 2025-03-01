@@ -5,6 +5,7 @@ import { Faculty } from 'models/Faculty';
 
 import { CourseListPage } from './client';
 import { Metadata } from 'next';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'grades.no - søk',
@@ -14,7 +15,11 @@ export const metadata: Metadata = {
 export default async function Page() {
   const { departments, faculties } = await getProps();
 
-  return <CourseListPage departments={departments} faculties={faculties} />;
+  return (
+    <Suspense>
+      <CourseListPage departments={departments} faculties={faculties} />
+    </Suspense>
+  );
 }
 
 const getProps = async () => {

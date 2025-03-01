@@ -16,10 +16,6 @@ const getUsersUrlPaginated = (index: number, previousPageData: ListResponse<Grad
   return usersListUrl;
 };
 
-interface ServerProps {
-  initialUsersResponse: ListResponse<GradesUser>;
-}
-
 const getInitialUsersResponse = async () => {
   const usersListUrl = getUserListApiUrl({ limit: PAGE_SIZE, offset: 0 });
   const initialUsersResponse = await fetch(usersListUrl);
@@ -44,7 +40,7 @@ export const metadata: Metadata = {
   description: 'Administrer brukere',
 };
 
-const UsersPage: FC<ServerProps> = async ({}) => {
+const UsersPage: FC = async () => {
   const { initialUsersResponse } = await getInitialUsersResponse();
 
   const { data, isValidating, setSize } = useSWRInfinite<ListResponse<GradesUser>>(

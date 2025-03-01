@@ -1,20 +1,14 @@
-import { createPreview } from './../../../../../common/images/preview';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { createPreview } from '../../../../../common/images/preview';
 
 import { getCourseDetailApiUrl, getCourseGradeListApiUrl } from 'common/urls';
 import { ListResponse, requests } from 'common/requests';
 import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
 
-type QueryParams = {
-  courseCode: string;
-  fileFormat: string;
-  a: string;
-};
-
-export const GET = async (req: NextApiRequest, res: NextApiResponse<string>) => {
+export const GET = async (req: Request) => {
   try {
-    const { courseCode } = req.query as QueryParams;
+    const params = new URLSearchParams(req.url);
+    const courseCode = params.get('courseCode')!;
     const course = await requests.get<Course>(getCourseDetailApiUrl(courseCode));
     console.log(course);
     const { results: grades } = await requests.get<ListResponse<Grade>>(getCourseGradeListApiUrl(courseCode));
@@ -22,10 +16,9 @@ export const GET = async (req: NextApiRequest, res: NextApiResponse<string>) => 
     const previewSvg = createPreview(course, grades);
     console.log(courseCode);
     console.log(previewSvg);
-    res.setHeader('Content-Type', 'text/raw');
-    res.status(200).send(previewSvg);
+    return new Response(previewSvg, { status: 200, headers: { 'Content-Type': 'text/raw' } });
   } catch (error) {
     console.log(error);
-    res.status(404).end();
+    return new Response(null, { status: 404 });
   }
 };
