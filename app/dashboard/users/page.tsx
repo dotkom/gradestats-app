@@ -5,7 +5,6 @@ import { getUserListApiUrl } from 'common/urls';
 import useSWRInfinite from 'swr/infinite';
 import { UsersListView } from 'views/UsersListView';
 import { requestsWithAuth, ListResponse } from 'common/requests';
-import { Metadata } from 'next';
 
 const PAGE_SIZE = 20;
 
@@ -35,11 +34,6 @@ const getInitialUsersResponse = async () => {
   };
 };
 
-export const metadata: Metadata = {
-  title: 'Admin - brukere',
-  description: 'Administrer brukere',
-};
-
 const UsersPage: FC = async () => {
   const { initialUsersResponse } = await getInitialUsersResponse();
 
@@ -54,7 +48,13 @@ const UsersPage: FC = async () => {
   const nextPage = useCallback(() => setSize((currentSize) => currentSize + 1), []);
 
   const users = data?.flatMap((coursesResponse) => coursesResponse.results) || [];
-  return <UsersListView isLoading={isValidating} users={users} nextPage={nextPage} />;
+  return (
+    <>
+      <title>Admin - brukere</title>
+      <meta property="description" content="Administrer brukere" />
+      <UsersListView isLoading={isValidating} users={users} nextPage={nextPage} />
+    </>
+  );
 };
 
 export default UsersPage;

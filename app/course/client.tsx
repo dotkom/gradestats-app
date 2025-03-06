@@ -17,11 +17,6 @@ interface StaticProps {
   faculties: Faculty[];
 }
 
-// export const metadata: Metadata = {
-//     title: 'grades.no - søk',
-//     description: 'Søk i emner ved NTNU',
-// };
-
 const PAGE_SIZE = 20;
 
 const getSearchUrlPaginatedGetter =

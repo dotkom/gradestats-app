@@ -2,7 +2,6 @@ import Script from 'next/script';
 import { GA_TRACKING_ID } from 'common/constants';
 
 import siteLinksSearch from './site-search.json';
-import { Metadata, Viewport } from 'next';
 import React from 'react';
 // import * as Sentry from '@sentry/node';
 
@@ -42,24 +41,16 @@ import { getSession } from 'next-auth/react';
 //     previousPath = newPath;
 // });
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1.0,
-  themeColor: '#ffffff',
-};
-
-export const metadata: Metadata = {
-  icons: [
-    { url: '/icons/icon-64.png', sizes: '64x64', type: 'image/png' },
-    { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
-  ],
-  manifest: '/manifest.json',
-};
-
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession();
   return Promise.resolve(
     <html lang="no">
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" href="/icons/icon-64.png" />
+      <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+      <link rel="manifest" href="/manifest.json" />
+      <meta name="theme-color" content="#ffffff" />
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
       <Script

@@ -1,16 +1,16 @@
 import { getAllContributors, getGithubOrg, getGithubRepos } from 'common/api/github/repo';
-import { Metadata } from 'next';
 import { FC } from 'react';
 import { AboutView } from 'views/AboutView';
 
-export const metadata: Metadata = {
-  title: 'grades.no - om siden',
-  description: 'Om siden',
-};
-
 const AboutPage: FC = async () => {
   const { contributors, organization, repos } = await getProps();
-  return <AboutView contributors={contributors} organization={organization} repos={repos} />;
+  return (
+    <>
+      <title>grades.no - om siden</title>
+      <meta property="description" content="Om siden" />
+      <AboutView contributors={contributors} organization={organization} repos={repos} />
+    </>
+  );
 };
 
 const getProps = async () => {

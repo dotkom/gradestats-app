@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation';
 import styles from './login-view.module.scss';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
-import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import LoginButton from './login-button';
 
@@ -31,11 +30,6 @@ const TEXT = {
   },
 };
 
-export const metadata: Metadata = {
-  title: TEXT.TITLE,
-  description: TEXT.DESCRIPTION,
-};
-
 export default async function LoginPage() {
   const session = await getServerSession();
 
@@ -45,6 +39,8 @@ export default async function LoginPage() {
 
   return (
     <>
+      <title>{TEXT.TITLE}</title>
+      <meta property="description" content={TEXT.DESCRIPTION} />
       <div className={styles.container}>
         <Heading className={styles.title} as="h1" size="h3">
           {TEXT.HEADING}

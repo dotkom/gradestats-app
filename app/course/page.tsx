@@ -4,21 +4,19 @@ import { Department } from 'models/Department';
 import { Faculty } from 'models/Faculty';
 
 import { CourseListPage } from './client';
-import { Metadata } from 'next';
 import { Suspense } from 'react';
-
-export const metadata: Metadata = {
-  title: 'grades.no - søk',
-  description: 'Søk i emner ved NTNU',
-};
 
 export default async function Page() {
   const { departments, faculties } = await getProps();
 
   return (
+    <>
+      <title>grades.no - søk</title>
+      <meta property="description" content="Søk i emner ved NTNU" />
     <Suspense>
       <CourseListPage departments={departments} faculties={faculties} />
     </Suspense>
+    </>
   );
 }
 

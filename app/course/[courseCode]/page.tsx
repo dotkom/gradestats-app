@@ -13,33 +13,12 @@ import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
 import { Tag } from 'models/Tag';
 import { NotFoundView } from 'views/NotFoundView';
-import { Metadata } from 'next';
 
 export const dynamicParams = true;
 
 interface Params {
   courseCode: string;
 }
-
-export const generateMetadata = async ({ params }: { params: Promise<Params> }): Promise<Metadata> => {
-  const { courseCode } = await params;
-  const { courseResponse: course } = await getProps({ courseCode });
-  return {
-    title: `${course.code} - ${course.norwegian_name}`,
-    description: course.content,
-    openGraph: {
-      type: 'article',
-      tags: [
-        course.code,
-        course.short_name,
-        course.norwegian_name,
-        course.english_name,
-        course.course_level,
-        course.place,
-      ],
-    },
-  };
-};
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { courseCode } = await params;
@@ -57,7 +36,21 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   const grades = gradesResponse.results.sort(sortSemesters);
   const tags = tagsResponse.results;
 
-  return <CourseDetailView course={course} grades={grades} tags={tags} />;
+  return (
+    <>
+      <title>{`${course.code} - ${course.norwegian_name}`}</title>
+      <meta property="og:title" content={`${course.code} - ${course.norwegian_name}`} />
+      <meta name="description" content={course.content} />
+      <meta property="og:description" content={course.content} />
+      <meta property="og:article:tag" content={course.code} />
+      <meta property="og:article:tag" content={course.short_name} />
+      <meta property="og:article:tag" content={course.norwegian_name} />
+      <meta property="og:article:tag" content={course.english_name} />
+      <meta property="og:article:tag" content={course.course_level} />
+      <meta property="og:article:tag" content={course.place} />
+      <CourseDetailView course={course} grades={grades} tags={tags} />
+    </>
+  );
 }
 
 const getProps = async ({ courseCode }: Params) => {

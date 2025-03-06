@@ -6,7 +6,6 @@ import { requests, ListResponse } from 'common/requests';
 import { FrontPageView } from 'views/FrontPageView';
 import { Course } from 'models/Course';
 import { Grade } from 'models/Grade';
-import { Metadata } from 'next';
 
 const getProps = async () => {
   const limit = 21;
@@ -36,25 +35,21 @@ const ABOUT_GRADES = (courseCount: number) => `
 
 const TAGS = ['NTNU', 'Karakterstatistikk', 'Norwegian University of Science and Technology', 'Emneinformasjon'];
 
-export const generateMetadata = async (): Promise<Metadata> => {
-  const { courseCount } = await getProps();
-
-  return {
-    title: 'grades.no - karakterstatistikk',
-    description: ABOUT_GRADES(courseCount),
-    openGraph: {
-      title: 'grades.no - karakterstatistikk',
-      description: ABOUT_GRADES(courseCount),
-      type: 'article',
-      tags: TAGS,
-    },
-  };
-};
-
 const IndexPage: FC = async () => {
   const { courses, courseCount } = await getProps();
 
-  return <FrontPageView courses={courses} totalCourseCount={courseCount} />;
+  return (
+    <>
+      <title>grades.no - karakterstatistikk</title>
+      <meta property="og:title" content="grades.no - karakterstatistikk" />
+      <meta name="description" content={ABOUT_GRADES(courseCount)} />
+      <meta property="og:description" content={ABOUT_GRADES(courseCount)} />
+      {TAGS.map((tag) => (
+        <meta property="og:article:tag" content={tag} key={tag} />
+      ))}
+      <FrontPageView courses={courses} totalCourseCount={courseCount} />
+    </>
+  );
 };
 
 export default IndexPage;
