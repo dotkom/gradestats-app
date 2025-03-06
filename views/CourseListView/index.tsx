@@ -4,7 +4,7 @@ import { Text } from 'components/Typography/Text';
 import { Course, CourseSort } from 'models/Course';
 import { Department } from 'models/Department';
 import { Faculty } from 'models/Faculty';
-import { ChangeEvent, FC, MutableRefObject, useState } from 'react';
+import { ChangeEvent, FC, RefObject, useState } from 'react';
 import { CourseItem, CourseListHeader } from './CourseItem';
 
 import styles from './course-list-view.module.scss';
@@ -13,7 +13,7 @@ import { CourseFilters } from './CourseFilters';
 import { FilterIcon } from 'components/Graphics/Icons/Filter';
 
 interface Props {
-  searchBarRef: MutableRefObject<HTMLInputElement | null>;
+  searchBarRef: RefObject<HTMLInputElement | null>;
   onSearchChange: (query: string) => void;
   onOrderingChange: (sortOrder: CourseSort) => void;
   currentOrdering: CourseSort;

@@ -1,23 +1,15 @@
-import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 export const useQueryParam = (name: string, defaultValue = '') => {
-  const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const value = searchParams.get(name) || defaultValue;
 
-  const setValue = (newValue: string | string[]) => {
-    const current = new URLSearchParams(Array.from(searchParams.entries()));
+  const setValue = (newValue: string) => {
+    const current = new URLSearchParams(searchParams.toString());
 
-    if (Array.isArray(newValue)) {
-      for (const element of newValue) {
-        current.append(name, element);
-      }
-    } else {
-      current.set(name, newValue);
-    }
+    current.set(name, newValue);
 
-    router.replace(`${pathname}${current}`);
+    window.history.pushState(null, '', `?${current}`);
   };
 
   return [value, setValue] as [typeof value, typeof setValue];

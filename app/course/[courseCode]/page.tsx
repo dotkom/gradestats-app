@@ -54,13 +54,15 @@ export default async function Page({ params }: { params: Promise<Params> }) {
 }
 
 const getProps = async ({ courseCode }: Params) => {
-  const [courseResponse, gradesResponse, tagsResponse] = await Promise.all([
-    requests.get<Course>(getCourseDetailApiUrl(courseCode)),
-    requests.get<ListResponse<Grade>>(getCourseGradeListApiUrl(courseCode)),
-    requests.get<ListResponse<Tag>>(getCourseTagListApiUrl(courseCode)),
-  ]);
+  const [courseResponse, gradesResponse, tagsResponse]: [Course, ListResponse<Grade>, ListResponse<Tag>] =
+    await Promise.all([
+      fetch(getCourseDetailApiUrl(courseCode), { next: { revalidate: 60 * 60 } }).then((response) => response.json()),
+      fetch(getCourseGradeListApiUrl(courseCode), { next: { revalidate: 60 * 60 } }).then((response) =>
+        response.json()
+      ),
+      fetch(getCourseTagListApiUrl(courseCode), { next: { revalidate: 60 * 60 } }).then((response) => response.json()),
+    ]);
   return {
-    //   revalidate: 60 * 60, // Revalidate once each hour.
     courseResponse,
     gradesResponse,
     tagsResponse,

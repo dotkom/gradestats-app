@@ -27,20 +27,6 @@ import { getSession } from 'next-auth/react';
 //   dsn: SENTRY_DSN ?? undefined,
 // });
 
-// const getPathFromUrl = (url: string) => {
-//     return url.split(/[?#]/)[0];
-// };
-
-// let previousPath = '';
-
-// Router.events.on('routeChangeComplete', (url: string) => {
-//     const newPath = getPathFromUrl(url);
-//     if (newPath !== previousPath) {
-//         pageView(url);
-//     }
-//     previousPath = newPath;
-// });
-
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession();
   return Promise.resolve(

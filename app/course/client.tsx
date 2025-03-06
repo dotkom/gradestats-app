@@ -50,7 +50,8 @@ export const CourseListPage: FC<StaticProps> = ({ departments, faculties }) => {
   );
   const { data, isValidating, setSize } = useSWRInfinite<ListResponse<Course>>(getSearchUrl);
 
-  const nextPage = useCallback(() => setSize((currentSize) => currentSize + 1), []);
+  // TODO: this should not attempt to fetch if there is nothing mroe to fetch
+  const nextPage = useCallback(() => !isValidating && setSize((currentSize) => currentSize + 1), [isValidating]);
   const resetPages = useCallback(() => setSize(1), []);
 
   const courses = data?.flatMap((coursesResponse) => coursesResponse.results) || [];

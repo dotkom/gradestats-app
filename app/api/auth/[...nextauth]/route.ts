@@ -9,33 +9,6 @@ import { UserData } from 'types/next-auth';
 
 const FEIDE_SCOPES = 'profile userid-feide email groups userid openid';
 
-// interface Token {
-//   name?: string;
-//   email?: string;
-//   picture?: string; // url to image
-//   accessToken?: string;
-//   iat: number;
-//   exp: number;
-// }
-
-// interface FeideSession {
-//   user: {
-//     name: string;
-//     email: string;
-//     image: string;
-//   };
-//   expires: string;
-// }
-
-// interface Account {
-//   provider: string | null;
-//   type: string | null;
-//   id: number | null;
-//   refreshToken: string | null;
-//   accessToken: string | null;
-//   accessTokenExpires: null;
-// }
-
 const authOptions = {
   callbacks: {
     session: async ({ session, token }) => {
@@ -86,10 +59,6 @@ const authOptions = {
       },
       wellKnown: `${FEIDE_AUTH_ENDPOINT}/.well-known/openid-configuration`,
       checks: ['pkce', 'state'],
-      // responseType: 'code',
-      // accessTokenUrl: `${FEIDE_AUTH_ENDPOINT}/oauth/token`,
-      // requestTokenUrl: `"${FEIDE_AUTH_ENDPOINT}/oauth/authorization`,
-      // authorizationUrl: `${FEIDE_AUTH_ENDPOINT}/oauth/authorization?response_type=code`,
       profileUrl: `${FEIDE_AUTH_ENDPOINT}/openid/userinfo`,
       profile: (profile: FeideProfile) => {
         return {
