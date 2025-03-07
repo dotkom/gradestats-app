@@ -5,7 +5,7 @@ import {
   getCourseTagListApiUrl,
   getCourseGradeListApiUrl,
 } from 'common/urls';
-import { ListResponse, requests } from 'common/requests';
+import { ListResponse } from 'common/requests';
 import { sortSemesters } from 'common/utils/semester';
 
 import { CourseDetailView } from 'views/CourseDetailView';
@@ -22,7 +22,19 @@ interface Params {
 
 export default async function Page({ params }: { params: Promise<Params> }) {
   const { courseCode } = await params;
-  const { courseResponse, gradesResponse, tagsResponse } = await getProps({ courseCode });
+
+  const courseReponsePromise = fetch(getCourseDetailApiUrl(courseCode), { next: { revalidate: 60 * 60 } }).then(
+    (response) => response.json()
+  );
+  const gradelistPromise = fetch(getCourseGradeListApiUrl(courseCode), { next: { revalidate: 60 * 60 } }).then(
+    (response) => response.json()
+  );
+  const courseTagPromise = fetch(getCourseTagListApiUrl(courseCode), { next: { revalidate: 60 * 60 } }).then(
+    (response) => response.json()
+  );
+
+  const [courseResponse, gradesResponse, tagsResponse]: [Course, ListResponse<Grade>, ListResponse<Tag>] =
+    await Promise.all([courseReponsePromise, gradelistPromise, courseTagPromise]);
 
   if (!courseResponse?.code) {
     return (
@@ -53,26 +65,12 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   );
 }
 
-const getProps = async ({ courseCode }: Params) => {
-  const [courseResponse, gradesResponse, tagsResponse]: [Course, ListResponse<Grade>, ListResponse<Tag>] =
-    await Promise.all([
-      fetch(getCourseDetailApiUrl(courseCode), { next: { revalidate: 60 * 60 } }).then((response) => response.json()),
-      fetch(getCourseGradeListApiUrl(courseCode), { next: { revalidate: 60 * 60 } }).then((response) =>
-        response.json()
-      ),
-      fetch(getCourseTagListApiUrl(courseCode), { next: { revalidate: 60 * 60 } }).then((response) => response.json()),
-    ]);
-  return {
-    courseResponse,
-    gradesResponse,
-    tagsResponse,
-  };
-};
-
 export async function generateStaticParams(): Promise<{ params: { courseCode: string } }[]> {
   const limit = BUILD_TIME_COURSE_LIMIT;
   const ordering = '-attendee_count';
-  const response = await requests.get<ListResponse<Course>>(getCourseListApiUrl({ limit, ordering }));
+  const response: ListResponse<Course> = await fetch(getCourseListApiUrl({ limit, ordering })).then((response) =>
+    response.json()
+  );
   const courseCodes = response.results.map((course) => course.code);
   const paths = courseCodes.map((courseCode) => ({ params: { courseCode } }));
   return paths;

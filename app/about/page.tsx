@@ -1,9 +1,15 @@
 import { getAllContributors, getGithubOrg, getGithubRepos } from 'common/api/github/repo';
-import { FC } from 'react';
 import { AboutView } from 'views/AboutView';
 
-const AboutPage: FC = async () => {
-  const { contributors, organization, repos } = await getProps();
+export const revalidate = 86_400;
+
+export default async function Page() {
+  const [contributors, organization, repos] = await Promise.all([
+    getAllContributors(),
+    getGithubOrg(),
+    getGithubRepos(),
+  ]);
+
   return (
     <>
       <title>grades.no - om siden</title>
@@ -11,17 +17,4 @@ const AboutPage: FC = async () => {
       <AboutView contributors={contributors} organization={organization} repos={repos} />
     </>
   );
-};
-
-const getProps = async () => {
-  // FIXME: revalidate 60, 60, 24
-  const [contributors, organization, repos] = await Promise.all([
-    getAllContributors(),
-    getGithubOrg(),
-    getGithubRepos(),
-  ]);
-
-  return { contributors, organization, repos };
-};
-
-export default AboutPage;
+}

@@ -3,14 +3,13 @@ import { GA_TRACKING_ID } from 'common/constants';
 
 import siteLinksSearch from './site-search.json';
 import React from 'react';
-// import * as Sentry from '@sentry/node';
 
-// import { SENTRY_DSN } from 'common/constants';
 import { Navbar } from 'components/Navbar';
 import { Alert } from 'components/Alert';
 import { Footer } from 'components/Footer';
 
-import 'react-alice-carousel/lib/scss/alice-carousel.scss';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import 'cssremedy/css/remedy.css';
 import 'cssremedy/css/reminders.css';
 import 'cssremedy/css/quotes.css';
@@ -18,14 +17,10 @@ import 'common/styles/global.scss';
 import 'common/styles/resets.scss';
 import 'common/styles/carousel.scss';
 
-import styles from './_app.module.scss';
+import styles from './_app.module.css';
 import { SWRProvider } from './swr-provider';
 import SessionProvider from './session-provider';
 import { getSession } from 'next-auth/react';
-
-// Sentry.init({
-//   dsn: SENTRY_DSN ?? undefined,
-// });
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession();

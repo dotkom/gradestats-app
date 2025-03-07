@@ -3,7 +3,6 @@ import { formatPercentage } from 'common/utils/math';
 import { LinkCard } from 'components/Card/LinkCard';
 import { Text } from 'components/Typography/Text';
 import { Course } from 'models/Course';
-import Link from 'next/link';
 import { FC } from 'react';
 import cx from 'classnames';
 
@@ -20,21 +19,19 @@ export const CourseItem: FC<Props> = ({ course }) => {
 
   return (
     <li className={styles.item}>
-      <Link href="/course/[courseCode]" as={`/course/${course.code}`} legacyBehavior>
-        <LinkCard className={styles.content}>
-          <Text>{course.code}</Text>
-          <Text>{course.norwegian_name}</Text>
-          {has_grades ? (
-            showGradeLetter ? (
-              <Text size="h4">{mapGradeAverageToLetter(averageGrade)}</Text>
-            ) : (
-              <Text>{averageGrade > 0 ? formatPercentage(averageGrade) : '-'}</Text>
-            )
+      <LinkCard href="/course/[courseCode]" as={`/course/${course.code}`} className={styles.content}>
+        <Text>{course.code}</Text>
+        <Text>{course.norwegian_name}</Text>
+        {has_grades ? (
+          showGradeLetter ? (
+            <Text size="h4">{mapGradeAverageToLetter(averageGrade)}</Text>
           ) : (
-            <Text>&apos;-&apos;</Text>
-          )}
-        </LinkCard>
-      </Link>
+            <Text>{averageGrade > 0 ? formatPercentage(averageGrade) : '-'}</Text>
+          )
+        ) : (
+          <Text>-</Text>
+        )}
+      </LinkCard>
     </li>
   );
 };

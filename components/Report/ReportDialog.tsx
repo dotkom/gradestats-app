@@ -1,3 +1,4 @@
+'use client';
 import { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from 'react';
 import { requestCreateReport } from 'common/api/reports';
 import { Button } from 'components/common/Button';

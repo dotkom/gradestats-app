@@ -1,5 +1,4 @@
 import { mapGradeAverageToLetter } from 'common/utils/grades';
-import Link from 'next/link';
 import { FC } from 'react';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
@@ -34,16 +33,14 @@ export const CourseCard: FC<Props> = ({ className, code, name, course }) => {
 
   const gradeLetter = averageGrade ? mapGradeAverageToLetter(averageGrade) : undefined;
   return (
-    <Link href="/course/[courseCode]" as={`/course/${code}`} legacyBehavior>
-      <LinkCard className={cx(className, styles.card)}>
-        <Heading className={styles.code} as="h3">
-          {code}
-        </Heading>
-        <Text className={styles.text}>{name}</Text>
-        <Text className={cx(styles.grade, GRADE_COLORS[gradeLetter ?? 'PASSED'])}>
-          {showGradeLetter ? gradeLetter || '-' : averageGrade ? formatPercentage(averageGrade) : '-'}
-        </Text>
-      </LinkCard>
-    </Link>
+    <LinkCard href={`/course/${code}`} className={cx(className, styles.card)}>
+      <Heading className={styles.code} as="h3">
+        {code}
+      </Heading>
+      <Text className={styles.text}>{name}</Text>
+      <Text className={cx(styles.grade, GRADE_COLORS[gradeLetter ?? 'PASSED'])}>
+        {showGradeLetter ? gradeLetter || '-' : averageGrade ? formatPercentage(averageGrade) : '-'}
+      </Text>
+    </LinkCard>
   );
 };
