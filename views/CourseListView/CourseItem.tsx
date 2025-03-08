@@ -19,7 +19,7 @@ export const CourseItem: FC<Props> = ({ course }) => {
 
   return (
     <li className={styles.item}>
-      <LinkCard href="/course/[courseCode]" as={`/course/${course.code}`} className={styles.content}>
+      <LinkCard href={`/course/${course.code}`} className={styles.content}>
         <Text>{course.code}</Text>
         <Text>{course.norwegian_name}</Text>
         {has_grades ? (
