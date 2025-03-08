@@ -1,6 +1,6 @@
-import { GetServerSidePropsContext } from 'next';
+import type { GetServerSidePropsContext } from 'next';
 import { getUser } from './auth/utils';
-import { Nullable } from './utils/types';
+import type { Nullable } from './utils/types';
 
 export interface ListResponse<Data> {
   count: number;

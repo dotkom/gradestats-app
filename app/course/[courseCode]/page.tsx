@@ -5,13 +5,13 @@ import {
   getCourseTagListApiUrl,
   getCourseGradeListApiUrl,
 } from 'common/urls';
-import { ListResponse } from 'common/requests';
+import type { ListResponse } from 'common/requests';
 import { sortSemesters } from 'common/utils/semester';
 
 import { CourseDetailView } from 'views/CourseDetailView';
-import { Course } from 'models/Course';
-import { Grade } from 'models/Grade';
-import { Tag } from 'models/Tag';
+import type { Course } from 'models/Course';
+import type { Grade } from 'models/Grade';
+import type { Tag } from 'models/Tag';
 import { NotFoundView } from 'views/NotFoundView';
 
 export const dynamicParams = true;

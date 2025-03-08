@@ -2,8 +2,8 @@ import { mapGradeAverageToLetter } from 'common/utils/grades';
 import { formatPercentage } from 'common/utils/math';
 import { LinkCard } from 'components/Card/LinkCard';
 import { Text } from 'components/Typography/Text';
-import { Course } from 'models/Course';
-import { FC } from 'react';
+import type { Course } from 'models/Course';
+import type { FC } from 'react';
 import cx from 'classnames';
 
 import styles from './course-item.module.scss';

@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import { getCourseListApiUrl } from 'common/urls';
-import { ListResponse } from 'common/requests';
+import type { ListResponse } from 'common/requests';
 
 import { FrontPageView } from 'views/FrontPageView';
-import { Course } from 'models/Course';
+import type { Course } from 'models/Course';
 
 const getProps = async () => {
   const limit = 21;

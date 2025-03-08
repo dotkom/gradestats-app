@@ -1,6 +1,7 @@
 'use client';
 import { requests } from 'common/requests';
-import React, { FC } from 'react';
+import type { FC } from 'react';
+import React from 'react';
 import { SWRConfig } from 'swr';
 
 export const SWRProvider: FC<React.PropsWithChildren> = ({ children }) => {

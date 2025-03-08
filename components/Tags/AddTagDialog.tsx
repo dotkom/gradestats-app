@@ -1,4 +1,5 @@
-import { ChangeEvent, FC, FormEvent, MouseEventHandler, useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, FC, FormEvent, MouseEventHandler } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { requestCreateCourseTag } from 'common/api/tags';
 import { Button } from 'components/common/Button';
 import { Heading } from 'components/Typography/Heading';
@@ -6,7 +7,7 @@ import { Text } from 'components/Typography/Text';
 import { TextInput } from 'components/forms/TextInput';
 import { Alert } from 'components/Alert';
 import { Label } from 'components/forms/Label';
-import { Tag } from 'models/Tag';
+import type { Tag } from 'models/Tag';
 
 import styles from './add-tag-dialog.module.scss';
 interface Props {

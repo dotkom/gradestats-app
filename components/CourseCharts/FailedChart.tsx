@@ -1,8 +1,9 @@
-import { FC, memo } from 'react';
+import type { FC } from 'react';
+import { memo } from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel, VictoryLegend } from 'victory';
 
 import { calculateFailureRate, isKont, isNotKont } from 'common/utils/grades';
-import { Grade } from 'models/Grade';
+import type { Grade } from 'models/Grade';
 import { graphTheme } from 'common/utils/chart';
 
 interface Props {

@@ -1,11 +1,12 @@
-import { FeideProfile } from '../../../../common/auth/utils';
+import type { FeideProfile } from '../../../../common/auth/utils';
 import { FEIDE_AUTH_ENDPOINT, FEIDE_CLIENT_ID, FEIDE_CLIENT_SECRET } from 'common/constants';
-import NextAuth, { AuthOptions } from 'next-auth';
+import type { AuthOptions } from 'next-auth';
+import NextAuth from 'next-auth';
 import { OIDC_CLIENT_NAME } from 'common/auth/utils';
 import { Requests } from 'common/requests';
 import { getUserDetailApiUrl } from 'common/urls';
-import { GradesUser, LoggedInUser } from 'models/User';
-import { UserData } from 'types/next-auth';
+import type { GradesUser, LoggedInUser } from 'models/User';
+import type { UserData } from 'types/next-auth';
 
 const FEIDE_SCOPES = 'profile userid-feide email groups userid openid';
 

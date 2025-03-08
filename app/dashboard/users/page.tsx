@@ -1,10 +1,12 @@
-import { FC, useCallback } from 'react';
+import type { FC } from 'react';
+import { useCallback } from 'react';
 
 import type { GradesUser } from 'models/User';
 import { getUserListApiUrl } from 'common/urls';
 import useSWRInfinite from 'swr/infinite';
 import { UsersListView } from 'views/UsersListView';
-import { requestsWithAuth, ListResponse } from 'common/requests';
+import type { ListResponse } from 'common/requests';
+import { requestsWithAuth } from 'common/requests';
 
 const PAGE_SIZE = 20;
 

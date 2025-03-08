@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import { Button } from 'components/common/Button';
-import { Tag } from 'models/Tag';
+import type { Tag } from 'models/Tag';
 
 interface Props {
   tag: Tag;

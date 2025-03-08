@@ -1,4 +1,4 @@
-import { Grade, Semester } from 'models/Grade';
+import type { Grade, Semester } from 'models/Grade';
 
 const SEMESTERS: Semester[] = ['SPRING', 'SUMMER', 'AUTUMN'];
 

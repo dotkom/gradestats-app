@@ -1,14 +1,16 @@
 'use client';
-import { FC, useCallback, useMemo, useRef, useState } from 'react';
+import type { FC } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import useSWRInfinite from 'swr/infinite';
 
-import { ListResponse } from 'common/requests';
+import type { ListResponse } from 'common/requests';
 import { getCourseListApiUrl } from 'common/urls';
 import { useIsomorphicLayoutEffect } from 'common/hooks/useIsomorphicLayoutEffect';
 import { CourseListView } from 'views/CourseListView';
-import { Course, CourseSort, COURSE_ORDERING } from 'models/Course';
-import { Department } from 'models/Department';
-import { Faculty } from 'models/Faculty';
+import type { Course, CourseSort } from 'models/Course';
+import { COURSE_ORDERING } from 'models/Course';
+import type { Department } from 'models/Department';
+import type { Faculty } from 'models/Faculty';
 import useDebounce from 'common/hooks/useDebounce';
 import { useQueryParam } from 'common/hooks/useQueryParam';
 

@@ -1,5 +1,5 @@
-import { LoggedInUser } from 'models/User';
-import { GetServerSidePropsContext } from 'next';
+import type { LoggedInUser } from 'models/User';
+import type { GetServerSidePropsContext } from 'next';
 import { signIn, signOut, getSession } from 'next-auth/react';
 
 export interface FeideProfile {

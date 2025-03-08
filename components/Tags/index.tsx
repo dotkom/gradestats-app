@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter } from 'next/navigation';
 import { Heading } from 'components/Typography/Heading';
@@ -7,7 +7,7 @@ import { Button } from 'components/common/Button';
 
 import styles from './tags.module.scss';
 import { useDialog } from 'common/hooks/useDialog';
-import { Tag } from 'models/Tag';
+import type { Tag } from 'models/Tag';
 import { useSession } from 'next-auth/react';
 
 const DynamicAddTagDialog = dynamic(() => import('./AddTagDialog'), { ssr: false });

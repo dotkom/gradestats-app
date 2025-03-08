@@ -2,7 +2,7 @@ import { AnimatedFailIcon } from 'components/Graphics/AnimatedFailIcon';
 import { ReportDialogButton } from 'components/Report/ReportDialogButton';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import styles from './not-found-view.module.scss';
 

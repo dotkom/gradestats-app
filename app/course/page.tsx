@@ -1,7 +1,7 @@
-import { ListResponse } from 'common/requests';
+import type { ListResponse } from 'common/requests';
 import { getDepartmentListApiUrl, getFacultyListApiUrl } from 'common/urls';
-import { Department } from 'models/Department';
-import { Faculty } from 'models/Faculty';
+import type { Department } from 'models/Department';
+import type { Faculty } from 'models/Faculty';
 
 import { CourseListPage } from './client';
 import { Suspense } from 'react';

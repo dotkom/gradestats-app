@@ -1,8 +1,9 @@
-import { GithubOrg, GithubRepo, GithubUser } from 'common/api/github/repo';
+import type { GithubOrg, GithubRepo, GithubUser } from 'common/api/github/repo';
 import { GRADES_API_URL } from 'common/constants';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
-import React, { FC, PropsWithChildren } from 'react';
+import type { FC, PropsWithChildren } from 'react';
+import React from 'react';
 import cx from 'classnames';
 
 import styles from './about-view.module.scss';

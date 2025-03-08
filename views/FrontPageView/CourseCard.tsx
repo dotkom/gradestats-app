@@ -1,5 +1,5 @@
 import { mapGradeAverageToLetter } from 'common/utils/grades';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import cx from 'classnames';
@@ -7,7 +7,7 @@ import cx from 'classnames';
 import styles from './course-card.module.scss';
 import { LinkCard } from 'components/Card/LinkCard';
 import { formatPercentage } from 'common/utils/math';
-import { Course } from 'models/Course';
+import type { Course } from 'models/Course';
 
 export const GRADE_COLORS: Record<string, string> = {
   A: styles.gradeA,

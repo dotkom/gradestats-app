@@ -1,10 +1,11 @@
 import { SearchInput } from 'components/forms/SearchInput';
 import { InifiniteLoading } from 'components/Loading/InfiniteLoading';
 import { Text } from 'components/Typography/Text';
-import { Course, CourseSort } from 'models/Course';
-import { Department } from 'models/Department';
-import { Faculty } from 'models/Faculty';
-import { ChangeEvent, FC, RefObject, useState } from 'react';
+import type { Course, CourseSort } from 'models/Course';
+import type { Department } from 'models/Department';
+import type { Faculty } from 'models/Faculty';
+import type { ChangeEvent, FC, RefObject } from 'react';
+import { useState } from 'react';
 import { CourseItem, CourseListHeader } from './CourseItem';
 
 import styles from './course-list-view.module.scss';

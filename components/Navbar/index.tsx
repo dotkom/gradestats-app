@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { Heading } from 'components/Typography/Heading';
 import cx from 'classnames';
 

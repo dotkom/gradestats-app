@@ -1,6 +1,7 @@
-import { FC, Suspense } from 'react';
+import type { FC } from 'react';
+import { Suspense } from 'react';
 
-import { Course } from 'models/Course';
+import type { Course } from 'models/Course';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 
@@ -8,7 +9,7 @@ import styles from './front-page-view.module.scss';
 import { CourseCard } from './CourseCard';
 import FrontPageSearch from './FrontPageSearch';
 import { SearchInput } from 'components/forms/SearchInput';
-import { ListResponse } from 'common/requests';
+import type { ListResponse } from 'common/requests';
 
 interface Props {
   courses: ListResponse<Course>;

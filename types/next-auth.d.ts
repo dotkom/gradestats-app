@@ -1,5 +1,5 @@
 // import NextAuth from 'next-auth';
-import { UserData } from 'app/api/auth/[...nextauth]/route';
+import type { UserData } from 'app/api/auth/[...nextauth]/route';
 
 interface UserData {
   name: string;

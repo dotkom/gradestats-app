@@ -1,9 +1,10 @@
 import { createPreview } from '../../../../../../../common/images/preview';
 
 import { getCourseDetailApiUrl, getCourseGradeListApiUrl } from 'common/urls';
-import { ListResponse, requests } from 'common/requests';
-import { Course } from 'models/Course';
-import { Grade } from 'models/Grade';
+import type { ListResponse } from 'common/requests';
+import { requests } from 'common/requests';
+import type { Course } from 'models/Course';
+import type { Grade } from 'models/Grade';
 
 export const GET = async (req: Request) => {
   const searchParams = new URLSearchParams(req.url);

@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import { InifiniteLoading } from 'components/Loading/InfiniteLoading';
-import { GradesUser } from 'models/User';
+import type { GradesUser } from 'models/User';
 import { UserItem, UsersListHeader } from './UserItem';
 
 import styles from './users-list-view.module.scss';

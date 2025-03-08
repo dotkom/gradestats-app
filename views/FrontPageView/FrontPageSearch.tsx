@@ -1,7 +1,7 @@
 'use client';
 import { SearchInput } from 'components/forms/SearchInput';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
 
 export default function FrontPageSearch() {
   const router = useRouter();

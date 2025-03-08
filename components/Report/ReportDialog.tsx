@@ -1,5 +1,6 @@
 'use client';
-import { ChangeEvent, FC, FormEvent, useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, FC, FormEvent, MouseEventHandler } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { requestCreateReport } from 'common/api/reports';
 import { Button } from 'components/common/Button';
 
@@ -76,8 +77,14 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
     }
   }, [isOpen]);
 
+  const clickBackdrop: MouseEventHandler = (event) => {
+    if (event.target === ref.current) {
+      closeDialog();
+    }
+  };
+
   return (
-    <dialog ref={ref} onCancel={closeDialog} aria-label="Send tilbakemelding">
+    <dialog ref={ref} onCancel={closeDialog} aria-label="Send tilbakemelding" onClick={clickBackdrop}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Heading className={styles.heading} as="h1" size="h3">
           Send tilbakemelding

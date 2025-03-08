@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 import { NotFoundView, TEXT } from 'views/NotFoundView';
 
 const NotFoundPage: FC = () => {

@@ -1,5 +1,6 @@
 'use client';
-import { RefObject, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import type { RefObject } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 export type Ref = RefObject<HTMLDivElement>;
 export type Entry = IntersectionObserverEntry;

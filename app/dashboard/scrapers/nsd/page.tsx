@@ -1,10 +1,11 @@
 'use client';
 
-import { ChangeEvent, FC, FormEvent, useState } from 'react';
+import type { ChangeEvent, FC, FormEvent } from 'react';
+import { useState } from 'react';
 import useSWR from 'swr';
 import { getCourseListApiUrl } from 'common/urls';
-import { ListResponse } from 'common/requests';
-import { Course } from 'models/Course';
+import type { ListResponse } from 'common/requests';
+import type { Course } from 'models/Course';
 import { Heading } from 'components/Typography/Heading';
 import { Alert } from 'components/Alert';
 import { Label } from 'components/forms/Label';

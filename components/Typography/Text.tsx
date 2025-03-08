@@ -1,4 +1,4 @@
-import { FC, HTMLProps } from 'react';
+import type { FC, HTMLProps } from 'react';
 import cx from 'classnames';
 
 import styles from './typography.module.scss';

@@ -1,4 +1,5 @@
-import { Children, PropsWithChildren, ReactElement, ReactNode } from 'react';
+import type { PropsWithChildren, ReactElement, ReactNode } from 'react';
+import { Children } from 'react';
 
 const extractTextFromChildren = (element: ReactElement<PropsWithChildren>): string[] => {
   return Children.map(element, (child) => {

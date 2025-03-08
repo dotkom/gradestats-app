@@ -1,13 +1,14 @@
 'use client';
 import dynamic from 'next/dynamic';
-import { FC, useRef, useState } from 'react';
+import type { FC } from 'react';
+import { useRef, useState } from 'react';
 import Slider from 'react-slick';
 import cx from 'classnames';
 
 import styles from './course-charts.module.scss';
 import './dots.css';
 import { Button } from 'components/common/Button';
-import { Grade } from 'models/Grade';
+import type { Grade } from 'models/Grade';
 import GradedGraph from './GradedGraph';
 import UngradedGraph from './UngradedGraph';
 import { Heading } from 'components/Typography/Heading';

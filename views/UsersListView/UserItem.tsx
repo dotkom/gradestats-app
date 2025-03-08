@@ -1,4 +1,4 @@
-import { ChangeEvent, FC } from 'react';
+import type { ChangeEvent, FC } from 'react';
 import useSWR from 'swr';
 import cx from 'classnames';
 
@@ -6,7 +6,7 @@ import { requestsWithAuth } from 'common/requests';
 import { getUserDetailApiUrl } from 'common/urls';
 import { formatDateString } from 'common/utils/date';
 import { Text } from 'components/Typography/Text';
-import { GradesUser } from 'models/User';
+import type { GradesUser } from 'models/User';
 
 import styles from './user-item.module.scss';
 import { BasicCard } from 'components/Card/BasicCard';

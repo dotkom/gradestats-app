@@ -1,5 +1,5 @@
 'use client';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import { MyUserView } from 'views/MyUserView';
 import { useSession } from 'next-auth/react';

@@ -1,4 +1,4 @@
-import { Grade } from 'models/Grade';
+import type { Grade } from 'models/Grade';
 
 export interface Course {
   id: number;
