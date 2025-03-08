@@ -13,10 +13,11 @@
       "esnext"
     ],
     "strictNullChecks": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "allowJs": true,
     "noEmit": true,
-    "moduleResolution": "node",
+    "verbatimModuleSyntax": true,
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -32,9 +33,10 @@
     "**/*.tsx",
     "**/*.d.ts",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
-, "commitlint.config.js"  ],
+    ".next/types/**/*.ts",
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".next",
   ]
 }

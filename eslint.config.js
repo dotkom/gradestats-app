@@ -21,7 +21,7 @@ export default [
     },
     languageOptions: {
       parser: tsParser,
-      ecmaVersion: 2019,
+      ecmaVersion: 2024,
       sourceType: 'module',
 
       parserOptions: {
@@ -33,7 +33,7 @@ export default [
 
     settings: {
       react: {
-        version: 'detect',
+        version: '19',
       },
     },
 
@@ -47,7 +47,8 @@ export default [
       '@typescript-eslint/camelcase': 'off',
       'react-compiler/react-compiler': 'error',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/consistent-type-imports': 'error',
     },
-    ignores: ['node_modules', '.next/**'],
   },
+  { ignores: ['node_modules/', '.next/'] },
 ];

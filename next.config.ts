@@ -24,9 +24,6 @@ export default withSentryConfig(
         },
       ];
     },
-    experimental: {
-      useLightningcss: true,
-    },
   },
   {
     // For all available options, see:
