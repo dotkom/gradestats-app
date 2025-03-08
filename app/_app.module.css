@@ -10,6 +10,7 @@
 
 .header {
   grid-area: header;
+  view-transition-name: header;
 }
 
 .main {
