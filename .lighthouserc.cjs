@@ -24,7 +24,6 @@ module.exports = {
         interactive: ['warning', { minScore: 0.65 }], // Ouff performance
         'max-potential-fid': ['warning', { minScore: 0.5 }], // Ouff performance
         'first-cpu-idle': ['warning', { minScore: 0.7 }], // Ouff performance
-        'legacy-javascript': 'off', // Maybe Google Analytics?
         'uses-rel-preload': 'off', // Maybe fixable?
         'uses-rel-preconnect': 'off',
         'mainthread-work-breakdown': 'off',

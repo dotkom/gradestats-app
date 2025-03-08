@@ -32,20 +32,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       <link rel="manifest" href="/manifest.json" />
       <meta name="theme-color" content="#ffffff" />
-      {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <Script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
-      <Script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
-      />
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
