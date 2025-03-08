@@ -1,6 +1,6 @@
 import { FC, Suspense } from 'react';
 
-import { CourseWithGrades } from 'models/Course';
+import { Course } from 'models/Course';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 
@@ -8,10 +8,10 @@ import styles from './front-page-view.module.scss';
 import { CourseCard } from './CourseCard';
 import FrontPageSearch from './FrontPageSearch';
 import { SearchInput } from 'components/forms/SearchInput';
+import { ListResponse } from 'common/requests';
 
 interface Props {
-  courses: CourseWithGrades[];
-  totalCourseCount: number;
+  courses: ListResponse<Course>;
 }
 
 export const FrontPageView: FC<Props> = ({ courses }) => {
@@ -31,14 +31,16 @@ export const FrontPageView: FC<Props> = ({ courses }) => {
         Mest populære emner
       </Heading>
       <div className={styles.featuredCourses}>
-        {courses.map((course) => (
-          <CourseCard
-            key={course.code}
-            className={styles.courseCard}
-            code={course.code}
-            name={course.norwegian_name}
-            course={course}
-          />
+        {courses.results.map((course) => (
+          <Suspense key={course.code}>
+            <CourseCard
+              key={course.code}
+              className={styles.courseCard}
+              code={course.code}
+              name={course.norwegian_name}
+              course={course}
+            />
+          </Suspense>
         ))}
       </div>
     </section>

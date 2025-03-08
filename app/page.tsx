@@ -1,30 +1,20 @@
 import { FC } from 'react';
 
-import { getCourseGradeListApiUrl, getCourseListApiUrl } from 'common/urls';
-import { requests, ListResponse } from 'common/requests';
+import { getCourseListApiUrl } from 'common/urls';
+import { ListResponse } from 'common/requests';
 
 import { FrontPageView } from 'views/FrontPageView';
 import { Course } from 'models/Course';
-import { Grade } from 'models/Grade';
 
 const getProps = async () => {
   const limit = 21;
   const ordering = '-attendee_count';
   const response = await fetch(getCourseListApiUrl({ limit, ordering }), { next: { revalidate: 60 * 60 * 24 } });
   const data: ListResponse<Course> = await response.json();
-  const courses = await Promise.all(
-    data.results.map(async (course) => {
-      const courseGradeUrl = getCourseGradeListApiUrl(course.code, { limit: 10, offset: 0 });
-      const { results: grades } = await requests.get<ListResponse<Grade>>(courseGradeUrl);
-      return {
-        ...course,
-        grades,
-      };
-    })
-  );
+
   const courseCount = data.count;
   return {
-    courses,
+    data,
     courseCount,
   };
 };
@@ -36,7 +26,7 @@ const ABOUT_GRADES = (courseCount: number) => `
 const TAGS = ['NTNU', 'Karakterstatistikk', 'Norwegian University of Science and Technology', 'Emneinformasjon'];
 
 const IndexPage: FC = async () => {
-  const { courses, courseCount } = await getProps();
+  const { data: courses, courseCount } = await getProps();
 
   return (
     <>
@@ -47,7 +37,7 @@ const IndexPage: FC = async () => {
       {TAGS.map((tag) => (
         <meta property="og:article:tag" content={tag} key={tag} />
       ))}
-      <FrontPageView courses={courses} totalCourseCount={courseCount} />
+      <FrontPageView courses={courses} />
     </>
   );
 };
