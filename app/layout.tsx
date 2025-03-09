@@ -1,5 +1,4 @@
 import Script from 'next/script';
-import { GA_TRACKING_ID } from 'common/constants';
 
 import siteLinksSearch from './site-search.json';
 import React from 'react';
@@ -24,7 +23,7 @@ import { getSession } from 'next-auth/react';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession();
-  return Promise.resolve(
+  return (
     <html lang="no">
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -1,4 +1,3 @@
-import type { GetServerSidePropsContext } from 'next';
 import { getUser } from './auth/utils';
 import type { Nullable } from './utils/types';
 
@@ -20,11 +19,6 @@ export class Requests {
     this.accessToken = accessToken;
     this.useAuthentication = useAuthentication;
   }
-
-  static fromSession = async (context: GetServerSidePropsContext) => {
-    const user = await getUser(context);
-    return new Requests({ accessToken: user?.accessToken });
-  };
 
   getAccessToken = async () => {
     if (!this.useAuthentication) {

@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { Suspense } from 'react';
 
 import type { Course } from 'models/Course';
 import { Heading } from 'components/Typography/Heading';
@@ -8,7 +7,6 @@ import { Text } from 'components/Typography/Text';
 import styles from './front-page-view.module.scss';
 import { CourseCard } from './CourseCard';
 import FrontPageSearch from './FrontPageSearch';
-import { SearchInput } from 'components/forms/SearchInput';
 import type { ListResponse } from 'common/requests';
 
 interface Props {
@@ -25,23 +23,19 @@ export const FrontPageView: FC<Props> = ({ courses }) => {
       <label className={styles.searchLabel} htmlFor="search">
         Søk i emner
       </label>
-      <Suspense fallback={<SearchInput />}>
-        <FrontPageSearch />
-      </Suspense>
+      <FrontPageSearch />
       <Heading className={styles.featuredHeadline} as="h2">
         Mest populære emner
       </Heading>
       <div className={styles.featuredCourses}>
         {courses.results.map((course) => (
-          <Suspense key={course.code}>
-            <CourseCard
-              key={course.code}
-              className={styles.courseCard}
-              code={course.code}
-              name={course.norwegian_name}
-              course={course}
-            />
-          </Suspense>
+          <CourseCard
+            key={course.code}
+            className={styles.courseCard}
+            code={course.code}
+            name={course.norwegian_name}
+            course={course}
+          />
         ))}
       </div>
     </section>
