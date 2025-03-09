@@ -1,45 +1,54 @@
-import Head from 'next/head';
-import { FC } from 'react';
+'use client';
+import { useCallback, type FC } from 'react';
 
 import { InifiniteLoading } from 'components/Loading/InfiniteLoading';
-import { GradesUser } from 'models/User';
+import type { GradesUser } from 'models/User';
 import { UserItem, UsersListHeader } from './UserItem';
 
 import styles from './users-list-view.module.scss';
+import useSWRInfinite from 'swr/infinite';
+import type { ListResponse } from 'common/requests';
+import { PAGE_SIZE } from 'app/dashboard/users/page';
+import { getUserListApiUrl } from 'common/urls';
+import { requestsWithAuth } from 'common/requests';
 
-interface Props {
-  users: GradesUser[];
-  isLoading: boolean;
-  nextPage: () => void;
+export interface Props {
+  initialUsersReponse: ListResponse<GradesUser>;
 }
 
-const TEXT = {
-  TITLE: 'Admin - brukere',
-  DESCRIPTION: 'Administrer brukere',
+const getUsersUrlPaginated = (index: number, previousPageData: ListResponse<GradesUser>) => {
+  if (previousPageData && !previousPageData?.results.length) return null;
+  const offset = index * PAGE_SIZE;
+  const usersListUrl = getUserListApiUrl({ limit: PAGE_SIZE, offset });
+  return usersListUrl;
 };
 
-export const UsersListView: FC<Props> = ({ users, isLoading, nextPage }) => {
+export const UsersListView: FC<Props> = ({ initialUsersReponse }) => {
+  const { data, isLoading, setSize } = useSWRInfinite<ListResponse<GradesUser>>(
+    getUsersUrlPaginated,
+    requestsWithAuth.get,
+    {
+      fallbackData: [initialUsersReponse],
+    }
+  );
+
+  const nextPage = useCallback(() => setSize((currentSize) => currentSize + 1), []);
+
+  const users = data?.flatMap((coursesResponse) => coursesResponse.results) || [];
+
   return (
-    <>
-      <Head>
-        <title>{TEXT.TITLE}</title>
-        <meta property="og:title" content={TEXT.TITLE} />
-        <meta name="description" content={TEXT.DESCRIPTION} />
-        <meta property="og:description" content={TEXT.DESCRIPTION} />
-      </Head>
-      <section className={styles.page}>
-        {users.length ? (
-          <ol className={styles.usersList}>
-            <UsersListHeader />
-            {users
-              .sort((userA, userB) => userA.id - userB.id)
-              .map((user) => (
-                <UserItem key={user.username} user={user} />
-              ))}
-          </ol>
-        ) : null}
-        <InifiniteLoading triggerNextPage={nextPage} isLoading={isLoading} />
-      </section>
-    </>
+    <section className={styles.page}>
+      {users.length ? (
+        <ol className={styles.usersList}>
+          <UsersListHeader />
+          {users
+            .sort((userA, userB) => userA.id - userB.id)
+            .map((user) => (
+              <UserItem key={user.username} user={user} />
+            ))}
+        </ol>
+      ) : null}
+      <InifiniteLoading triggerNextPage={nextPage} isLoading={isLoading} />
+    </section>
   );
 };

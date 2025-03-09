@@ -1,11 +1,15 @@
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 
 export const useQueryParam = (name: string, defaultValue = '') => {
-  const { query, pathname, replace } = useRouter();
-  const value = query[name] || defaultValue;
+  const searchParams = useSearchParams();
+  const value = searchParams.get(name) || defaultValue;
 
-  const setValue = (newValue: string | string[]) => {
-    replace({ pathname, query: { ...query, [name]: newValue } });
+  const setValue = (newValue: string) => {
+    const current = new URLSearchParams(searchParams.toString());
+
+    current.set(name, newValue);
+
+    window.history.pushState(null, '', `?${current}`);
   };
 
   return [value, setValue] as [typeof value, typeof setValue];

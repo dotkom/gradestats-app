@@ -87,7 +87,7 @@ export const getAllContributors = async (): Promise<GithubUser[]> => {
         name: responseUser.name,
         username: responseUser.login,
         avatarUrl: responseUser.avatar_url,
-        contributions: equalUsers.reduce((a, c) => a + c.contributions ?? 0, 0),
+        contributions: equalUsers.reduce((a, c) => a + c.contributions, 0),
         url: responseUser.html_url,
         type: responseUser.type,
       } as GithubUser;

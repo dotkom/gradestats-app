@@ -1,0 +1,32 @@
+.app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  min-height: 100vh;
+}
+
+.header {
+  grid-area: header;
+  view-transition-name: header;
+}
+
+.main {
+  grid-area: main;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--spacing-7) var(--spacing-4);
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.dialog {
+  max-width: 600px;
+  width: 100%;
+  padding: var(--spacing-6);
+}

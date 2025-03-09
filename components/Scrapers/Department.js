@@ -15,7 +15,7 @@ export const Department = ({ name, disabled, loading, onClick, isDone }) => {
           </button>
         </span>
       </li>
-      <style jsx>{`
+      <style>{`
         .department {
           display: flex;
           justify-content: space-between;

@@ -1,5 +1,5 @@
 import { Text } from 'components/Typography/Text';
-import { FC } from 'react';
+import type { FC } from 'react';
 import cx from 'classnames';
 
 import styles from './footer.module.scss';

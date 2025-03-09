@@ -1,0 +1,9 @@
+.slick-dots {
+  /* !imporant because the css in the package can't be imported with @import 'x' layer(y) */
+  color: #bbbbbb !important;
+  position: initial !important;
+
+  .slick-active button::before {
+    color: var(--purple) !important;
+  }
+}

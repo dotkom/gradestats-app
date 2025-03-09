@@ -1,5 +1,5 @@
 import { average } from './math';
-import { Grade } from 'models/Grade';
+import type { Grade } from 'models/Grade';
 
 export const isKont = (grade: Grade): boolean =>
   grade.semester_code.startsWith('S') || grade.semester_code.startsWith('K');

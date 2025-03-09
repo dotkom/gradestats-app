@@ -1,8 +1,9 @@
-import { FC, memo } from 'react';
+import type { FC } from 'react';
+import { memo } from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel, VictoryLegend } from 'victory';
 
 import { calculateFailureRate, isKont, isNotKont } from 'common/utils/grades';
-import { Grade } from 'models/Grade';
+import type { Grade } from 'models/Grade';
 import { graphTheme } from 'common/utils/chart';
 
 interface Props {
@@ -35,7 +36,7 @@ export const FailedChartComponent: FC<Props> = ({ grades }) => {
         dependentAxis
         domain={[0, 100]}
         tickValues={[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]}
-        tickFormat={(tick) => `${tick} %`}
+        tickFormat={(tick: number) => `${tick} %`}
         style={{ tickLabels: { fontSize: 10, padding: 0 } }}
         fixLabelOverlap
       />

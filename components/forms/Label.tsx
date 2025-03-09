@@ -1,4 +1,4 @@
-import { FC, HTMLProps } from 'react';
+import type { FC, HTMLProps } from 'react';
 import cx from 'classnames';
 
 import styles from './label.module.scss';
@@ -14,7 +14,7 @@ type Props = ElementProps & {
 
 export const Label: FC<Props> = ({ as: Element = 'label', className, label, description, children, ...rest }) => {
   // just a hack to not trip of typescript with the props of the `as` element.
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const props = rest as any;
   return (
     <Element className={cx(styles.label, className)} {...props}>

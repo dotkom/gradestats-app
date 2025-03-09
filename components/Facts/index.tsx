@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import { Heading } from 'components/Typography/Heading';
 
 import { Stat } from '../Stat/Stat';
 
 import s from './facts.module.scss';
-import { Course } from 'models/Course';
+import type { Course } from 'models/Course';
 import { BasicCard } from 'components/Card/BasicCard';
 
 interface Props {

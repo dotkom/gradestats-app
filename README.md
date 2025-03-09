@@ -43,8 +43,6 @@ NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT # Default = 100
 NEXT_PUBLIC_GRADES_API_URL # Default = https://grades.no, for local backend it should be 'http://localhost:8000'
 # Sentry url/id for error logging
 NEXT_PUBLIC_SENTRY_DSN # Default = undefined
-# Google analytics tracking ID
-NEXT_PUBLIC_GA_TRACKING_ID # Default = __REPLACE_ME__
 # Actual URL of the hosted project. Important for linking. for prod it should be https://grades.no
 NEXT_PUBLIC_CANONICAL_URL # Default = http://localhost:3000
 # Redirect url for next auth

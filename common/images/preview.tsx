@@ -1,7 +1,8 @@
+'use client';
 import { renderToString } from 'react-dom/server';
 
-import { Grade } from 'models/Grade';
-import { Course } from 'models/Course';
+import type { Grade } from 'models/Grade';
+import type { Course } from 'models/Course';
 import { PreviewChart } from './PreviewChart';
 
 export const createPreview = (course: Course, grades: Grade[]) => {

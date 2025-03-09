@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import { FC } from 'react';
+import type { FC } from 'react';
 import cx from 'classnames';
-import { GithubUser } from 'common/api/github/repo';
+import type { GithubUser } from 'common/api/github/repo';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 import { LinkCard } from 'components/Card/LinkCard';

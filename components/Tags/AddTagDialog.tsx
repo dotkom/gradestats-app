@@ -1,4 +1,5 @@
-import { ChangeEvent, FC, FormEvent, useState } from 'react';
+import type { ChangeEvent, FC, FormEvent, MouseEventHandler } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { requestCreateCourseTag } from 'common/api/tags';
 import { Button } from 'components/common/Button';
 import { Heading } from 'components/Typography/Heading';
@@ -6,8 +7,7 @@ import { Text } from 'components/Typography/Text';
 import { TextInput } from 'components/forms/TextInput';
 import { Alert } from 'components/Alert';
 import { Label } from 'components/forms/Label';
-import { DynamicDialog } from 'components/Dialog/DynamicDialog';
-import { Tag } from 'models/Tag';
+import type { Tag } from 'models/Tag';
 
 import styles from './add-tag-dialog.module.scss';
 interface Props {
@@ -43,34 +43,57 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, exist
     }
   };
 
+  const ref = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      ref.current?.showModal();
+    } else {
+      ref.current?.close();
+    }
+  }, [isOpen]);
+
+  const clickBackdrop: MouseEventHandler = (event) => {
+    if (event.target === ref.current) {
+      closeDialog();
+    }
+  };
+
   return (
-    <DynamicDialog className={styles.container} isOpen={isOpen} onDismiss={closeDialog} aria-label="Legg til tags">
-      <Heading as="h1" size="h3">
-        Legg til tags
-      </Heading>
-      {doesNameAlreadyExist && (
-        <Alert type="warning" title={`${name} finnes allerede`}>
-          En tag med dette navnet finnes allerede for dette emnet.
-        </Alert>
-      )}
-      {submitStatus === 'ERROR' &&
-        messages.map((message) => (
-          <Alert key={message} type="error" title="Feil">
-            {message}
-          </Alert>
-        ))}
-      {submitStatus === 'COMPLETED' && (
-        <Alert type="success" title="Tag opprettet!">
-          Taggen ble lagt til, takk for at du bidrar! Det kan ta opptil én time før den vises på siden.
-        </Alert>
-      )}
-      <Text>Gjør det lettere å søke i emner ved å legge til tags!</Text>
-      <Text>
-        Vi setter veldig stor pris på at du bidrar til å gjøre det lettere å søke i emner. Vennligst vis hensyn ved å
-        ikke legge til useriøse forslag. Grunnet tidligere misbruk vil ikke tags modereres før bruk, og ikke lenger være
-        synlig offentlig.
-      </Text>
+    <dialog
+      ref={ref}
+      className={styles.container}
+      aria-label="Legg til tags"
+      onCancel={closeDialog}
+      onClick={clickBackdrop}
+    >
       <form onSubmit={handleSubmit}>
+        <Heading as="h1" size="h3">
+          Legg til tags
+        </Heading>
+        {doesNameAlreadyExist && (
+          <Alert type="warning" title={`${name} finnes allerede`}>
+            En tag med dette navnet finnes allerede for dette emnet.
+          </Alert>
+        )}
+        {submitStatus === 'ERROR' &&
+          messages.map((message) => (
+            <Alert key={message} type="error" title="Feil">
+              {message}
+            </Alert>
+          ))}
+        {submitStatus === 'COMPLETED' && (
+          <Alert type="success" title="Tag opprettet!">
+            Taggen ble lagt til, takk for at du bidrar! Det kan ta opptil én time før den vises på siden.
+          </Alert>
+        )}
+        <Text>Gjør det lettere å søke i emner ved å legge til tags!</Text>
+        <Text>
+          Vi setter veldig stor pris på at du bidrar til å gjøre det lettere å søke i emner. Vennligst vis hensyn ved å
+          ikke legge til useriøse forslag. Grunnet tidligere misbruk vil ikke tags modereres før bruk, og ikke lenger
+          være synlig offentlig.
+        </Text>
+
         <Label label="Navn">
           <TextInput
             name="tag-name"
@@ -90,7 +113,7 @@ export const AddTagDialog: FC<Props> = ({ isOpen, closeDialog, courseCode, exist
           </Button>
         </div>
       </form>
-    </DynamicDialog>
+    </dialog>
   );
 };
 

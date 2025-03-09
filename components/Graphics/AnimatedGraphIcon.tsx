@@ -1,4 +1,4 @@
-import { FC, SVGProps } from 'react';
+import type { FC, SVGProps } from 'react';
 import cx from 'classnames';
 
 import styles from './animated-graph-icon.module.scss';

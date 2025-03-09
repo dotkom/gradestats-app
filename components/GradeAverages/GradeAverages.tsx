@@ -1,13 +1,13 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import s from './grade-averages.module.scss';
 import { GradedStat } from 'components/Stat/GradedStat';
 import { UngradedStat } from 'components/Stat/UngradedStat';
 import { Heading } from 'components/Typography/Heading';
-import { Grade } from 'models/Grade';
+import type { Grade } from 'models/Grade';
 import { calculateAverageGrade, isGraded, findRelativeRollingGrades, calculatePassRate } from 'common/utils/grades';
 import { BasicCard } from 'components/Card/BasicCard';
-import { Course } from 'models/Course';
+import type { Course } from 'models/Course';
 
 interface Props {
   selectedGrade: Grade;
