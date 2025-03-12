@@ -24,11 +24,12 @@ const baseProps = {
   height: 220,
   padding: 0,
   domainPadding: 25,
-  style: {
-    parent: {
-      border: '1px solid var(--background-color-offset)',
-      background: 'var(--background-color)',
-    },
+};
+
+const baseStyleProps = {
+  parent: {
+    border: '1px solid var(--background-color-offset)',
+    background: 'var(--background-color)',
   },
 };
 
@@ -52,20 +53,6 @@ const centeredLabelStyles = {
 const strokeDasharray = '5,10';
 const strokeLinecap = 'round';
 const strokeLinejoin = 'round';
-
-const a = {
-  histogram: {
-    ...baseProps,
-    style: {
-      data: {
-        fill: blueGrey700,
-        stroke: grey900,
-        strokeWidth: 2,
-      },
-      labels: baseLabelStyles,
-    },
-  },
-};
 
 // Put it all together...
 export const graphTheme: VictoryThemeDefinition = {
@@ -204,7 +191,7 @@ export const graphTheme: VictoryThemeDefinition = {
     ...baseProps,
     domainPadding: 0,
     style: {
-      ...baseProps.style,
+      ...baseStyleProps,
       data: {
         fill: 'transparent',
         opacity: 1,

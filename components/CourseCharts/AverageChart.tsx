@@ -1,7 +1,8 @@
 import { graphTheme } from 'common/utils/chart';
 import { isKont, isNotKont } from 'common/utils/grades';
-import { Grade } from 'models/Grade';
-import { FC, memo } from 'react';
+import type { Grade } from 'models/Grade';
+import type { FC } from 'react';
+import { memo } from 'react';
 import { VictoryAxis, VictoryChart, VictoryLine, VictoryLabel, VictoryLegend } from 'victory';
 
 interface Props {

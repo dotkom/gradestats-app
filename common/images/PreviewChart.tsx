@@ -1,5 +1,5 @@
-import { Grade } from 'models/Grade';
-import { FC } from 'react';
+import type { Grade } from 'models/Grade';
+import type { FC } from 'react';
 import { VictoryBar } from 'victory';
 
 interface Props {

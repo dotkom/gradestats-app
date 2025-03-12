@@ -1,6 +1,5 @@
-import { GetServerSidePropsContext } from 'next';
 import { getUser } from './auth/utils';
-import { Nullable } from './utils/types';
+import type { Nullable } from './utils/types';
 
 export interface ListResponse<Data> {
   count: number;
@@ -20,11 +19,6 @@ export class Requests {
     this.accessToken = accessToken;
     this.useAuthentication = useAuthentication;
   }
-
-  static fromSession = async (context: GetServerSidePropsContext) => {
-    const user = await getUser(context);
-    return new Requests({ accessToken: user?.accessToken });
-  };
 
   getAccessToken = async () => {
     if (!this.useAuthentication) {
@@ -56,11 +50,11 @@ export class Requests {
     const responseData = (await response.json()) as Data;
     if (response.status === 400) {
       const messages: string[] = [];
-      Object.values(responseData).forEach((message) => {
+      Object.values(responseData as Record<string, string | string[]>).forEach((message) => {
         if (Array.isArray(message)) {
           messages.push(...message);
         } else {
-          messages.push(message as string);
+          messages.push(message);
         }
       });
       return {

@@ -1,13 +1,14 @@
-import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, FC } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import cx from 'classnames';
 
-import { Grade } from 'models/Grade';
+import type { Grade } from 'models/Grade';
 import { Label } from 'components/forms/Label';
 import { Scrolly } from 'components/forms/Scrolly';
 import { Select } from 'components/forms/Select';
 
 import styles from './semester-menu.module.scss';
-import { SemesterFilter } from 'common/utils/grades';
+import type { SemesterFilter } from 'common/utils/grades';
 
 interface Props {
   className?: string;
@@ -44,7 +45,7 @@ export const SemesterMenu: FC<Props> = ({
     }
 
     return () => observer.disconnect();
-  }, [ref.current]);
+  }, [ref]);
 
   return (
     <menu className={cx(styles.controls, className)}>

@@ -1,49 +1,44 @@
 import Link from 'next/link';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { Heading } from 'components/Typography/Heading';
 import cx from 'classnames';
 
 import styles from './navbar.module.scss';
-import { useUser } from 'common/hooks/useUser';
+import { getServerSession } from 'next-auth';
 
 interface Props {
   className?: string;
 }
 
-export const Navbar: FC<Props> = ({ className }) => {
-  const [user] = useUser();
+const getUser = async () => {
+  const session = await getServerSession();
+  return session?.user;
+};
+
+export const Navbar: FC<Props> = async ({ className }) => {
+  const user = await getUser();
   return (
     <header className={cx(styles.navbar, className)}>
       <nav className={styles.content}>
-        <Link href="/">
-          <a className={styles.pageNameLink}>
-            <Heading className={styles.pageName} as="p" size="h1">
-              Grades.no
-            </Heading>
-          </a>
+        <Link href="/" className={styles.pageNameLink}>
+          <Heading className={styles.pageName} as="p" size="h1">
+            Grades.no
+          </Heading>
         </Link>
         <ul className={styles.linksList}>
           <li className={styles.courses}>
-            <Link href="/">
-              <a>Emner</a>
-            </Link>
+            <Link href="/">Emner</Link>
           </li>
           <li className={styles.about}>
-            <Link href="/about">
-              <a>Om siden</a>
-            </Link>
+            <Link href="/about">Om siden</Link>
           </li>
           {!user ? (
             <li className={styles.login}>
-              <Link href="/login">
-                <a>Logg inn</a>
-              </Link>
+              <Link href="/login">Logg inn</Link>
             </li>
           ) : (
             <li className={styles.login}>
-              <Link href="/users/me">
-                <a>Bruker</a>
-              </Link>
+              <Link href="/users/me">Bruker</Link>
             </li>
           )}
         </ul>

@@ -1,5 +1,5 @@
-import { GithubRepo } from 'common/api/github/repo';
-import { FC } from 'react';
+import type { GithubRepo } from 'common/api/github/repo';
+import type { FC } from 'react';
 import cx from 'classnames';
 
 import styles from './repo-card.module.scss';

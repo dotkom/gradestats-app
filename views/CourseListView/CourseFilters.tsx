@@ -1,10 +1,12 @@
-import { ChangeEvent, FC, useEffect, useMemo } from 'react';
+import type { ChangeEvent, FC } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { Label } from 'components/forms/Label';
 import { Select } from 'components/forms/Select';
-import { CourseSort, COURSE_SORT_NAMES, COURSE_SORT_VALUES } from 'models/Course';
-import { Department } from 'models/Department';
-import { Faculty } from 'models/Faculty';
+import type { CourseSort } from 'models/Course';
+import { COURSE_SORT_NAMES, COURSE_SORT_VALUES } from 'models/Course';
+import type { Department } from 'models/Department';
+import type { Faculty } from 'models/Faculty';
 
 import styles from './course-filters.module.scss';
 
@@ -47,6 +49,7 @@ export const CourseFilters: FC<Props> = ({
       return departments.filter((department) => department.faculty === faculty.id);
     }
     return departments;
+    // eslint-disable-next-line react-compiler/react-compiler
   }, [currentFacultyId, String(faculties.map((f) => f.id))]);
 
   useEffect(() => {

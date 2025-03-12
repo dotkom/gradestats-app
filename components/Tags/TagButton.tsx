@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import { Button } from 'components/common/Button';
-import { Tag } from 'models/Tag';
+import type { Tag } from 'models/Tag';
 
 interface Props {
   tag: Tag;
@@ -11,9 +11,7 @@ interface Props {
 export const TagButton: FC<Props> = ({ tag }) => {
   return (
     <Link href={{ pathname: '/course', query: { query: tag.name } }}>
-      <a>
-        <Button role="button">{tag.name}</Button>
-      </a>
+      <Button role="button">{tag.name}</Button>
     </Link>
   );
 };

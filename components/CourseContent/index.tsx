@@ -1,5 +1,5 @@
-import { Course } from 'models/Course';
-import { FC } from 'react';
+import type { Course } from 'models/Course';
+import type { FC } from 'react';
 import { Heading } from 'components/Typography/Heading';
 import { Text } from 'components/Typography/Text';
 

@@ -1,5 +1,6 @@
 import { Button } from 'components/common/Button';
-import { createRef, FC, MouseEvent, useMemo, useRef } from 'react';
+import type { FC, MouseEvent } from 'react';
+import { createRef, useMemo, useRef } from 'react';
 import cx from 'classnames';
 
 import styles from './scrolly.module.scss';
@@ -16,6 +17,7 @@ export const Scrolly: FC<Props> = ({ className, selectedValue, values, onClick }
   const scrollRef = useRef<HTMLDivElement>(null);
   const refs = useMemo(() => {
     return Object.fromEntries(values.map((value) => [value, createRef<HTMLButtonElement>()]));
+    // eslint-disable-next-line react-compiler/react-compiler
   }, [String(values)]);
 
   const scrollButtonToMiddle = (button: HTMLButtonElement) => {

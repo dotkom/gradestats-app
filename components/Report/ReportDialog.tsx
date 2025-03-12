@@ -1,4 +1,6 @@
-import { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react';
+'use client';
+import type { ChangeEvent, FC, FormEvent, MouseEventHandler } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { requestCreateReport } from 'common/api/reports';
 import { Button } from 'components/common/Button';
 
@@ -8,8 +10,7 @@ import { Label } from 'components/forms/Label';
 import { TextInput } from 'components/forms/TextInput';
 import { Textarea } from 'components/forms/Textarea';
 import { Alert } from 'components/Alert';
-import { useUser } from 'common/hooks/useUser';
-import { DynamicDialog } from 'components/Dialog/DynamicDialog';
+import { useSession } from 'next-auth/react';
 
 interface Props {
   isOpen: boolean;
@@ -20,7 +21,7 @@ interface Props {
 type Status = 'IDLE' | 'PENDING' | 'ERROR' | 'COMPLETED';
 
 export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode }) => {
-  const [user] = useUser();
+  const { data: session } = useSession();
   const [messages, setMessages] = useState<string[]>([]);
   const [submitStatus, setSubmitStatus] = useState<Status>('IDLE');
   const [course, setCourse] = useState<string>(prefillCourseCode ?? '');
@@ -61,13 +62,29 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
   }, [prefillCourseCode]);
 
   useEffect(() => {
-    if (user?.email) {
-      setContactEmail(user?.email);
+    if (session?.user?.email) {
+      setContactEmail(session?.user?.email);
     }
-  }, [user?.email]);
+  }, [session?.user?.email]);
+
+  const ref = useRef<HTMLDialogElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      ref.current?.showModal();
+    } else {
+      ref.current?.close();
+    }
+  }, [isOpen]);
+
+  const clickBackdrop: MouseEventHandler = (event) => {
+    if (event.target === ref.current) {
+      closeDialog();
+    }
+  };
 
   return (
-    <DynamicDialog isOpen={isOpen} onDismiss={closeDialog} aria-label="Send tilbakemelding">
+    <dialog ref={ref} onCancel={closeDialog} aria-label="Send tilbakemelding" onClick={clickBackdrop}>
       <form className={styles.form} onSubmit={handleSubmit}>
         <Heading className={styles.heading} as="h1" size="h3">
           Send tilbakemelding
@@ -130,7 +147,7 @@ export const ReportDialog: FC<Props> = ({ isOpen, closeDialog, prefillCourseCode
           </Button>
         </div>
       </form>
-    </DynamicDialog>
+    </dialog>
   );
 };
 

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import type { FC, JSX } from 'react';
 
 import s from './stat.module.scss';
 

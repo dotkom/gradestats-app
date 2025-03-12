@@ -1,6 +1,6 @@
-import { LoggedInUser } from 'models/User';
-import { GetServerSidePropsContext } from 'next';
-import { signIn, signOut, getSession } from 'next-auth/client';
+import type { LoggedInUser } from 'models/User';
+import type { GetServerSidePropsContext } from 'next';
+import { signIn, signOut, getSession } from 'next-auth/react';
 
 export interface FeideProfile {
   sub: string;
@@ -27,7 +27,7 @@ export const getUser = async (ctx?: GetServerSidePropsContext) => {
     return null;
   }
   const session = await getSession(ctx);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const user = (session as any) as LoggedInUser | null;
+
+  const user = session as any as LoggedInUser | null;
   return user;
 };

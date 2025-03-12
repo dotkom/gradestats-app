@@ -1,11 +1,10 @@
-FROM node:14-slim AS builder
+FROM node:22-slim AS builder
 
 # Public variables are only required at build time.
 ARG NEXT_PUBLIC_BUILD_TIME_COURSE_LIMIT
 ARG NEXT_PUBLIC_GRADES_API_URL
 ARG NEXT_PUBLIC_CANONICAL_URL
 ARG NEXT_PUBLIC_SENTRY_DSN
-ARG NEXT_PUBLIC_GA_TRACKING_ID
 ARG NEXT_PUBLIC_FEIDE_CLIENT_ID
 ARG NEXT_PUBLIC_FEIDE_AUTH_ENDPOINT
 ARG GITHUB_TOKEN
@@ -24,7 +23,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM node:14-slim
+FROM node:22-slim
 
 LABEL maintainer="utvikling@online.ntnu.no"
 
@@ -34,7 +33,6 @@ ENV NODE_ENV=production
 
 WORKDIR $WORKDIR
 
-RUN ls
 COPY --from=builder $WORKDIR/node_modules ./node_modules
 COPY --from=builder $WORKDIR/.next ./.next
 COPY --from=builder $WORKDIR/public ./public
