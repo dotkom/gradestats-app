@@ -1,16 +1,12 @@
-'use client';
-import type { FC } from 'react';
-
 import { MyUserView } from 'views/MyUserView';
-import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 
-const MyUserPage: FC = () => {
-  const { data: session } = useSession();
+export default async function Page() {
+  const session = await getServerSession();
 
   if (!session?.user) {
     return null;
   }
-  return <MyUserView user={session.user} />;
-};
 
-export default MyUserPage;
+  return <MyUserView user={session.user} />;
+}

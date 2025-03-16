@@ -19,10 +19,10 @@ import 'common/styles/carousel.scss';
 import styles from './_app.module.css';
 import { SWRProvider } from './swr-provider';
 import SessionProvider from './session-provider';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await getSession();
+  const session = await getServerSession();
   return (
     <html lang="no">
       <meta charSet="utf-8" />
