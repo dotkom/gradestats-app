@@ -65,13 +65,13 @@ export default async function Page({ params }: { params: Promise<Params> }) {
   );
 }
 
-export async function generateStaticParams(): Promise<{ params: { courseCode: string } }[]> {
+export async function generateStaticParams(): Promise<Params[]> {
   const limit = BUILD_TIME_COURSE_LIMIT;
   const ordering = '-attendee_count';
   const response: ListResponse<Course> = await fetch(getCourseListApiUrl({ limit, ordering })).then((response) =>
     response.json()
   );
   const courseCodes = response.results.map((course) => course.code);
-  const paths = courseCodes.map((courseCode) => ({ params: { courseCode } }));
+  const paths = courseCodes.map((courseCode) => ({ courseCode }));
   return paths;
 }
